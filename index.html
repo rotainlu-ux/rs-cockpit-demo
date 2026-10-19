@@ -149,7 +149,19 @@ textarea{font:inherit}.taskedit{margin-top:11px;padding:10px;border:1px solid va
 .p1-button:disabled{opacity:.5}.p1-file{display:block;font-size:12px;color:#556875;margin:13px 0}.p1-file input{display:block;width:100%;margin-top:6px}
 .p1-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:10px 0}.p1-stats div{background:#eff5f7;border:1px solid #d4e2e8;border-radius:9px;padding:10px}.p1-stats strong{display:block;font-size:24px}.p1-stats span{font-size:11px;color:#526975}
 .p1-panel details{padding:10px 0;border-bottom:1px solid #d9e1e7}.p1-panel summary{font-weight:650;cursor:pointer}.p1-rows{overflow-wrap:anywhere;font-size:12px}.p1-error{border-left:3px solid #ad4a3a;background:#fff7f3;padding:9px;margin:9px 0;border-radius:6px;line-height:1.4;font-size:12px}.p1-error small{color:#5c7080;font-size:11px;display:block;margin-top:5px}
-</style></head>
+</style><style>
+.v8i-strip{border:1px solid var(--line,#c9d1d9);border-radius:13px;background:var(--surface,#f6f9fb);padding:13px;margin:0 0 15px;color:var(--text,#243142)}
+.v8i-strip strong{display:block;font-size:15px;margin-bottom:5px}.v8i-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:7px 0}
+.v8i-stat{border-radius:10px;background:var(--card,#fff);padding:7px;text-align:center;border:1px solid #d3dae0}.v8i-stat b{display:block;font-size:20px}.v8i-stat small{font-size:11px;line-height:1.3;display:block}
+.v8i-pill{border-radius:6px;border:1px solid #b0d5c7;background:#e7f5ef;color:#155b47;padding:3px 6px;font-size:11px;font-weight:700;display:inline-block;margin:3px 4px 4px 0}
+.v8i-pill.blocked{background:#fff0e7;color:#904200;border-color:#eed2bb}.v8i-disclaimer{font-size:12px;line-height:1.5;margin:7px 0;color:#4b5662}
+.v8i-suppressed{border-left:3px solid #d69b59;padding:8px 10px;margin:8px 0;background:#fff8f0;color:#3d352f;border-radius:6px;font-size:13px}
+.v8i-suppressed b{display:block}.v8i-ruleline{font-size:12px;line-height:1.5;border-top:1px solid #e4e6e8;margin-top:9px;padding-top:8px}.v8i-evidence{font-size:11px;line-height:1.5;overflow-wrap:anywhere;margin-top:3px;color:#444}
+.v8i-strip button{border-radius:10px;padding:10px 12px;border:1px solid #b3c8d0;background:#fff;color:#133c50;font-weight:650;min-height:42px;cursor:pointer}
+.v8i-strip details{margin-top:10px}.v8i-strip summary{cursor:pointer;font-weight:700;padding:9px 0}.v8i-strip code{overflow-wrap:anywhere}
+@media (max-width:420px){.v8i-strip{padding:10px}.v8i-stat{padding:7px 4px}.v8i-stat b{font-size:17px}.v8i-grid{gap:5px}}
+</style>
+</head>
 <body>
 <header class="header"><div class="top"><div><div class="brand">RS_Cockpit <span style="color:#54c5c5">Österreich</span></div><div class="version">iPhone-Test · V1.6 Einheitliche Filter · Einzelplatz</div></div><div class="demo">DEMODATEN</div></div><div class="subtitle">Projektsteuerung Nord Ost / Süd West<br>Quellenprüfung und Aufgabensteuerung · künstliche Daten · kein Server</div></header>
 <main class="main"><details class="v152-topnotice"><summary>Demo-Version – nur Testdaten</summary><p>Technischer Prototyp ohne operative Datenfreigabe. Unvollständige ST-Quellen und Demoregeln. Keine echten ETS-Dateien auf dieser öffentlichen Seite verwenden.</p></details><div class="controls"><div class="control"><label for="region">Region</label><select id="region"><option value="all">Österreich gesamt</option><option value="Nord Ost">Nord Ost</option><option value="Süd West">Süd West</option></select></div><div class="control"><label for="search">Projekt-ID, Standort oder Firma suchen</label><input id="search" type="search" placeholder="z. B. DEMO-P-00012"></div></div><div id="runtime" class="runtime" role="status"><strong>iPhone-Dateivorschau:</strong> Hier wird JavaScript nicht ausgeführt. Um die App bedienen zu können, öffne die veröffentlichte Webadresse in Safari.</div><div id="notice" class="runtime" hidden role="alert"></div><div id="content" aria-live="polite"><div class="empty">Die interaktiven Projektzahlen erscheinen nach dem Start in Safari.</div></div><div class="footer">Demodaten – Änderungen werden nach Möglichkeit lokal auf diesem iPhone gespeichert. Für eine zusätzliche Sicherung „Daten“ öffnen. Keine echten ETS-Daten verwenden.</div></main>
@@ -2141,5 +2153,107 @@ document.addEventListener('click',event=>{
 window.v8qaRun=v8qaRun;
 render();
 
+</script>
+<script>
+'use strict';
+/* V8 integration (synthetic only): immutable projection over rule hits.
+   Facts remain from current ST master and milestone files. Never rewrite source hits,
+   firm assignment, persisted statuses, or notes. This implements selected negative guards,
+   NOT the entire V8 trigger catalog. */
+const V8I_VERSION='2026-10-19-P1-V8I-TEST';
+const v8iBaseRecords=v152Records;
+const v8iBaseTaskCard=v153TaskCard;
+const v8iBaseTasksPage=v153TasksPage;
+const v8iBaseProjectDetail=v153ProjectDetail;
+const v8iBaseProjectsPage=v153ProjectsPage;
+const v8iBaseOverviewPage=v153OverviewPage;
+const v8iBaseAnalyticsPage=v153AnalyticsPage;
+const v8iBaseWorkflowPage=v153WorkflowPage;
+const v8iBaseV15Filtered=v15FilteredTasks;
+const v8iIndex=()=>new Map((v12Audit?.projects||[]).map(p=>[p.id,p]));
+function v8iContext(id){
+ const p=v8iIndex().get(id)||null;
+ const m=p?.masterSource||null, ms=p?.milestoneSource||null;
+ const src=v12Audit?.files||{};
+ return {p,m,ms,masterMeta:src.Master||{},milestoneMeta:src.Milestones||{}};
+}
+function v8iRaw(row,field){return row?.fields?v8qaValue(row.fields,field):null;}
+function v8iEvidence(id,field,where='Milestones'){
+ const x=v8iContext(id),s=where==='Master'?x.m:x.ms,meta=where==='Master'?x.masterMeta:x.milestoneMeta;
+ return {file:s?.source?.file||meta.file||'—',sheet:s?.source?.sheet||meta.sheet||'—',row:s?.source?.rowNo||s?.rowNo||'—',field,value:v8iRaw(s,field)};
+}
+function v8iEvalHit(h,inject){
+ const id=h.id,code=h.code,x=inject||v8iContext(id),p=x.p||{};
+ const m=x.m||null,ms=x.ms||null,issue=v12Audit?.rows?.find(r=>r.id===id&&r.invalid);
+ const checks=[];
+ const add=(message,field,where='Milestones')=>checks.push({message,evidence:(inject?null:v8iEvidence(id,field,where))});
+ // Unknown source must never be silently treated as a normal, evaluated task.
+ if(!m||!ms||issue){add('Quellenlage nicht eindeutig – Regelaufgabe nicht belegbar','Project ID','Master');}
+ const status=String(p.status??v8iRaw(m,'Project Status')??'').trim().toLowerCase();
+ if(V8QA_STOP.has(status))add('ST-Projektstatus ist abgeschlossen/abgebrochen: '+status,'Project Status','Master');
+ // Current milestone export is the only authority for actual milestone dates.
+ const actual=field=>v8qaActual(v8iRaw(ms,field));
+ if(actual('Construction End (A)'))add('Construction End (A) als IST vorhanden','Construction End (A)');
+ if(actual('Project Complete (A)'))add('Project Complete (A) als IST vorhanden','Project Complete (A)');
+ const target=V8QA_TARGET[code];
+ if(target&&v8qaNotApplicable(v8iRaw(ms,target)))add(target+' ist N/A / nicht anwendbar',target);
+ if(code==='D01'){
+  if(actual('Main Design Approved (A)'))add('D01 nach Main Design Approved IST nicht mehr zulässig','Main Design Approved (A)');
+  if(actual('Ready for Construction (A)'))add('D01 nach RFC IST nicht mehr zulässig','Ready for Construction (A)');
+  if(actual('Construction Start (A)'))add('D01 nach Baubeginn IST nicht mehr zulässig','Construction Start (A)');
+ }
+ if((code==='D02'||code==='D03')&&actual('Construction Start (A)'))add('D02/D03 nach Baubeginn IST nicht mehr zulässig','Construction Start (A)');
+ if(code==='B01')add('B01 ist gemäß V8 ausgesetzt','Regelstatus','Master');
+ return {id,code,blocked:checks.length>0,reasons:checks};
+}
+function v8iProjection(){
+ const raw=v8iBaseRecords();const items=[],suppressed=[];
+ for(const rec of raw){
+  const retained=[],supp=[];
+  for(const hit of rec.hits||[]){const result=v8iEvalHit(hit);if(result.blocked)supp.push({hit,...result});else retained.push(hit);}
+  if(supp.length)suppressed.push({key:rec.key,id:rec.id,type:rec.type,company:rec.company,owner:rec.owner,region:rec.region,items:supp});
+  if(!retained.length)continue;
+  const pr={'P0':0,'P1':1,'P2':2};const priority=retained.reduce((best,h)=>(pr[h.priority]??9)<(pr[best]??9)?h.priority:best,retained[0].priority);
+  items.push({...rec,priority,hits:retained,codes:[...new Set(retained.map(h=>h.code))],v8iSuppressed:supp,v8iGated:true});
+ }
+ return {items,suppressed,rawTaskCount:raw.length,rawHitCount:raw.reduce((n,r)=>n+(r.hits?.length||0),0),activeHitCount:items.reduce((n,r)=>n+r.hits.length,0),suppressedHitCount:suppressed.reduce((n,r)=>n+r.items.length,0)};
+}
+// All primary screens, filters and QA report use one exact projection.
+v152Records=function(){return v8iProjection().items;};
+v15FilteredTasks=function(){return v8iProjection().items.filter(t=>t.type==='firm').map(t=>({id:t.id,company:t.company,region:t.region,owner:t.owner,codes:t.codes,hits:t.hits,priority:t.priority,roles:t.roles||[],proof:t.roleProof||[]})).filter(t=>(v15FilterFirm==='all'||v15CompanyKey(t.company)===v15FilterFirm)&&(v15FilterRegion==='all'||t.region===v15FilterRegion)&&(v15FilterStatus==='all'||v15Status(t)===v15FilterStatus));};
+function v8iEsc(value){return v13E(String(value??''));}
+function v8iProof(proof){return (proof||[]).map(p=>'<div class="v8i-evidence">'+v8iEsc(p.file||'—')+' · '+v8iEsc(p.sheet||'—')+' · Zeile '+v8iEsc(p.row??'—')+' · '+v8iEsc(p.field||'—')+' = '+v8iEsc(p.value===null||p.value===undefined||p.value===''?'[leer]':p.value)+'</div>').join('');}
+function v8iActiveEvidence(r){return '<details class="v8i-strip" style="margin-top:8px"><summary>V8-Regeln und ST-Nachweise ('+r.hits.length+')</summary>'+r.hits.map(h=>'<div class="v8i-ruleline"><b>'+v8iEsc(h.code)+' · '+v8iEsc(h.label)+'</b><div class="v8i-evidence">Diese Auslösung stammt aus dem vereinfachten DEMO-Regelgenerator. Ausgewählte V8-Sperren wurden zusätzlich geprüft.</div>'+v8iProof(h.proof)+'</div>').join('')+(r.type==='firm'?'<div class="v8i-ruleline"><b>Firma über ST Vendor</b>'+v8iProof(r.roleProof)+'</div>':'')+'</details>';
+}
+function v8iSuppressedMarkup(s,mini=false){return '<article class="v8i-suppressed"><b>'+v8iEsc(s.id)+' · '+(s.type==='firm'?'Firma '+v8iEsc(s.company):'interne Aufgabe')+'</b>'+s.items.map(x=>'<div class="v8i-ruleline"><strong>'+v8iEsc(x.code)+' · '+v8iEsc(x.hit.label)+'</strong>'+x.reasons.map(r=>'<div>'+v8iEsc(r.message)+(mini?'':v8iProof(r.evidence?[r.evidence]:[]))+'</div>').join('')+'</div>').join('')+'</article>';}
+function v8iScopedSuppressed(){const projectIds=new Set(v153Projects().map(p=>p.id));return v8iProjection().suppressed.filter(x=>projectIds.has(x.id)&&(v153.kind==='all'||v153.kind===x.type));}
+function v8iDemoExample(){const h=v12Audit?.ruleAudit?.hits?.[0];if(!h)return '<p>Keine synthetischen Regelbeispiele verfügbar.</p>';const ctx=v8iContext(h.id);const test=v8iEvalHit(h,{...ctx,p:{...ctx.p,status:'Aborted'}});return '<p class="v8i-disclaimer">Nur zur Veranschaulichung: <b>'+v8iEsc(h.id)+' · '+v8iEsc(h.code)+'</b> würde bei künstlichem ST-Status <b>Aborted</b> unterdrückt. Der tatsächliche Masterstatus wird nicht geändert.</p>'+test.reasons.map(r=>'<div class="v8i-suppressed">'+v8iEsc(r.message)+'</div>').join('');}
+function v8iSummary({showSuppressed=true}={}){
+ const p=v8iProjection(),subs=v8iScopedSuppressed(),affected=new Set(subs.map(s=>s.id));
+ return '<div class="v8i-strip" id="v8i-dashboard"><strong>V8-Regelsperren · Aufgabensteuerung</strong><div class="v8i-grid">'+
+ [['Aktive Aufgaben',p.items.length],['Unterdrückte Treffer',p.suppressedHitCount],['Betroffene Projekte',new Set(p.suppressed.map(s=>s.id)).size]].map(([name,value])=>'<div class="v8i-stat"><b>'+value+'</b><small>'+v8iEsc(name)+'</small></div>').join('')+'</div>'+ 
+ '<p class="v8i-disclaimer"><b>TEST:</b> ausgewählte V8-Sperren direkt bei Projekt- und Firmenaufgaben; keine vollständige Regelabnahme.</p>'+
+ '<details><summary>V8-Nachweise, gesperrte Treffer und Export</summary><span class="v8i-pill">ST-Status</span><span class="v8i-pill">IST-Meilensteine</span><span class="v8i-pill">N/A</span><span class="v8i-pill">Stufensperren</span><p class="v8i-disclaimer">Aktive Treffer bleiben filterbar. Gesperrte Treffer zählen nicht als offene Aufgabe; frühere Notizen und Bearbeitungsstände werden nicht gelöscht.</p>'+
+ (showSuppressed?'<details><summary>Unterdrückte Treffer nach Projektfilter ('+subs.length+')</summary>'+(subs.length?subs.map(s=>v8iSuppressedMarkup(s)).join(''):'<p class="v8i-disclaimer">Im derzeitigen künstlichen Datenstand wurde kein vorhandener Treffer ausgeschlossen. Die folgenden Prüffälle zeigen die Sperrwirkung.</p>')+'</details>':'')+
+ '<details><summary>Künstliches Sperrbeispiel (verändert keine Daten)</summary>'+v8iDemoExample()+'</details><button type="button" data-v8i-export="1">V8-Aufgabenprüfung als JSON sichern</button></details></div>';
+}
+v153TaskCard=function(r){return v8iBaseTaskCard(r).replace('</article>',v8iActiveEvidence(r)+'</article>');};
+v153TasksPage=function(){const h=v8iBaseTasksPage();if(v153.project)return h;return h.replace('<section class="v153-shell">','<section class="v153-shell">'+v8iSummary());};
+v153ProjectDetail=function(id,returnTab){const h=v8iBaseProjectDetail(id,returnTab),s=v8iProjection().suppressed.filter(t=>t.id===id);return h.replace('</section>','<div class="v8i-strip"><strong>V8-Sperrprotokoll für '+v8iEsc(id)+'</strong>'+(s.length?s.map(r=>v8iSuppressedMarkup(r)).join(''):'<p class="v8i-disclaimer">Keine hier geprüfte Sperre auf vorhandene Regeltreffer angewandt.</p>')+'</div></section>');};
+v153ProjectsPage=function(){const h=v8iBaseProjectsPage();if(v153.project)return h;return h.replace('<section class="v153-shell">','<section class="v153-shell">'+v8iSummary({showSuppressed:false}));};
+v153OverviewPage=function(){return v8iBaseOverviewPage().replace('<section class="v153-shell">','<section class="v153-shell">'+v8iSummary({showSuppressed:false}));};
+v153AnalyticsPage=function(){const h=v8iBaseAnalyticsPage();return h.includes('<section class="v153-shell">')?h.replace('<section class="v153-shell">','<section class="v153-shell">'+v8iSummary({showSuppressed:false})):h;};
+v153WorkflowPage=function(){return v8iBaseWorkflowPage().replace('<section class="v153-shell">','<section class="v153-shell">'+v8iSummary({showSuppressed:false}));};
+const v8iBeforeRender=render;
+render=function(){v8iBeforeRender();if(tab==='data'&&v12Audit&&sourceMode==='demo'){
+ const el=document.getElementById('content');
+ if(el&&!el.querySelector('#v8i-dashboard'))el.insertAdjacentHTML('afterbegin',v8iSummary());
+ // Mark technical raw panels to avoid confusing original triggers with active assignments.
+ for(const h of el.querySelectorAll('.sectionhead'))if(h.textContent.startsWith('V1.5 · Firmenrollen'))h.textContent='V1.5 · Ursprüngliche Firmenregel-Rohtreffer (vor V8-Sperren)';
+ }};
+function v8iDiagnostics(){const p=v8iProjection();return {kind:'rs-cockpit-demo-v8-task-projection',version:V8I_VERSION,syntheticOnly:true,approved:false,completeV8:false,masterCount:v12Audit?.projects?.length??0,rawTaskCount:p.rawTaskCount,activeTaskCount:p.items.length,rawHitCount:p.rawHitCount,activeHitCount:p.activeHitCount,suppressedHitCount:p.suppressedHitCount,active:p.items.map(t=>({key:t.key,id:t.id,type:t.type,company:t.company,codes:t.codes,priority:t.priority})),suppressed:p.suppressed,negativeFixtures:(typeof v8qaRun==='function'?{passed:v8qaRun().passed,total:v8qaResult.total}:null),limitations:['Nur synthetische Daten; keine vollständige V8-Implementierung.','Positive Auslösebedingungen kommen weiterhin aus einem vereinfachten Demo-Regelgenerator.','Originaldateien und freigegebene Reports wurden nicht abgeglichen.']};}
+window.v8iDiagnostics=v8iDiagnostics;
+document.addEventListener('click',e=>{const b=e.target.closest('[data-v8i-export]');if(!b)return;e.stopImmediatePropagation();v16File('RS_Cockpit_Paket1_V8_Aufgabenprüfung_DEMO.json','application/json;charset=utf-8',JSON.stringify(v8iDiagnostics(),null,2));},true);
+render();
 </script>
 </body></html>
