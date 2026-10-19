@@ -52,12 +52,47 @@ textarea{font:inherit}.taskedit{margin-top:11px;padding:10px;border:1px solid va
 .v13-list{padding-left:18px;font-size:12px;line-height:1.6}
 .v13-chip{display:inline-block;border-radius:6px;background:#e0edee;color:#27535a;padding:3px 6px;font-size:11px;margin:3px 3px 3px 0}
 
+
+/* V1.5.2 mobile-first navigation and unified tasks */
+.nav{grid-template-columns:repeat(4,minmax(0,1fr));height:calc(66px + env(safe-area-inset-bottom))}
+.nav button{font-size:12px;min-height:52px;gap:2px}.nav .ico{font-size:22px}
+.main{padding:12px 12px calc(88px + env(safe-area-inset-bottom))}
+.header{padding:calc(9px + env(safe-area-inset-top)) 15px 11px}.header .subtitle{margin-top:5px;font-size:11px}.header .brand{font-size:18px}.header .version{font-size:11px}
+#runtime.ok{display:none!important}#notice:not([hidden]){position:fixed;left:12px;right:12px;bottom:calc(73px + env(safe-area-inset-bottom));z-index:32;box-shadow:0 5px 20px #10253430;max-width:580px;margin:0 auto} .v152-topnotice,.v152-demo-notice{background:#fff7ed;color:#74502a;border:1px solid #eedbbd;border-radius:9px;padding:10px 12px;margin-bottom:12px;font-size:12px;line-height:1.4}
+.v152-topnotice summary,.v152-demo-notice summary{font-weight:700;cursor:pointer}.v152-topnotice p,.v152-demo-notice p{margin:9px 0 2px}
+.v152-inbox{margin:0;max-width:920px}.v152-inbox h2,.v152-menu h2{font-size:23px;line-height:1.2;margin:7px 0 6px}.v152-inbox h2 small{font-size:10px;letter-spacing:.3px;background:#ffefdb;color:#7c521b;border-radius:5px;padding:4px 6px;vertical-align:middle}
+.v152-intro{font-size:13px;line-height:1.45;color:#64748b;margin:0 0 13px}
+.v152-chips{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-bottom:12px}
+.v152-chip{padding:12px 5px;min-height:48px;border-radius:10px;border:1px solid #cbd8df;background:white;font-size:14px;color:#304a58;font-weight:700}
+.v152-chip.selected{border-color:#0b7881;background:#e5f5f4;color:#08666d}.v152-chip span{display:inline-block;color:#617180;font-size:12px;margin-left:3px}
+.v152-primary-filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:8px 0 10px}
+.v152-primary-filters label,.v152-actions label,.v152-expand label{font-size:12px;color:#5a6b7d;font-weight:700;display:block;min-width:0}
+.v152-primary-filters select,.v152-actions select{display:block;width:100%;margin-top:5px;min-height:44px;border-radius:9px;border:1px solid #d3dee5;background:white;padding:8px 7px;font-size:16px;color:#172c3e}
+.v152-morefilters{padding:7px 9px;border:1px solid #e0e7ed;background:#fff;border-radius:10px;margin-bottom:12px}.v152-morefilters summary{font-size:13px;color:#176b74;min-height:30px;padding-top:6px;font-weight:700;cursor:pointer}
+.v152-result{display:flex;flex-wrap:wrap;justify-content:space-between;gap:3px 12px;align-items:center;margin:12px 0;font-size:13px}.v152-result span{color:#627386}
+.v152-task{border:1px solid #dbe5e9;background:white;border-radius:12px;padding:13px;margin:9px 0;box-shadow:0 1px 2px rgba(0,0,0,.02)}
+.v152-task[data-kind=firm]{border-left:4px solid #4389a7}.v152-task[data-kind=project]{border-left:4px solid #0b7881}
+.v152-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:7px}.v152-pill{border-radius:5px;padding:4px 7px;font-weight:760;font-size:11px;background:#e9f7f7;color:#08666d}.v152-pill.firm{background:#eaf1ff;color:#3a5e86}.v152-pill.priority{background:#f9efe4;color:#7a571f}
+.v152-task h3{font-size:16px;line-height:1.3;margin:0 0 5px;overflow-wrap:anywhere}.v152-separator{font-weight:400;color:#9aa7b2}
+.v152-taskmeta{color:#617489;font-size:12px;line-height:1.5;overflow-wrap:anywhere}.v152-codes{display:flex;gap:5px;flex-wrap:wrap;margin:8px 0 2px}
+.v152-codes span{font-size:11px;background:#f1f4f7;border-radius:5px;color:#45586a;padding:3px 6px;font-weight:650}
+.v152-actions{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:9px;margin-top:10px}
+.v152-detailbtn{border:1px solid #0b7881;color:#0b7881;background:white;border-radius:9px;min-height:44px;padding:7px 12px;font-size:13px;font-weight:760}
+.v152-expand{padding-top:10px;margin-top:12px;border-top:1px solid #edf0f3}.v152-expand textarea{display:block;width:100%;margin-top:6px;padding:10px;font-size:16px;border:1px solid #cad8df;border-radius:9px;resize:vertical}
+.v152-expand details{margin:13px 0;border:1px solid #e2e8ed;background:#f7fafb;border-radius:8px;padding:11px;overflow-wrap:anywhere}.v152-expand summary{font-size:13px;font-weight:750;cursor:pointer}
+.v152-evidence{padding:9px 0;border-top:1px solid #e1e7ec;font-size:12px}.v152-evidence:first-of-type{border-top:0}
+.v152-safetyline,.v152-hint,.v152-empty{font-size:12px;color:#65758a;line-height:1.5;padding:10px}.v152-empty{border:1px dashed #b8cad1;text-align:center;border-radius:10px;background:#fff}
+.v152-hint button,.v152-empty button{background:transparent;border:0;color:#0b7881;font-weight:760;text-decoration:underline}
+.v152-menu p{font-size:13px;color:#667689;line-height:1.5}.v152-menuitem{display:grid;grid-template-columns:minmax(0,1fr) 20px;text-align:left;width:100%;border:1px solid #d7e1e8;background:white;border-radius:12px;padding:15px 14px;margin:10px 0;min-height:74px;gap:4px}
+.v152-menuitem strong{font-size:17px;grid-column:1}.v152-menuitem span{font-size:12px;color:#708194;grid-column:1}.v152-menuitem b{font-size:27px;color:#0b7881;grid-column:2;grid-row:1/3;align-self:center}
+.v152-back{display:block;border:1px solid #aecfd3;border-radius:9px;color:#0b7881;background:#fff;padding:10px 14px;min-height:44px;margin:2px 0 12px;font-weight:720;font-size:14px}
+@media(max-width:365px){.v152-primary-filters{grid-template-columns:1fr}.v152-chip{font-size:12px}}
 </style>
 </head>
 <body>
-<header class="header"><div class="top"><div><div class="brand">RS_Cockpit <span style="color:#54c5c5">Österreich</span></div><div class="version">iPhone-Test · V1.5.1 Firmenaufgaben · Einzelplatz</div></div><div class="demo">DEMODATEN</div></div><div class="subtitle">Projektsteuerung Nord Ost / Süd West<br>Quellenprüfung und Aufgabensteuerung · künstliche Daten · kein Server</div></header>
-<main class="main"><div class="note"><strong>Technischer Prototyp.</strong> Alle Werte sind künstliche Testdaten. ST-Export-Schema-Pilot mit vier künstlichen Meilensteinquellen; vereinfachte Demoregeln und Aufgabenentwürfe; keine operative Datenfreigabe. Keine echten ETS-Dateien verwenden.</div><div class="controls"><div class="control"><label for="region">Region</label><select id="region"><option value="all">Österreich gesamt</option><option value="Nord Ost">Nord Ost</option><option value="Süd West">Süd West</option></select></div><div class="control"><label for="search">Projekt-ID oder Standort suchen</label><input id="search" type="search" placeholder="z. B. DEMO-P-00012"></div></div><div id="runtime" class="runtime" role="status"><strong>iPhone-Dateivorschau:</strong> Hier wird JavaScript nicht ausgeführt. Um die App bedienen zu können, öffne die veröffentlichte Webadresse in Safari.</div><div id="notice" class="runtime" hidden role="alert"></div><div id="content" aria-live="polite"><div class="empty">Die interaktiven Projektzahlen erscheinen nach dem Start in Safari.</div></div><div class="footer">Demodaten – Änderungen werden nach Möglichkeit lokal auf diesem iPhone gespeichert. Für eine zusätzliche Sicherung „Daten“ öffnen. Keine echten ETS-Daten verwenden.</div></main>
-<nav class="nav" aria-label="Hauptnavigation"><button class="active" data-tab="overview"><span class="ico">▦</span>Übersicht</button><button data-tab="projects"><span class="ico">▤</span>Projekte</button><button data-tab="tasks"><span class="ico">☑</span>Aufgaben</button><button data-tab="workflow"><span class="ico">▣</span>Steuerung</button><button data-tab="analytics"><span class="ico">▥</span>Analyse</button><button data-tab="data"><span class="ico">▣</span>Daten</button></nav>
+<header class="header"><div class="top"><div><div class="brand">RS_Cockpit <span style="color:#54c5c5">Österreich</span></div><div class="version">iPhone-Test · V1.5.2 Mobile Aufgaben · Einzelplatz</div></div><div class="demo">DEMODATEN</div></div><div class="subtitle">Projektsteuerung Nord Ost / Süd West<br>Quellenprüfung und Aufgabensteuerung · künstliche Daten · kein Server</div></header>
+<main class="main"><details class="v152-topnotice"><summary>Demo-Version – nur Testdaten</summary><p>Technischer Prototyp ohne operative Datenfreigabe. Unvollständige ST-Quellen und Demoregeln. Keine echten ETS-Dateien auf dieser öffentlichen Seite verwenden.</p></details><div class="controls"><div class="control"><label for="region">Region</label><select id="region"><option value="all">Österreich gesamt</option><option value="Nord Ost">Nord Ost</option><option value="Süd West">Süd West</option></select></div><div class="control"><label for="search">Projekt-ID, Standort oder Firma suchen</label><input id="search" type="search" placeholder="z. B. DEMO-P-00012"></div></div><div id="runtime" class="runtime" role="status"><strong>iPhone-Dateivorschau:</strong> Hier wird JavaScript nicht ausgeführt. Um die App bedienen zu können, öffne die veröffentlichte Webadresse in Safari.</div><div id="notice" class="runtime" hidden role="alert"></div><div id="content" aria-live="polite"><div class="empty">Die interaktiven Projektzahlen erscheinen nach dem Start in Safari.</div></div><div class="footer">Demodaten – Änderungen werden nach Möglichkeit lokal auf diesem iPhone gespeichert. Für eine zusätzliche Sicherung „Daten“ öffnen. Keine echten ETS-Daten verwenden.</div></main>
+<nav class="nav" aria-label="Hauptnavigation"><button class="active" data-tab="overview"><span class="ico" aria-hidden="true">▦</span>Übersicht</button><button data-tab="projects"><span class="ico" aria-hidden="true">▤</span>Projekte</button><button data-tab="tasks"><span class="ico" aria-hidden="true">☑</span>Aufgaben</button><button data-tab="more"><span class="ico" aria-hidden="true">☰</span>Mehr</button></nav>
 <script>
 /*!
 
@@ -1465,5 +1500,122 @@ document.addEventListener('change',e=>{
  const saved=v15Save();render();notice((saved?'Firmenstatus lokal gespeichert: ':'Firmenstatus nur temporär: ')+newStatus+'.');
 });
 
+'use strict';
+// V1.5.2: Mobile-first, unified task inbox. Read-only task aggregation across
+// separate project and company storage; never infer ST Actuals from user status.
+let v152Kind='all', v152Status='all', v152Company='all', v152Owner='all', v152Priority='all', v152Expanded=null;
+const V152_TYPES=[['all','Alle'],['project','Projekte'],['firm','Firmen']];
+function v152StatusOptions(value){return WF_STATUS.map(s=>'<option value="'+v13E(s)+'"'+(s===value?' selected':'')+'>'+v13E(s)+'</option>').join('');}
+function v152Records(){
+ const project=(v13Tasks()||[]).map(t=>({type:'project',key:'p:'+t.id,id:t.id,company:null,region:t.region,owner:t.owner,priority:t.priority,codes:t.codes,hits:t.hits||[],status:v13State(t.id),note:v13Note(t.id)}));
+ const firm=(v15Audit?.tasks||[]).map(t=>({type:'firm',key:'f:'+v15TaskKey(t.id,t.company),id:t.id,company:t.company,region:t.region,owner:t.owner,priority:t.priority,codes:t.codes,hits:t.hits||[],roleProof:t.proof||[],roles:t.roles||[],status:v15Status(t),note:v15Note(t)}));
+ return [...project,...firm];
+}
+function v152Matches(r){
+ if(v152Kind!=='all'&&r.type!==v152Kind)return false;
+ if(v13Region()!=='all'&&r.region!==v13Region())return false;
+ if(v152Status!=='all'&&r.status!==v152Status)return false;
+ if(v152Company!=='all'&&v15CompanyKey(r.company||'')!==v152Company)return false;
+ if(v152Owner!=='all'&&r.owner!==v152Owner)return false;
+ if(v152Priority!=='all'&&r.priority!==v152Priority)return false;
+ const q=v13Search();if(q){const p=v13All().find(x=>x.id===r.id);const searchable=[r.id,r.company||'',r.owner,r.region,p?.site||'',r.codes.join(' ')].join(' ').toLocaleLowerCase('de');if(!searchable.includes(q))return false;}
+ return true;
+}
+function v152RecordsFiltered(){const priority={P0:0,P1:1,P2:2},status={'In Bearbeitung':0,'Zur Prüfung':1,'Offen':2};return v152Records().filter(v152Matches).sort((a,b)=>(priority[a.priority]??4)-(priority[b.priority]??4)||(status[a.status]??4)-(status[b.status]??4)||a.id.localeCompare(b.id)||String(a.company||'').localeCompare(String(b.company||''),'de'));}
+function v152Badges(r){return '<span class="v152-pill '+(r.type==='firm'?'firm':'project')+'">'+(r.type==='firm'?'Firmenaufgabe':'Projektaufgabe')+'</span><span class="v152-pill priority">'+v13E(r.priority)+'</span>';}
+function v152Evidence(r){let html='';if(r.type==='firm'&&r.roleProof?.length)html+='<h4>Zuständige Firma – ST Vendor</h4>'+r.roleProof.map(v15Evidence).join('');if(r.hits.length)html+='<h4>Regeln und Quellen</h4>'+r.hits.map(h=>'<div class="v152-evidence"><strong>'+v13E(h.code)+' · '+v13E(h.label||'')+'</strong>'+(h.proof||[]).map(v15Evidence).join('')+'</div>').join('');return html||'<p class="v152-muted">Noch kein detaillierter Nachweis vorhanden.</p>';}
+function v152TaskCard(r){
+ const expanded=v152Expanded===r.key;
+ const name=r.type==='firm'?'Firma: '+r.company:'Projektsteuerung';
+ return '<article class="v152-task" data-kind="'+r.type+'">'+
+ '<div class="v152-badges">'+v152Badges(r)+'</div>'+ 
+ '<h3>'+v13E(r.id)+' <span class="v152-separator">·</span> '+v13E(name)+'</h3>'+ 
+ '<div class="v152-taskmeta">'+v13E(r.owner)+' · '+v13E(r.region)+(r.type==='firm'&&r.roles?.length?' · '+r.roles.map(v13E).join(', '):'')+'</div>'+ 
+ '<div class="v152-codes">'+r.codes.map(code=>'<span>'+v13E(code)+'</span>').join('')+'</div>'+ 
+ '<div class="v152-actions"><label>Bearbeitungsstatus<select data-v152-status="'+v13E(r.key)+'">'+v152StatusOptions(r.status)+'</select></label><button type="button" class="v152-detailbtn" data-v152-open="'+v13E(r.key)+'" aria-expanded="'+expanded+'">'+(expanded?'Weniger':'Details / Notiz')+'</button></div>'+ 
+ (expanded?'<div class="v152-expand"><label>Notiz zur '+(r.type==='firm'?'Firmenaufgabe':'Projektaufgabe')+'<textarea data-v152-note="'+v13E(r.key)+'" maxlength="1500" rows="3">'+v13E(r.note||'')+'</textarea></label><button type="button" class="actionbutton" data-v152-save="'+v13E(r.key)+'">Notiz speichern</button><details><summary>Regeln und Quellennachweise</summary>'+v152Evidence(r)+'</details><button type="button" class="actionbutton secondary" data-v13-detail="'+v13E(r.id)+'">Projektakte öffnen</button></div>':'')+'</article>';
+}
+function v152Chip(kind,label,count){return '<button type="button" data-v152-kind="'+kind+'" class="v152-chip'+(v152Kind===kind?' selected':'')+'" aria-pressed="'+(v152Kind===kind)+'">'+label+' <span>'+count+'</span></button>';}
+function v152Select(name,value,opts){return '<label>'+name+'<select data-v152-filter="'+v13E(name)+'">'+opts.map(([id,label])=>'<option value="'+v13E(id)+'"'+(value===id?' selected':'')+'>'+v13E(label)+'</option>').join('')+'</select></label>';}
+function v152TasksPage(){
+ if(v13Project)return '<section class="section"><div class="sectionhead">Projektakte</div>'+v13ProjectDetail(v13Project)+'</section>';
+ const all=v152Records(),scoped=v152RecordsFiltered();
+ const projectCount=all.filter(r=>r.type==='project').length,firmCount=all.filter(r=>r.type==='firm').length;
+ const active=scoped.filter(r=>r.status==='In Bearbeitung').length,review=scoped.filter(r=>r.status==='Zur Prüfung').length;
+ const companyOptions=[...new Set(all.filter(x=>x.company).map(x=>x.company))].sort((a,b)=>a.localeCompare(b,'de'));
+ const ownerOptions=[...new Set(all.map(x=>x.owner))].sort((a,b)=>a.localeCompare(b,'de'));
+ const detailsOpen=v152Owner!=='all'||v152Priority!=='all';
+ let out='<section class="v152-inbox"><h2>Meine Aufgaben <small>DEMO</small></h2>'+ 
+ '<p class="v152-intro">Alle Aufgaben an einem Ort. Projekt- und Firmenstatus bleiben unabhängig.</p>'+ 
+ '<div class="v152-chips">'+v152Chip('all','Alle',all.length)+v152Chip('project','Projekte',projectCount)+v152Chip('firm','Firmen',firmCount)+'</div>'+ 
+ '<div class="v152-primary-filters">'+v152Select('Status',v152Status,[['all','Alle'],...WF_STATUS.map(s=>[s,s])])+v152Select('Firma',v152Company,[['all','Alle Firmen'],...companyOptions.map(c=>[v15CompanyKey(c),c])])+'</div>'+ 
+ '<details class="v152-morefilters"'+(detailsOpen?' open':'')+'><summary>Weitere Filter (Bearbeiter / Priorität)</summary><div class="v152-primary-filters">'+v152Select('Bearbeiter',v152Owner,[['all','Alle'],...ownerOptions.map(o=>[o,o])])+v152Select('Priorität',v152Priority,[['all','Alle'],['P0','P0'],['P1','P1'],['P2','P2']])+'</div></details>'+ 
+ '<div class="v152-result"><strong>'+scoped.length+' Aufgabenpositionen</strong><span>'+active+' in Bearbeitung · '+review+' zur Prüfung</span></div>';
+ if(!v15Audit)out+='<p class="v152-hint">Firmenrollen werden geladen. Bis dahin siehst du die Projektaufgaben. <button type="button" data-v152-nav="data">Datenprüfung öffnen</button></p>';
+ if(!scoped.length)out+='<div class="v152-empty">Keine Aufgaben mit diesen Filtern. <button type="button" data-v152-clear="1">Filter zurücksetzen</button></div>';
+ else out+=scoped.slice(0,100).map(v152TaskCard).join('')+(scoped.length>100?'<p class="v152-hint">Die ersten 100 werden angezeigt. Suche oder Filter weiter eingrenzen.</p>':'');
+ return out+'<p class="v152-safetyline">Nur künstliche Daten. Firmen-/Projektpositionen nicht zum Projektbestand addieren. Ein Statuswechsel ist kein ST-Actual.</p></section>';
+}
+function v152MorePage(){return '<section class="v152-menu"><h2>Weitere Bereiche</h2><p>Auswertungen und technische Prüfungen sind hier gesammelt. Für die tägliche Arbeit genügt meist „Aufgaben“.</p>'+ 
+ [['workflow','Projektsteuerung','Aufgaben nach Regel, Priorität und Projekt'],['analytics','Analyse','Regionenvergleich und Mitarbeiter'],['data','Daten & Prüfungen','Excel-Import, Quellenfehler und Sicherungen']].map(([id,title,sub])=>'<button type="button" class="v152-menuitem" data-v152-nav="'+id+'"><strong>'+title+'</strong><span>'+sub+'</span><b aria-hidden="true">›</b></button>').join('')+'</section>';}
+const v152PrevRender=render;
+render=function(){
+ if(tab==='tasks'&&v12Audit&&sourceMode==='demo'){
+  document.getElementById('content').innerHTML=v152TasksPage();
+ }else if(tab==='more'){
+  document.getElementById('content').innerHTML=v152MorePage();
+ }else{
+  v152PrevRender();
+  if(['workflow','analytics','data','legacy'].includes(tab)){
+   const root=document.getElementById('content');root?.insertAdjacentHTML('afterbegin','<button type="button" class="v152-back" data-v152-nav="more">← Alle Bereiche</button>');
+  }
+ }
+ document.querySelectorAll('.nav [data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===(['workflow','analytics','data','legacy'].includes(tab)?'more':tab)));
+};
+function v152Find(key){return v152Records().find(r=>r.key===key);}
+function v152SaveEntry(key,next){const item=v152Find(key);if(!item)return false;
+ if(item.type==='firm'){
+  const firmKey=key.slice(2),old=v15Edits[firmKey]||{status:'Offen',note:''};
+  v15Edits[firmKey]={...old,...next};return v15Save();
+ }
+ const projectKey='WF:'+item.id,old=workflowState[projectKey]||{status:'Offen',note:''};
+ workflowState[projectKey]={...old,...next,updatedAt:new Date().toISOString()};return wfSave();
+}
+document.addEventListener('click',e=>{
+ const btn=e.target.closest('button');if(!btn)return;
+ if(btn.dataset.v152Nav){tab=btn.dataset.v152Nav;v13Project=null;render();window.scrollTo({top:0,behavior:'smooth'});return;}
+ if(btn.dataset.v152Kind){v152Kind=btn.dataset.v152Kind;v152Expanded=null;render();return;}
+ if(btn.dataset.v152Clear){v152Kind='all';v152Status='all';v152Company='all';v152Owner='all';v152Priority='all';v152Expanded=null;document.getElementById('region').value='all';document.getElementById('search').value='';render();return;}
+ if(btn.dataset.v152Open){const key=btn.dataset.v152Open;v152Expanded=(v152Expanded===key?null:key);render();return;}
+ if(btn.dataset.v152Save){const key=btn.dataset.v152Save;const note=[...document.querySelectorAll('[data-v152-note]')].find(x=>x.dataset.v152Note===key);if(!note)return;const ok=v152SaveEntry(key,{note:note.value.trim().slice(0,1500)});render();notice(ok?'Notiz lokal gespeichert.':'Notiz nur temporär – bitte sichern.');return;}
+});
+document.addEventListener('change',e=>{
+ const key=e.target.dataset.v152Status;if(key){if(!WF_STATUS.includes(e.target.value))return;const saved=v152SaveEntry(key,{status:e.target.value});render();notice(saved?'Aufgabenstatus lokal gespeichert.':'Status nur temporär gespeichert.');return;}
+ const filter=e.target.dataset.v152Filter;if(!filter)return;
+ if(filter==='Status')v152Status=e.target.value;
+ if(filter==='Firma')v152Company=e.target.value;
+ if(filter==='Bearbeiter')v152Owner=e.target.value;
+ if(filter==='Priorität')v152Priority=e.target.value;
+ v152Expanded=null;render();
+});
+// Only bundled synthetic vendor data: safe to autoload for the single-screen demo.
+(async function v152LoadSyntheticVendor(){
+ for(let i=0;i<80&&!v12Audit;i++)await new Promise(done=>setTimeout(done,125));
+ if(!v12Audit||v15Audit)return;
+ try{v15Audit=await v15AuditVendor([asDemoBlob(V15_BASE64,V15_FILE)]);render();}
+ catch(err){console.warn('Bundled demo firm data could not be loaded:',err.message);}
+})();
+// Compact risk notice throughout all views; original long wording is still available.
+v13Banner=function(){return '<details class="v152-demo-notice"><summary>DEMO · Nicht freigegeben · Datenqualität</summary><p>Alle Projekt- und Firmendaten sind künstlich. Fehlende Quellen und kritische Befunde verhindern eine operative Freigabe. Keine ETS-Dateien auf GitHub Pages verwenden.</p></details>';};
+render();
+// Show feedback briefly rather than permanently occupying mobile screen space.
+const v152OriginalNotice=notice;
+let v152ToastCounter=0;
+notice=function(message,error=false){
+ if(!error&&/^V1\.4 bereit:/.test(message))return;
+ v152OriginalNotice(message,error);
+ const n=++v152ToastCounter;
+ setTimeout(()=>{if(n===v152ToastCounter){const el=document.getElementById('notice');if(el)el.hidden=true;}},3600);
+};
 </script>
 </body></html>
