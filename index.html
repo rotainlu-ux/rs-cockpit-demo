@@ -721,7 +721,7 @@ async function v12Run(){
   sourceAudit=a;v11Audit=b;ruleAudit=evaluateDemoRules(a);v12Audit=combined;
   v12Region='all';v12Owner='all';v12Show='all';v12Project=null;
   tab='data';render();
-  notice('V1.2: '+combined.projects.length+' Masterprojekte; '+combined.issues.length+' Befunde; '+combined.ruleAudit.hits.length+' integrale Regeltreffer. TEST GESPERRT.');
+  notice('V1.2-Altprüfung: '+combined.projects.length+' Masterprojekte; '+combined.issues.length+' Befunde; '+combined.ruleAudit.hits.length+' historische DEMO-Rohtreffer. TEST GESPERRT.',true);
  }catch(error){notice('V1.2-Prüflauf abgebrochen: '+error.message,true);}
  finally{v12Working=false;}
 }
@@ -2255,5 +2255,157 @@ function v8iDiagnostics(){const p=v8iProjection();return {kind:'rs-cockpit-demo-
 window.v8iDiagnostics=v8iDiagnostics;
 document.addEventListener('click',e=>{const b=e.target.closest('[data-v8i-export]');if(!b)return;e.stopImmediatePropagation();v16File('RS_Cockpit_Paket1_V8_Aufgabenprüfung_DEMO.json','application/json;charset=utf-8',JSON.stringify(v8iDiagnostics(),null,2));},true);
 render();
+'use strict';
+// Paket 1: auditable V8 trigger projection for synthetic current sources only.
+// NEVER turn an absent source into an empty value. Never infer completion from task status.
+const V8P_VERSION='2026-10-19-P1-V8-positive-TEST';
+const V8P_CODES=['D01','D02','D03','C01','C02','C03','C04','C05','E01','T01'];
+const V8P_MILESTONE_CODES=new Set(['D01','D02','D03','C01','C02','C03','C04','C05']);
+const V8P_PRIORITY={P0:0,P1:1,P2:2};
+function v8pRaw(p,source,field){const fields=source==='master'?p?.masterSource?.fields:p?.milestoneSource?.fields;if(!fields)return undefined;const key=Object.keys(fields).find(k=>normalizeCol(k)===normalizeCol(field));return key===undefined?undefined:fields[key];}
+function v8pDate(p,f){const value=v8pRaw(p,'milestone',f);return v8qaActual(value)?testDateString(value):null;}
+function v8pNA(p,f){return v8qaNotApplicable(v8pRaw(p,'milestone',f));}
+function v8pBlank(v){return v===null||v===undefined||String(v).trim()==='';}
+function v8pRole(code,role){return code==='D01'?['Design','Single','ARGE'].includes(role):['Construction','Single','ARGE'].includes(role);}
+function v8pSourceIssue(id,role){return (v14SideAudit?.issues||[]).some(i=>i.id===id&&i.role===role);}
+function v8pSide(id,role){if(!v14SideAudit)return null;return v14SideAudit.joined.get(id)?.[role]||[];}
+function v8pSideProof(r,f){return {file:r.file||'DEMO-Nebenquelle',sheet:r.sheet||'—',row:r.row||'—',field:f,value:getCol(r.fields||{},[f])};}
+function v8pMasterProof(id,f){return v8iEvidence(id,f,'Master');}
+function v8pMilestoneProof(id,f){return v8iEvidence(id,f,'Milestones');}
+function v8pPriority(p,code){
+ const program=String(v8pRaw(p,'master','Program')||'').toLowerCase();
+ if(program.includes('cadastral'))return 'P0';
+ const cb=(p1Audit?.projects?.get(p.id)?.sourceFacts||[]).some(f=>f.role==='cband_5g'&&/^(?:ja|yes|1)$/i.test(f.value));
+ if(cb||['D01','D02','D03','C02','C03','C04','C05'].includes(code))return 'P1';return 'P2';
+}
+function v8pPositive(){
+ const hits=[],unknown=[],blocked=[],quality=[],perProject=new Map();
+ if(!v12Audit||!v15Audit)return {hits,unknown,blocked,quality,perProject,sourceReady:false};
+ const invalid=new Set((v12Audit.rows||[]).filter(r=>r.invalid).map(r=>r.id));
+ const sourceReady=!!v14SideAudit;
+ const at=DEMO_STICHTAG;
+ for(const p of v12Audit.projects){
+  const id=p.id,projectUnknown=[],projectHits=[];
+  perProject.set(id,{hits:projectHits,unknown:projectUnknown});
+  if(invalid.has(id)||!p.masterSource||!p.milestoneSource){
+   quality.push({id,reason:'Kritische Ausgangsquelle bzw. aktueller Meilensteinexport unvollständig'});continue;
+  }
+  const status=String(p.status||'').trim().toLowerCase();
+  if(V8QA_STOP.has(status)||v8pDate(p,'Construction End (A)')||v8pDate(p,'Project Complete (A)'))continue;
+  const date=f=>v8pDate(p,f), na=f=>v8pNA(p,f);
+  const raw=f=>v8pRaw(p,'milestone',f);
+  const blank=f=>v8pBlank(raw(f));
+  const emit=(code,fields,extra=[],label)=>{
+   const proof=[...fields.map(f=>v8pMilestoneProof(id,f)),...extra];
+   const h={id,owner:p.owner,region:p.region,priority:v8pPriority(p,code),code,label:label||DEMO_RULE_NAMES[code],proof,origin:'V8P',stichtag:at};
+   const gate=v8iEvalHit(h);
+   if(gate.blocked){blocked.push({id,code,reason:gate.reasons.map(x=>x.message),proof});return;}
+   hits.push(h);projectHits.push(h);
+  };
+  const undecided=(code,reason)=>{const q={id,code,reason};unknown.push(q);projectUnknown.push(q);};
+  const mdr='Main Design Received (A)',mda='Main Design Approved (A)',rfcA='Ready for Construction (A)',rfcF='Ready for Construction (F)',startA='Construction Start (A)',startF='Construction Start (F)',endA='Construction End (A)',endF='Construction End (F)',btb='Confirmation of Site Walk Report (A)';
+  // The synthetic four current exports may omit the BTB column entirely. Unknown != blank.
+  if(raw(btb)===undefined){undecided('D01','BTB-Ist-Spalte nicht im aktuellen DEMO-Meilensteinexport');}
+  else if(!na(mdr)&&date(btb)&&demoWeekdaysAfter(date(btb),at)>20&&!date(mdr)&&!date(mda)&&!date(rfcA)&&!date(startA))emit('D01',[btb,mdr,mda,rfcA,startA]);
+  if(!na(rfcA)&&date(mda)&&!date(rfcA)&&blank(rfcF)&&!date(startA))emit('D02',[mda,rfcA,rfcF]);
+  if(!na(rfcA)&&date(rfcF)&&date(rfcF)<at&&!date(rfcA)&&!date(startA))emit('D03',[rfcF,rfcA]);
+  // C01: BP2026 is actual package award only if the current separate BP source confirms it.
+  if(!sourceReady)undecided('C01','Baupaket-Gesamtliste nicht geprüft');
+  else if(v8pSourceIssue(id,'bp2026'))undecided('C01','Baupaketquelle hat einen kritischen Befund');
+  else{
+   const bp=v8pSide(id,'bp2026').filter(r=>!v8pBlank(getCol(r.fields,['BP2026'])));
+   if(bp.length&&!na(startA)&&!date(rfcA)&&!date(startA)&&blank(startF))emit('C01',[rfcA,startA,startF],bp.map(r=>v8pSideProof(r,'BP2026')));
+  }
+  if(!na(startA)&&date(rfcA)&&!date(startA)&&blank(startF))emit('C02',[rfcA,startA,startF]);
+  if(!na(endA)&&date(rfcA)&&!date(endA)&&blank(endF))emit('C03',[rfcA,endA,endF]);
+  if(!na(startA)&&date(startF)&&date(startF)<at&&!date(startA))emit('C04',[startF,startA]);
+  if(!na(endA)&&date(endF)&&date(endF)<at&&!date(endA))emit('C05',[endF,endA]);
+  // E01 is based on ST Cost Estimate records, not dummy CES fields in the ST master.
+  if(!sourceReady)undecided('E01','ST Cost Estimate fehlt für eine belegbare Bewertung');
+  else if(v8pSourceIssue(id,'cost_estimate'))undecided('E01','Cost-Estimate-Anker oder Werte widersprüchlich');
+  else{
+   const costs=v8pSide(id,'cost_estimate');
+   for(const r of costs){
+    const title=getCol(r.fields,['Cost Estimate Submission Name']);
+    const amount=getCol(r.fields,['Pre-Approval Submission Amount']);
+    const num=Number(String(amount).trim().replace(',','.'));
+    if(!v8pBlank(title)&&(v8pBlank(amount)||(Number.isFinite(num)&&num===0))){emit('E01',[],[v8pSideProof(r,'Cost Estimate Submission Name'),v8pSideProof(r,'Pre-Approval Submission Amount')]);break;}
+    if(!v8pBlank(title)&&!Number.isFinite(num))undecided('E01','CES-Betrag ist kein gültiger Zahlenwert');
+   }
+  }
+  // Tragwerk T01: derive only if project type/relocation and planning context are provable.
+  if(!sourceReady)undecided('T01','Tragwerk Forecast/BP2026 nicht geprüft');
+  else if(v8pSourceIssue(id,'tragwerk')||v8pSourceIssue(id,'bp2026'))undecided('T01','Tragwerk- oder Baupaketquelle enthält kritischen Befund');
+  else{
+   const pt=String(v8pRaw(p,'master','Project Template')||v8pRaw(p,'master','Project Type')||'').trim().toLowerCase();
+   const relocated=/^(?:true|yes|ja|1)$/i.test(String(v8pRaw(p,'master','Relocation Site')??''));
+   if(!pt&&!relocated){undecided('T01','Projektart/Relocation fehlt: Tragwerk-Erfordernis nicht belegbar');}
+   else if(pt.includes('new site')||relocated){
+    const bp=v8pSide(id,'bp2026').filter(r=>!v8pBlank(getCol(r.fields,['BP2026'])));
+    if(date(rfcA)||bp.length){
+     const rows=v8pSide(id,'tragwerk');
+     if(rows.length>1){undecided('T01','Mehrdeutiger Tragwerk-Datensatz');}
+     else{
+      const r=rows[0],type=r?getCol(r.fields,['Tragwerks-Typ']):'',week=r?getCol(r.fields,['Bedarfswoche']):'';
+      const msg=v8pBlank(type)&&v8pBlank(week)?'Erfordernis/Anforderung klären':v8pBlank(type)?'Tragwerks-Typ/Anforderung klären':v8pBlank(week)?'Bedarfswoche/Anforderung klären':null;
+      if(msg)emit('T01',[rfcA],r?[v8pSideProof(r,'Tragwerks-Typ'),v8pSideProof(r,'Bedarfswoche')]:bp.map(q=>v8pSideProof(q,'BP2026')),'Tragwerk: '+msg);
+     }
+    }
+   }
+  }
+ }
+ return {hits,unknown,blocked,quality,perProject,sourceReady};
+}
+function v8pProjection(){
+ const a=v8pPositive();const groups=new Map(),suppressed=[];
+ const tasks=(type,id,company,hit,assignment)=>{
+  const key=type==='firm'?'f:'+v15TaskKey(id,company):'p:'+id;
+  if(!groups.has(key)){
+   const p=v8iIndex().get(id);groups.set(key,{type,key,id,company:company||null,region:p.region,owner:p.owner,priority:'P2',codes:[],hits:[],status:type==='firm'?v15Status({id,company}):v13State(id),note:type==='firm'?v15Note({id,company}):v13Note(id),roleProof:[],roles:[]});
+  }
+  const rec=groups.get(key);if(!rec.codes.includes(hit.code))rec.codes.push(hit.code);
+  rec.hits.push(hit);
+  if(V8P_PRIORITY[hit.priority]<V8P_PRIORITY[rec.priority])rec.priority=hit.priority;
+  if(assignment){rec.roles.push(assignment.role);if(!rec.roleProof.some(x=>x.row===assignment.evidence.row))rec.roleProof.push(assignment.evidence);}
+ };
+ const unattributed=[];
+ for(const hit of a.hits){
+  tasks('project',hit.id,null,hit);
+  const assignments=(v15Audit?.assignments?.get(hit.id)||[]).filter(x=>v8pRole(hit.code,x.role));
+  if(!assignments.length){unattributed.push({id:hit.id,code:hit.code,reason:'Keine belegte zuständige ST Vendor-Rolle'});continue;}
+  for(const x of assignments)tasks('firm',hit.id,x.company,hit,x);
+ }
+ const items=[...groups.values()];
+ for(const rec of items){rec.roles=[...new Set(rec.roles)];rec.hits=[...new Map(rec.hits.map(h=>[h.code,h])).values()];}
+ return {items,suppressed,rawTaskCount:v8iBaseRecords().length,rawHitCount:v12Audit?.ruleAudit?.hits?.length||0,activeHitCount:a.hits.length,suppressedHitCount:a.blocked.length,v8p:a,unattributed};
+}
+// Replace solely the current shared projection. Old rule audit remains under Data as regression evidence.
+v8iProjection=v8pProjection;
+v8iActiveEvidence=function(rec){return '<details class="v8i-strip" style="margin-top:8px"><summary>V8-Auslöser und Originalfelder ('+rec.hits.length+')</summary>'+rec.hits.map(h=>'<div class="v8i-ruleline"><b>'+v8iEsc(h.code)+' · '+v8iEsc(h.label)+'</b><div class="v8i-evidence">V8-Auslöseregel · Stichtag '+v8iEsc(DEMO_STICHTAG)+'</div>'+v8iProof(h.proof)+'</div>').join('')+(rec.type==='firm'?'<div class="v8i-ruleline"><b>Zuständigkeit – ST Vendor</b>'+v8iProof(rec.roleProof)+'</div>':'')+'</details>';};
+const v8pPrevSummary=v8iSummary;
+v8iSummary=function(opt={}){
+ const a=v8pPositive(),s=['D01','C01','E01','T01'].map(code=>({code,unknown:a.unknown.filter(x=>x.code===code).length}));
+ const box='<div class="v8i-strip" id="v8p-quality"><strong>V8-Auslöseregeln · Quellenprüfung</strong><p class="v8i-disclaimer">'+a.hits.length+' positive Regeltreffer; '+a.unknown.length+' offene Einzelbewertungen; '+a.quality.length+' Projekte mit kritischer Ausgangsquelle. Positive Regeln D01–D03, C01–C05, E01, T01. B01 bleibt ausgesetzt.</p><p class="v8i-disclaimer">Zusatzquellen: '+(v14SideAudit?'BP / CES / Tragwerk geprüft':'BP / CES / Tragwerk noch nicht eingelesen')+'. Historischer V1.2-Rohreport kann andere Trefferzahlen haben.</p><details><summary>Offene Quellen und Regeln anzeigen ('+a.unknown.length+')</summary>'+a.unknown.slice(0,60).map(x=>'<p class="v8i-evidence">'+v8iEsc(x.id)+' · '+v8iEsc(x.code)+' · '+v8iEsc(x.reason)+'</p>').join('')+(a.unknown.length>60?'<p>Weitere Einträge im JSON-Protokoll</p>':'')+'</details><button type="button" data-v8p-export="1">V8-Regel-/Quellenbericht (JSON)</button></div>';
+ return box+v8pPrevSummary(opt).replace('V8-Regelsperren · Aufgabensteuerung','V8-Auslösungen und Sperren · Aufgabensteuerung').replace('ausgewählte V8-Sperren direkt','V8-Firmenregelauslösungen und Sperren direkt');
+};
+// Context-specific QA: isolated V8 trigger tests, never persisted or used to change project data.
+window.v8pDiagnostics=function(){const a=v8pPositive(),p=v8pProjection();return {kind:'rs-cockpit-v8-positive-audit',version:V8P_VERSION,demoOnly:true,releaseAllowed:false,stichtag:DEMO_STICHTAG,projects:v12Audit?.projects?.length||0,sources:{masterAndCurrentMilestones:!!v12Audit,vendor:!!v15Audit,bpCesTragwerk:!!v14SideAudit,sevenOtherSources:!!p1Audit},regeltreffer:a.hits,notAssessable:a.unknown,invalidMasterOrMilestone:a.quality,suppressedAfterTrigger:a.blocked,unattributed:p.unattributed,taskPositions:p.items.map(x=>({id:x.id,type:x.type,company:x.company,codes:x.codes})),limitations:['Nur synthetische Quelldateien','Nicht vollständige V8-Freigabe, Originaldatenabgleich fehlt','Zusätzliche ST-Felder wie Projektart/BTB im Demoexport teils nicht enthalten']};};
+
+// Keep the inherited V8 task export honest after replacing the trigger engine.
+v8iDiagnostics=function(){const x=v8pProjection(),q=x.v8p;return {kind:'rs-cockpit-v8-task-projection',version:V8P_VERSION,syntheticOnly:true,approved:false,completeV8:false,masterCount:v12Audit?.projects?.length??0,legacyRawTaskCount:x.rawTaskCount,activeTaskCount:x.items.length,positiveRuleHits:q.hits.length,unassessableConditions:q.unknown.length,blockedForCriticalMasterSource:q.quality.length,suppressedAfterTrigger:q.blocked,active:x.items.map(t=>({key:t.key,id:t.id,type:t.type,company:t.company,codes:t.codes,priority:t.priority})),negativeFixtures:{passed:v8qaRun().passed,total:v8qaResult.total},limitations:['Nur künstliche Testdaten, keine Original-ETS-Dateien.','Positive Auslöseregeln sind implementiert; die restlichen V8-Qualitäts- und Reportregeln sind nicht vollständig abgenommen.','Fehlende Quellenfelder ergeben nicht bewertbare Einzelfälle statt fiktive Aufgaben.']};};
+window.v8iDiagnostics=v8iDiagnostics;
+document.addEventListener('click',e=>{const b=e.target.closest('[data-v8p-export]');if(!b)return;e.stopImmediatePropagation();v16File('RS_Cockpit_V8_Ausloesungen_Quellen_TEST.json','application/json;charset=utf-8',JSON.stringify(window.v8pDiagnostics(),null,2));},true);
+// Auto-read only the app-bundled *artificial* side inputs. No real files from GitHub Pages.
+(async function v8pAutoSynthetic(){
+ for(let i=0;i<120&&(!v12Audit||!v15Audit);i++)await new Promise(done=>setTimeout(done,120));
+ if(!v12Audit||!v15Audit)return;
+ try{
+  if(!v14SideAudit)v14SideAudit=await v14AuditFiles(V14_BIN_FILES.map(([name,b64])=>asDemoBlob(b64,name)));
+  if(!p1Audit)p1Audit=await p1Compute(P1_DEFINITIONS.map(x=>asDemoBlob(x.base64,x.file)));
+  render();
+ }catch(e){console.warn('V8P synthetic side inputs not fully available:',e.message);render();}
+})();
+render();
+
 </script>
 </body></html>
