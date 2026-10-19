@@ -115,6 +115,20 @@ textarea{font:inherit}.taskedit{margin-top:11px;padding:10px;border:1px solid va
 .v153-panel{margin:15px 0;padding:12px;border:1px solid #d5e2e6;border-radius:12px;background:#fff}
 .v153-panel summary{font-weight:700;color:#1a5662}.v153-panel button{margin:6px 4px 0 0}
 @media(max-width:370px){.v153-filters{grid-template-columns:1fr}}
+
+/* Paket 1: kompakte Abnahmeübersicht, ohne externe Daten */
+.p19-panel{margin:12px 0;padding:14px;border:1px solid var(--border,#d9e0e9);border-radius:12px;background:var(--panel,#fff)}
+.p19-panel h2{font-size:1.12rem;margin:0 0 8px}
+.p19-panel p{font-size:.92rem;line-height:1.5;margin:.48rem 0}
+.p19-cardgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0}
+.p19-card{padding:10px;background:var(--surface,#f2f5f8);border-radius:9px;min-width:0}
+.p19-card strong{display:block;font-size:1.2rem;font-variant-numeric:tabular-nums}
+.p19-card small{font-size:.78rem;line-height:1.2;display:block}
+.p19-issue{border-left:3px solid #a75c18;padding:8px 10px;margin:8px 0;background:rgba(155,109,41,.07);font-size:.88rem}
+.p19-panel button{min-height:42px;max-width:100%}
+.p19-panel summary{cursor:pointer;line-height:1.5;font-weight:650;padding:7px 0}
+@media(min-width:680px){.p19-cardgrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
 </style>
 <style>
 /* Paket 1 · mobile quality control */
@@ -580,8 +594,14 @@ async function v11CheckFiles(files,masterRows){
    const localSeen=new Set();
    for(const row of rows){
      const info={file:f.name,sheet:sh.name,rowNo:row.rowNo};
-     const id=String(getCol(row.fields,['Project ID'])).trim();
-     if(!id){v11Crit(issues,role,info,'Project ID','—','Projektanker fehlt');continue;}
+     // Auf Originalexporte vorbereitet: streng eindeutiger Projektanker,
+     // nur für ausdrücklich erlaubte Rollen WOC-Fallback nach exaktem Template-Abgleich.
+     const resolved=p1mResolve('st_'+role,row.fields,masterRows);
+     const id=resolved.id||String(getCol(row.fields,['Project ID'])).trim();
+     if(resolved.state!=='MATCH'){
+       v11Crit(issues,role,info,'Project ID',id||'—','Projektzuordnung gesperrt: '+resolved.reason);
+       continue;
+     }
      if(localSeen.has(id))v11Crit(issues,role,info,'Project ID',id,'Projekt-ID innerhalb dieses Exporttyps mehrfach');
      localSeen.add(id);
      if(assign.has(id))v11Crit(issues,role,info,'Project ID',id,'Projekt liegt in mehreren Meilensteinexporten: '+assign.get(id));
@@ -603,7 +623,7 @@ async function v11CheckFiles(files,masterRows){
          if(masterDate&&masterDate!==d)v11Crit(issues,role,info,field,id,'ST-Master '+masterDate+' / Export '+d+' – keine automatische Überschreibung');
        }
      }
-     matches.push({id,role,source:info,masterWoc:mw,fields:row.fields,rowNo:row.rowNo});
+     matches.push({id,role,source:info,masterWoc:mw,fields:row.fields,rowNo:row.rowNo,joinMethod:resolved.method});
    }
  }
  for(const role of ['new_site_build','site_modification','site_upgrade','site_arge'])if(!roles.has(role))throw Error('Fehlender Exporttyp: '+role);
@@ -840,6 +860,12 @@ async function parseDemoWorkbook(file){
   const typ=cell.getAttribute('t'),v=tags(cell,'v');let val=v.length?v[0].textContent:'';
   if(typ==='s')val=shared[Number(val)]??'';else if(typ==='inlineStr')val=(tags(cell,'is')[0]?.textContent)||'';
   else if(val!==''&&typ!=='str'&&typ!=='e'&&!isNaN(Number(val)))val=Number(val);
+  // ST exports can store hyperlink labels as an Excel formula without cached <v>.
+  // Read only a literal HYPERLINK display label; never execute or infer formula results.
+  if(val===''){
+   const f=tags(cell,'f')[0]?.textContent||'';
+   if(f)val=p1mSafeHyperlinkText(f)||'';
+  }
   vals[col]=val;
  }rows.push(vals);}
  sheets.push({name:sh.getAttribute('name')||'Tabelle',rows});
@@ -2333,7 +2359,14 @@ function v8pPositive(){
   else if(v8pSourceIssue(id,'bp2026'))undecided('C01','Baupaketquelle hat einen kritischen Befund');
   else{
    const bp=v8pSide(id,'bp2026').filter(r=>!v8pBlank(getCol(r.fields,['BP2026'])));
-   if(bp.length&&!na(startA)&&!date(rfcA)&&!date(startA)&&blank(startF))emit('C01',[rfcA,startA,startF],bp.map(r=>v8pSideProof(r,'BP2026')));
+   if(bp.length&&!na(startA)&&!date(rfcA)&&!date(startA)&&blank(startF)){
+    // BP2026 worksheet membership is NOT documented award of a construction package.
+    // Company urgency C01 requires a separate nonempty Baupaket award field.
+    const awarded=v8pRaw(p,'master','Baupaket');
+    if(awarded===undefined)undecided('C01','BP2026-Eintrag belegt, aber Baupaket-Vergabequelle fehlt – keine Firmenurgenz');
+    else if(!v8pBlank(awarded))emit('C01',[rfcA,startA,startF],[...bp.map(r=>v8pSideProof(r,'BP2026')),v8pMasterProof(id,'Baupaket')]);
+    // A blank known award field means internal BP monitoring only; not a company urgency.
+   }
   }
   if(!na(startA)&&date(rfcA)&&!date(startA)&&blank(startF))emit('C02',[rfcA,startA,startF]);
   if(!na(endA)&&date(rfcA)&&!date(endA)&&blank(endF))emit('C03',[rfcA,endA,endF]);
@@ -2425,6 +2458,108 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-v8p-export
  }catch(e){console.warn('V8P synthetic side inputs not fully available:',e.message);render();}
 })();
 render();
+
+// RS-P1-MILESTONE-KEY-CONTRACT-START
+// Internal-only independent key contract (no original data embedded or exposed).
+const P1M_ROLE_TYPES={
+ st_new_site_build:['newsitebuild','newsitebuildsite'],
+ st_site_modification:['sitemodification'],
+ st_site_upgrade:['siteupgrade'],
+ st_site_arge:['arge']
+};
+const P1M_EXTERNAL_ROLES=new Set(['st_new_site_build','st_site_modification','st_site_upgrade']);
+function p1mSafeHyperlinkText(formula){
+ const f=String(formula||'').trim();
+ if(!/^HYPERLINK\s*\(/i.test(f))return null;
+ const m=f.match(/^HYPERLINK\s*\(\s*"((?:[^"]|"")*)"\s*[,;]\s*"((?:[^"]|"")*)"\s*\)\s*$/i);
+ if(!m)return null;
+ return m[2].replace(/""/g,'"');
+}
+function p1mCell(rec,name){
+ const o=rec&&rec.fields||rec||{};const norm=s=>String(s||'').normalize('NFKC').toUpperCase().replace(/[^A-Z0-9]/g,'');
+ const k=Object.keys(o).find(x=>norm(x)===norm(name));return k===undefined?'':String(o[k]??'').trim();
+}
+function p1mTemplate(p){const raw=p1mCell(p,'Project Template')||p1mCell(p,'Project Type');return raw.normalize('NFKC').toLowerCase().replace(/[^a-z0-9]/g,'');}
+function p1mIdTokens(x){return [...new Set(String(x||'').toUpperCase().match(/\b(?:DEMO-)?P-\d+\b/g)||[])];}
+function p1mResolve(role,row,masters){
+ const result=(state,reason,id=null,method=null)=>({state,reason,id,method,role});
+ if(!Object.prototype.hasOwnProperty.call(P1M_ROLE_TYPES,role))return result('BLOCKED','Exporttyp unbekannt');
+ const id=p1mCell(row,'Project ID').toUpperCase(),project=p1mCell(row,'Project'),woc=p1mCell(row,'Project External ID').toUpperCase();
+ const records=masters.map(p=>({p,id:p1mCell(p,'Project ID').toUpperCase(),woc:p1mCell(p,'Project External ID').toUpperCase(),template:p1mTemplate(p)}));
+ const idCandidates=new Set([...(id?[id]:[]),...p1mIdTokens(project)]);
+ if(idCandidates.size>1)return result('BLOCKED','Widersprüchliche oder mehrfache Project IDs in derselben Quellzeile');
+ let target=null,method=null;
+ if(idCandidates.size===1){
+  const sought=[...idCandidates][0];const matches=records.filter(p=>p.id===sought);
+  if(matches.length!==1)return result('BLOCKED','Project ID ist im Master nicht eindeutig oder fehlt');
+  target=matches[0];method=id?'EXACT_PROJECT_ID':'EXACT_PROJECT_FIELD';
+ }else{
+  if(!P1M_EXTERNAL_ROLES.has(role))return result('BLOCKED','Für diesen Export ist kein External-ID-Fallback zulässig');
+  if(!woc)return result('BLOCKED','Project ID und Project External ID fehlen');
+  const matches=records.filter(p=>p.woc===woc);
+  if(matches.length!==1)return result('BLOCKED','WOC ohne eindeutiges Masterprojekt ('+matches.length+' Kandidaten)');
+  target=matches[0];method='UNIQUE_EXACT_EXTERNAL_ID';
+ }
+ if(woc&&target.woc&&woc!==target.woc)return result('BLOCKED','Project External ID widerspricht dem Projektanker');
+ const allowed=P1M_ROLE_TYPES[role];
+ if(!target.template){
+  if(method==='UNIQUE_EXACT_EXTERNAL_ID')return result('BLOCKED','External-ID-Fallback ohne belegte Projektvorlage unzulässig');
+  return result('MATCH','Exakte Project ID, Projektvorlage in verkürzter DEMO-Masterquelle nicht vorhanden',target.id,method);
+ }
+ if(!allowed.includes(target.template))return result('BLOCKED','Projektvorlage passt nicht zum Meilensteinexport: '+target.template);
+ return result('MATCH','Eindeutiger, quellkonformer Projektanker',target.id,method);
+}
+window.p1mResolve=p1mResolve;
+// RS-P1-MILESTONE-KEY-CONTRACT-END
+
+
+// PAKET-1-V19-GESAMTABNAHME (nur künstliche Daten; harter Freigabestopp)
+const P19_VERSION='V1.9 – Paket 1 · Gesamtstand TEST';
+function p19Gate(){
+ const proj=v12Audit?.projects||[],counts=v16Report()?.summary||{},v8=v8pPositive(),out=v8pProjection();
+ const blockers=[
+  'KG-Status: kein eindeutiger aktueller Originalexport im bibliotheksseitigen Quellenstand',
+  'Kein für Nord Ost und Süd West vollständiger, zeitgleicher Original-ST-Master nachgewiesen',
+  'Der freigegebene Referenzreport (02.10.) und der aktuelle Bibliotheksstand (14.10.) haben verschiedene Quellstichtage',
+  'Unabhängige V8-Gesamtreproduktion mit identischen Originaleingaben nicht abgeschlossen',
+  'ARGE-Ergänzungen und alle V8-Qualitätsgates nicht durchgängig gegen das Original freigegeben',
+  'Öffentliche GitHub-Pages-Demo ist keine genehmigte Produktivumgebung'
+ ];
+ const gates=[
+  {label:'Master im DEMO-Datensatz',ok:proj.length===72&&counts.uniqueProjects===72,actual:proj.length+'/72'},
+  {label:'Firma/Projekt-Zuordnungen DEMO',ok:counts.firmProjectPositions===87&&counts.unauthorizedFirmTasks===0,actual:String(counts.firmProjectPositions??'–')},
+  {label:'17 künstliche Quellenrollen geladen',ok:p1Audit?.sourceRoles===17&&!!v14SideAudit,actual:String(p1Audit?.sourceRoles??0)+'/17 DEMO'},
+  {label:'Aktuelle V8-Demotreffer',ok:v8.hits.length===19&&out.items.length===20,actual:v8.hits.length+' Regeln / '+out.items.length+' Aufgaben'},
+  {label:'Sperrregel-Fixtures',ok:v8qaRun().passed===18,actual:String(v8qaResult?.passed??'–')+'/18'},
+  {label:'Keine unberechtigten Firmenaufgaben',ok:counts.unauthorizedFirmTasks===0&&counts.duplicateTaskKeys===0,actual:String(counts.unauthorizedFirmTasks??'–')+' unberechtigt'},
+  {label:'Keine kritischen Originalquellen-/Regeleinwände',ok:false,actual:'NICHT NACHGEWIESEN'},
+  {label:'Originalreport und App mit identischen Quellen',ok:false,actual:'NICHT DURCHGEFÜHRT'},
+  {label:'Sicherer produktiver Betrieb',ok:false,actual:'NICHT FREIGEGEBEN'}
+ ];
+ const demoReady=gates.slice(0,6).every(g=>g.ok);
+ return {kind:'RS_COCKPIT_PAKET1_RELEASE_GATE',version:P19_VERSION,runMode:'synthetic_demo_only',demoReady,releaseAllowed:false,decision:'BLOCKED',validatedInCurrentBrowser:gates.filter(x=>x.ok).length,checked:gates.length,demodata:{master:proj.length,firmProjectAssignments:counts.firmProjectPositions,sourceRoles:p1Audit?.sourceRoles||0,positiveRuleHits:v8.hits.length,taskPositions:out.items.length,unassessableRuleChecks:v8.unknown.length,criticalSourceFindings:(counts.criticalExistingSourceFindings||0)+(counts.vendorSourceFindings||0),sourceIssues:p1Audit?.issues?.length||0},originalBaseline:{approvedReferenceDate:'2026-10-02',currentSourceSnapshots:['2026-09-28','2026-10-02','2026-10-14'],sameInputComparison:false,originalV8Parity:false,kgStatusPresent:false,fullAustriaMasterConfirmed:false},gates,blockers};
+}
+window.p19Gate=p19Gate;
+function p19Panel(){
+ if(!v12Audit||!v15Audit||!v14SideAudit||!p1Audit)return '<section class="p19-panel"><h2>Paket 1 · V1.9 Gesamtstand</h2><p>Der künstliche Prüflauf wird noch geladen. Originalfreigabe ist gesperrt.</p></section>';
+ const x=p19Gate(),z=x.demodata;
+ const cards=[[''+z.master,'Master (DEMO)'],[''+z.firmProjectAssignments,'Firma/Projekt (DEMO)'],[''+z.positiveRuleHits,'Regeltreffer (DEMO)'],[''+z.taskPositions,'Aufgaben (DEMO)']];
+ return '<section class="p19-panel" id="p19-dashboard"><h2>Paket 1 · V1.9 Gesamtstand</h2>'+ 
+ '<p><b>Testversion – fachliche Freigabe gesperrt.</b> Die DEMO-Funktionen sind geprüft. Die noch offenen Originaldaten- und Sicherheitsprüfungen dürfen nicht als bestanden gewertet werden.</p>'+ 
+ '<div class="p19-cardgrid">'+cards.map(c=>'<div class="p19-card"><strong>'+v13E(c[0])+'</strong><small>'+v13E(c[1])+'</small></div>').join('')+'</div>'+ 
+ '<p><b>Quellen:</b> 17/17 künstliche Rollen im Demolauf. Aktueller Originalquellenstand nicht vollständig freigabefähig. <b>'+z.unassessableRuleChecks+' Regel-Einzelbewertungen</b> in der Demo sind offen – kein Beleg für Erledigung.</p>'+ 
+ '<details><summary>Abnahmeprüfungen ('+x.validatedInCurrentBrowser+' von '+x.checked+' erfüllt)</summary>'+x.gates.map(g=>'<div class="p19-issue">'+(g.ok?'Bestanden: ':'Nicht erfüllt: ')+v13E(g.label)+' – '+v13E(g.actual)+'</div>').join('')+'</details>'+ 
+ '<details><summary>Warum die Originalfreigabe gesperrt ist</summary>'+x.blockers.map(s=>'<p class="p19-issue">'+v13E(s)+'</p>').join('')+'</details>'+ 
+ '<button type="button" data-p19-export="1">Gesamtabnahme als JSON exportieren</button><p><small>Keine ETS-Originaldaten im HTML. Echte ST-Dateien nicht in das öffentliche GitHub-Repository hochladen.</small></p></section>';
+}
+const p19OldMore=v152MorePage;
+v152MorePage=function(){return p19OldMore().replace('<section class="v152-menu">','<section class="v152-menu">'+p19Panel());};
+const p19OldRender=render;
+render=function(){p19OldRender();if(tab==='data'&&v12Audit){const root=document.getElementById('content');if(root&&!root.querySelector('#p19-dashboard'))root.insertAdjacentHTML('afterbegin',p19Panel());}};
+document.addEventListener('click',e=>{const b=e.target.closest('[data-p19-export]');if(!b)return;e.stopImmediatePropagation();v16File('RS_Cockpit_V19_Paket1_Gesamtfreigabe_BLOCKED_DEMO.json','application/json;charset=utf-8',JSON.stringify(p19Gate(),null,2));},true);
+// Die erste Renderphase kann vor dem asynchronen Demoimport laufen.
+render();
+// PAKET-1-V19-GESAMTABNAHME-END
 
 </script>
 </body></html>
