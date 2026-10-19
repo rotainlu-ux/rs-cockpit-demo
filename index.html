@@ -2039,4 +2039,107 @@ window.p1Diagnostics=()=>p1Audit;
 render();
 
 </script>
+<script>
+'use strict';
+/* Independent negative-gate audit for RS_Cockpit V8 synthetic pilot.
+ * It deliberately DOES NOT certify V8 compliance, rewrite business facts, or change tasks. */
+const V8QA_VERSION='2026.10.19-p1-negative-gates';
+const V8QA_STOP=new Set(['completed','terminated','cancelled','canceled','aborted','abgebrochen']);
+const V8QA_TARGET={D01:'Main Design Received (A)',D02:'Ready for Construction (A)',D03:'Ready for Construction (A)',C01:'Construction Start (A)',C02:'Construction Start (A)',C03:'Construction End (A)',C04:'Construction Start (A)',C05:'Construction End (A)'};
+let v8qaResult=null;
+function v8qaActual(value){
+  if(value===null||value===undefined||value==='')return false;
+  const s=String(value).trim();
+  if(!s||/^(?:N\/?A|nicht anwendbar|null|none)$/i.test(s))return false;
+  const iso=typeof testDateString==='function'?testDateString(value):null;
+  if(!iso||!/^\d{4}-\d\d-\d\d$/.test(String(iso)))return false;
+  const year=Number(String(iso).slice(0,4));return year>1900;
+}
+function v8qaNotApplicable(value){return /^\s*(?:N\/?A|nicht anwendbar)\s*$/i.test(String(value??''));}
+function v8qaValue(obj,field){return getCol(obj||{},[field]);}
+function v8qaReasons(code,project){
+  const reasons=[];
+  const f=project?.masterSource?.fields||project?.master||{};
+  const m=project?.milestoneSource?.fields||project?.milestones||{};
+  const status=String(project?.status??v8qaValue(f,'Project Status')??'').trim().toLowerCase();
+  const actual=field=>v8qaActual(v8qaValue(m,field))||v8qaActual(v8qaValue(f,field));
+  if(V8QA_STOP.has(status))reasons.push('ST-Status terminal: '+status);
+  if(actual('Construction End (A)'))reasons.push('Construction End Actual vorhanden');
+  if(actual('Project Complete (A)'))reasons.push('Project Complete Actual vorhanden');
+  const target=V8QA_TARGET[code];
+  if(target&&(v8qaNotApplicable(v8qaValue(m,target))||v8qaNotApplicable(v8qaValue(f,target))))reasons.push(target+' = N/A');
+  if(code==='D01'&&(actual('Main Design Approved (A)')||actual('Ready for Construction (A)')||actual('Construction Start (A)')))
+    reasons.push('Späterer IST-Meilenstein unterdrückt D01');
+  if((code==='D02'||code==='D03')&&actual('Construction Start (A)'))reasons.push('Construction Start Actual unterdrückt D02/D03');
+  if(code==='B01')reasons.push('B01 ausgesetzt');
+  return reasons;
+}
+const V8QA_CASES=[
+ ['Aborted sperrt C05','C05',{status:'Aborted'},true],
+ ['Completed sperrt E01','E01',{status:'Completed'},true],
+ ['Canceled sperrt T01','T01',{status:'Canceled'},true],
+ ['Construction End sperrt T01','T01',{milestones:{'Construction End (A)':'2026-10-01'}},true],
+ ['Project Complete sperrt E01','E01',{milestones:{'Project Complete (A)':'2026-10-01'}},true],
+ ['Technisches Jahr 1900 ist kein IST','C02',{milestones:{'Construction End (A)':'1900-01-01'}},false],
+ ['D01 nach Main Design Approved gesperrt','D01',{milestones:{'Main Design Approved (A)':'2026-09-01'}},true],
+ ['D01 nach RFC gesperrt','D01',{milestones:{'Ready for Construction (A)':'2026-09-01'}},true],
+ ['D01 nach Baubeginn gesperrt','D01',{milestones:{'Construction Start (A)':'2026-09-01'}},true],
+ ['D02 nach Baubeginn gesperrt','D02',{milestones:{'Construction Start (A)':'2026-09-01'}},true],
+ ['D03 nach Baubeginn gesperrt','D03',{milestones:{'Construction Start (A)':'2026-09-01'}},true],
+ ['D01 mit N/A gesperrt','D01',{milestones:{'Main Design Received (A)':'N/A'}},true],
+ ['D02 mit N/A gesperrt','D02',{milestones:{'Ready for Construction (A)':'NA'}},true],
+ ['C04 mit N/A gesperrt','C04',{milestones:{'Construction Start (A)':'N/A'}},true],
+ ['C05 mit N/A gesperrt','C05',{milestones:{'Construction End (A)':'N/A'}},true],
+ ['B01 generell deaktiviert','B01',{},true],
+ ['Offene Projekte ohne spätere IST bleiben grundsätzlich möglich','C03',{status:'Construction'},false],
+ ['Gültiger späterer D01-IST fehlt: keine Sperre','D01',{status:'Design',milestones:{'Main Design Approved (A)':'1900-01-01'}},false]
+];
+function v8qaRun(){
+ const cases=V8QA_CASES.map(([name,code,p,shouldBlock])=>({name,code,expected:shouldBlock,actual:v8qaReasons(code,p).length>0}));
+ let checks=[];
+ const audit=typeof v12Audit!=='undefined'?v12Audit:null;
+ if(audit){
+  const projects=new Map(audit.projects.map(p=>[p.id,p]));
+  checks=(audit.ruleAudit?.hits||[]).map(h=>({id:h.id,code:h.code,priority:h.priority,reasons:v8qaReasons(h.code,projects.get(h.id)||{})})).filter(h=>h.reasons.length>0);
+ }
+ v8qaResult={kind:'rs-cockpit-p1-v8-negative-gate-audit',version:V8QA_VERSION,syntheticOnly:true,
+   fixtures:cases,passed:cases.filter(c=>c.expected===c.actual).length,total:cases.length,
+   checkedHits:audit?.ruleAudit?.hits?.length??0,potentialViolations:checks,
+   masterCount:audit?.projects?.length??null,
+   dataChecked:Boolean(audit),
+   completeV8:false,approved:false,
+   limitations:['Prüft nur ausgewählte Negativ- und Stufensperren, nicht das vollständige V8-Regelwerk.',
+     'Ein Treffer ohne hier gefundene Verletzung ist noch kein verifizierter korrekter Regeltreffer.',
+     'Original-ST-Dateien und freigegebene Reports wurden nicht verglichen.']};
+ return v8qaResult;
+}
+function v8qaPanel(){
+ const a=v8qaResult;
+ return '<section class="p1-panel" id="v8qa-panel"><h2>V8 · unabhängiger Sperrregel-Test</h2>'+ 
+ '<p>Prüft ausgewählte zwingende Ausschlüsse: abgeschlossene/abgebrochene Projekte, Construction End / Project Complete, N/A, spätere IST-Meilensteine und deaktivierte B01-Regel. Keine automatische Änderung der Aufgaben.</p>'+ 
+ '<div class="p1-danger"><b>NICHT FREIGEGEBEN.</b> Diese Zusatzprüfung ersetzt weder vollständige V8-Fachregeln noch den Vergleich mit freigegebenen ST-Reports.</div>'+ 
+ '<button type="button" class="p1-button" data-v8qa-run="1">Sperrregeln und vorhandene Demotreffer prüfen</button>'+ 
+ (a?'<div class="p1-stats">'+[["Synthetische Prüffälle",a.total],["Bestanden",a.passed],["Geprüfte integrale Treffer",a.checkedHits],["Verdächtige Treffer",a.potentialViolations.length]].map(([k,v])=>'<div><strong>'+p1Html(v)+'</strong><span>'+p1Html(k)+'</span></div>').join('')+'</div>'+ 
+ (!a.dataChecked?'<p>Bitte zuerst den integrierten Demoprüflauf starten, um Regeltreffer zu prüfen.</p>':'')+
+ (a.passed!==a.total?'<p class="p1-danger">Mindestens eine Sperrregel-Prüfung fehlgeschlagen.</p>':'<p class="minitext">Alle negativen Beispielsperren bestanden; keine allgemeine V8-Freigabe.</p>')+
+ '<details><summary>Alle Prüffälle ('+a.total+')</summary>'+a.fixtures.map(f=>'<p class="minitext">'+(f.actual===f.expected?'✓':'✗')+' '+p1Html(f.name)+' ['+p1Html(f.code)+']</p>').join('')+'</details>'+ 
+ '<details><summary>Verdächtige Regel-Treffer ('+a.potentialViolations.length+')</summary>'+(a.potentialViolations.length?a.potentialViolations.map(v=>'<article class="p1-error"><b>'+p1Html(v.id)+' / '+p1Html(v.code)+'</b><div>'+p1Html(v.reasons.join('; '))+'</div></article>').join(''):'<p>In diesem Teiltest keine der geprüften Sperrverletzungen gefunden.</p>')+'</details>'+ 
+ '<button data-v8qa-export="1" class="p1-button" type="button">Regelaudit-JSON exportieren</button>':'')+'</section>';
+}
+const v8qaOldRender=render;
+render=function(){v8qaOldRender();if(tab==='data'){
+ const content=document.getElementById('content');if(content&&!document.getElementById('v8qa-panel')){
+  const old=document.getElementById('p1-panel');
+  if(old)old.insertAdjacentHTML('afterend',v8qaPanel());else content.insertAdjacentHTML('afterbegin',v8qaPanel());
+ }
+}};
+document.addEventListener('click',event=>{
+ const b=event.target.closest('button');if(!b)return;
+ if(b.dataset.v8qaRun){event.stopImmediatePropagation();v8qaRun();render();return;}
+ if(b.dataset.v8qaExport&&v8qaResult){event.stopImmediatePropagation();v16File('RS_Cockpit_Paket1_V8_Regelaudit_DEMO.json','application/json;charset=utf-8',JSON.stringify(v8qaResult,null,2));return;}
+},true);
+window.v8qaRun=v8qaRun;
+render();
+
+</script>
 </body></html>
