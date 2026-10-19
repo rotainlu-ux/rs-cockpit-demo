@@ -160,10 +160,11 @@ textarea{font:inherit}.taskedit{margin-top:11px;padding:10px;border:1px solid va
 .v8i-strip button{border-radius:10px;padding:10px 12px;border:1px solid #b3c8d0;background:#fff;color:#133c50;font-weight:650;min-height:42px;cursor:pointer}
 .v8i-strip details{margin-top:10px}.v8i-strip summary{cursor:pointer;font-weight:700;padding:9px 0}.v8i-strip code{overflow-wrap:anywhere}
 @media (max-width:420px){.v8i-strip{padding:10px}.v8i-stat{padding:7px 4px}.v8i-stat b{font-size:17px}.v8i-grid{gap:5px}}
+ .v8i-serial{font-size:10px;color:#66717b;white-space:normal}
 </style>
 </head>
 <body>
-<header class="header"><div class="top"><div><div class="brand">RS_Cockpit <span style="color:#54c5c5">Österreich</span></div><div class="version">iPhone-Test · V1.6 Einheitliche Filter · Einzelplatz</div></div><div class="demo">DEMODATEN</div></div><div class="subtitle">Projektsteuerung Nord Ost / Süd West<br>Quellenprüfung und Aufgabensteuerung · künstliche Daten · kein Server</div></header>
+<header class="header"><div class="top"><div><div class="brand">RS_Cockpit <span style="color:#54c5c5">Österreich</span></div><div class="version">iPhone-Test · V8-Auslöseregeln · Datumsfix · Einzelplatz</div></div><div class="demo">DEMODATEN</div></div><div class="subtitle">Projektsteuerung Nord Ost / Süd West<br>Quellenprüfung und Aufgabensteuerung · künstliche Daten · kein Server</div></header>
 <main class="main"><details class="v152-topnotice"><summary>Demo-Version – nur Testdaten</summary><p>Technischer Prototyp ohne operative Datenfreigabe. Unvollständige ST-Quellen und Demoregeln. Keine echten ETS-Dateien auf dieser öffentlichen Seite verwenden.</p></details><div class="controls"><div class="control"><label for="region">Region</label><select id="region"><option value="all">Österreich gesamt</option><option value="Nord Ost">Nord Ost</option><option value="Süd West">Süd West</option></select></div><div class="control"><label for="search">Projekt-ID, Standort oder Firma suchen</label><input id="search" type="search" placeholder="z. B. DEMO-P-00012"></div></div><div id="runtime" class="runtime" role="status"><strong>iPhone-Dateivorschau:</strong> Hier wird JavaScript nicht ausgeführt. Um die App bedienen zu können, öffne die veröffentlichte Webadresse in Safari.</div><div id="notice" class="runtime" hidden role="alert"></div><div id="content" aria-live="polite"><div class="empty">Die interaktiven Projektzahlen erscheinen nach dem Start in Safari.</div></div><div class="footer">Demodaten – Änderungen werden nach Möglichkeit lokal auf diesem iPhone gespeichert. Für eine zusätzliche Sicherung „Daten“ öffnen. Keine echten ETS-Daten verwenden.</div></main>
 <nav class="nav" aria-label="Hauptnavigation"><button class="active" data-tab="overview"><span class="ico" aria-hidden="true">▦</span>Übersicht</button><button data-tab="projects"><span class="ico" aria-hidden="true">▤</span>Projekte</button><button data-tab="tasks"><span class="ico" aria-hidden="true">☑</span>Aufgaben</button><button data-tab="more"><span class="ico" aria-hidden="true">☰</span>Mehr</button></nav>
 <script>
@@ -2222,7 +2223,25 @@ function v8iProjection(){
 v152Records=function(){return v8iProjection().items;};
 v15FilteredTasks=function(){return v8iProjection().items.filter(t=>t.type==='firm').map(t=>({id:t.id,company:t.company,region:t.region,owner:t.owner,codes:t.codes,hits:t.hits,priority:t.priority,roles:t.roles||[],proof:t.roleProof||[]})).filter(t=>(v15FilterFirm==='all'||v15CompanyKey(t.company)===v15FilterFirm)&&(v15FilterRegion==='all'||t.region===v15FilterRegion)&&(v15FilterStatus==='all'||v15Status(t)===v15FilterStatus));};
 function v8iEsc(value){return v13E(String(value??''));}
-function v8iProof(proof){return (proof||[]).map(p=>'<div class="v8i-evidence">'+v8iEsc(p.file||'—')+' · '+v8iEsc(p.sheet||'—')+' · Zeile '+v8iEsc(p.row??'—')+' · '+v8iEsc(p.field||'—')+' = '+v8iEsc(p.value===null||p.value===undefined||p.value===''?'[leer]':p.value)+'</div>').join('');}
+// Format date *evidence* only; source facts, JSON audit and comparisons retain original values.
+function v8iProofValue(p){
+ const value=p?.value;
+ if(value===null||value===undefined||value==='')return '[leer]';
+ const field=String(p?.field??'').trim();
+ const isDateField=/\([AF]\)\s*$/i.test(field)||/\b(?:datum|date|termin)\s*$/i.test(field);
+ if(isDateField){
+  const numeric=(typeof value==='number')?value:(typeof value==='string'&&/^\d{5}(?:\.0+)?$/.test(value.trim())?Number(value):null);
+  const iso=numeric!==null?testDateString(numeric):testDateString(value);
+  if(iso){
+   const parts=iso.split('-');
+   const text=parts[2]+'.'+parts[1]+'.'+parts[0];
+   if(numeric!==null)return v8iEsc(text)+' <span class="v8i-serial">(Excel-Rohwert: '+v8iEsc(value)+')</span>';
+   return v8iEsc(text);
+  }
+ }
+ return v8iEsc(value);
+}
+function v8iProof(proof){return (proof||[]).map(p=>'<div class="v8i-evidence">'+v8iEsc(p.file||'—')+' · '+v8iEsc(p.sheet||'—')+' · Zeile '+v8iEsc(p.row??'—')+' · '+v8iEsc(p.field||'—')+' = '+v8iProofValue(p)+'</div>').join('');}
 function v8iActiveEvidence(r){return '<details class="v8i-strip" style="margin-top:8px"><summary>V8-Regeln und ST-Nachweise ('+r.hits.length+')</summary>'+r.hits.map(h=>'<div class="v8i-ruleline"><b>'+v8iEsc(h.code)+' · '+v8iEsc(h.label)+'</b><div class="v8i-evidence">Diese Auslösung stammt aus dem vereinfachten DEMO-Regelgenerator. Ausgewählte V8-Sperren wurden zusätzlich geprüft.</div>'+v8iProof(h.proof)+'</div>').join('')+(r.type==='firm'?'<div class="v8i-ruleline"><b>Firma über ST Vendor</b>'+v8iProof(r.roleProof)+'</div>':'')+'</details>';
 }
 function v8iSuppressedMarkup(s,mini=false){return '<article class="v8i-suppressed"><b>'+v8iEsc(s.id)+' · '+(s.type==='firm'?'Firma '+v8iEsc(s.company):'interne Aufgabe')+'</b>'+s.items.map(x=>'<div class="v8i-ruleline"><strong>'+v8iEsc(x.code)+' · '+v8iEsc(x.hit.label)+'</strong>'+x.reasons.map(r=>'<div>'+v8iEsc(r.message)+(mini?'':v8iProof(r.evidence?[r.evidence]:[]))+'</div>').join('')+'</div>').join('')+'</article>';}
