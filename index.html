@@ -1,10 +1,20 @@
 <!DOCTYPE html>
+
 <html lang="de">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=yes"><meta name="theme-color" content="#12253d"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="RS Cockpit">
-<title>RS_Cockpit V2.4 · Paket 3 TEST</title>
-<link rel="icon" type="image/png" href="data:image/png;base64,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">
-<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<script id="rs-local-only-guard">
+'use strict';
+if (location.protocol !== 'file:') {
+  document.title = 'RS_Cockpit – nur lokal öffnen';
+  location.replace('about:blank');
+  throw new Error('RS_Cockpit Offline-Test nur über lokale file:-Adresse starten.');
+}
+</script>
+<meta charset="utf-8"/>
+<meta content="default-src 'none'; script-src 'sha256-ihQxLFAJM4wjXjN/r8OzI/lc+Ajk/5ZhUA/NXXenlS0=' 'sha256-pn/pM7ezZfa02XZjfK8GbgqGnbRxQ7f34EI14FT1JL4=' 'sha256-60lCUgLnllfWfNLs0G8hebgNg0CjCn2Psd+SxM/56Y0=' 'sha256-1kjqCOsnPIbMJvmhuOvQ6I7X3x0Pv0LPiX/+ApeawQM=' 'sha256-7TEHcU/p0beaSZuYvjdeb3u2ABFGeOcQHF8+pImQ/xE=' 'sha256-X+h6PkfGBOC41q+CCA2pVOqtnCtIsmj1ZZ1SaP4TF5M=' 'sha256-8+3x0HgMaGANrjtbPR1CGERjytA7YKkZzdYNgDIri8E=' 'sha256-ru4Xg/iOjkUz9lO9OvyQ3e2XpPR25KAKCz4h8bupIpw=' 'sha256-wgCK9hVvLED47hAMN9t0SFI05ssI/fRC/aRX/0oi5R4=' 'sha256-rRo40+bTc3Zg4V78T3Yd7QlRhZl8kBEoOuIc5w6sYCA=' 'sha256-P8XU2Id+sXb47d7RUAJU1EAP2tqtZd+Xal9h+mrSyvw=' 'sha256-LBlwasxbzdq0S8eganDZsyibPLSCMDAo4TyaiyLDpbE='; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'none'" http-equiv="Content-Security-Policy"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=yes" name="viewport"/><meta content="#12253d" name="theme-color"/><meta content="yes" name="apple-mobile-web-app-capable"/><meta content="RS Cockpit" name="apple-mobile-web-app-title"/>
+<title>RS_Cockpit V3.2 · Dynamische Programme · OFFLINE TEST</title>
+<link href="data:image/png;base64,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" rel="icon" type="image/png"/>
+<link href="data:image/png;base64,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" rel="apple-touch-icon"/>
 <style>
 :root{--bg:#f5f7fa;--ink:#142438;--muted:#64748b;--line:#e2e7ee;--brand:#0b7881;--header:#12253d;--white:#fff;--bad:#a43843;--good:#227963}*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}button,input,select{font:inherit}button{cursor:pointer}.header{background:var(--header);color:white;padding:calc(14px + env(safe-area-inset-top)) 16px 19px}.top{display:flex;justify-content:space-between;gap:12px;align-items:center}.brand{font-size:18px;font-weight:790;letter-spacing:-.5px}.version{color:#adc7d3;font-size:11px;margin-top:3px}.demo{font-size:10px;font-weight:740;background:#ffefe0;color:#8a4a17;padding:6px 9px;border-radius:30px;white-space:nowrap}.subtitle{font-size:12px;color:#c5d7e5;margin-top:12px;line-height:1.5}.main{padding:16px 14px calc(80px + env(safe-area-inset-bottom));max-width:920px;margin:auto}.controls{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:14px}.control{background:white;border:1px solid var(--line);border-radius:11px;padding:10px 12px}.control label{display:block;color:var(--muted);font-size:11px;margin-bottom:5px;font-weight:650}.control select,.control input{width:100%;border:0;outline:0;font-size:16px;min-height:28px;color:var(--ink);background:transparent}.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.kpi{background:white;border:1px solid var(--line);border-radius:12px;padding:15px}.kpi .n{font-size:27px;font-weight:790;letter-spacing:-1px;line-height:1.2;margin:7px 0}.kpi .t{font-size:11px;color:var(--muted)}.kpi .hint{font-size:10px;color:#8793a2}.section{margin-top:17px;background:white;border:1px solid var(--line);border-radius:13px;overflow:hidden}.sectionhead{padding:16px;border-bottom:1px solid var(--line);font-size:14px;font-weight:750}.row{padding:13px 15px;border-bottom:1px solid #edf0f3;display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left;width:100%;border-left:0;border-right:0;border-top:0;background:white;color:var(--ink)}.row:last-child{border-bottom:0}.row:active{background:#edf5f5}.rowtitle{font-size:13px;font-weight:760;overflow-wrap:anywhere}.rowsub{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.5}.right{font-size:12px;white-space:nowrap;color:var(--brand);font-weight:720}.tag{display:inline-block;border-radius:5px;background:#edf5f5;color:#17646f;padding:3px 7px;font-size:10px;font-weight:740}.tag.warn{background:#fff1de;color:#996019}.tag.bad{background:#fce8eb;color:#a33845}.progress{background:#edf1f5;height:9px;border-radius:15px;overflow:hidden}.progress>span{display:block;height:100%;background:var(--brand)}.progrow{padding:12px 16px}.progrow .toprow{display:flex;justify-content:space-between;font-size:12px;font-weight:650;margin-bottom:8px}.note{background:#fff7e7;border:1px solid #eedbbd;color:#76532b;font-size:12px;line-height:1.55;padding:12px 13px;border-radius:10px;margin-bottom:13px}.empty{padding:20px;text-align:center;font-size:13px;color:var(--muted)}.nav{position:fixed;bottom:0;left:0;right:0;padding-bottom:env(safe-area-inset-bottom);height:calc(64px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(6,1fr);background:white;border-top:1px solid #dce4ea;z-index:20;box-shadow:0 -4px 18px #0b283010}.nav button{border:0;background:transparent;color:#738297;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11px;font-weight:700}.nav button{font-size:10px;min-width:0}.nav button.active{color:var(--brand)}.nav .ico{font-size:19px}.detailtop{display:flex;align-items:center;gap:10px;margin-bottom:14px}.back{border:1px solid var(--line);border-radius:9px;background:white;padding:9px 11px;font-size:12px;font-weight:700}.detailtitle{font-size:19px;font-weight:750}.kv{padding:12px 16px;display:flex;justify-content:space-between;gap:15px;border-bottom:1px solid #edf0f3;font-size:12px}.kv span:first-child{color:var(--muted)}.kv span:last-child{text-align:right;font-weight:650}.taskactions{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px;align-items:center}.taskactions button{border:1px solid #d1e0e4;border-radius:8px;background:#e9f4f4;color:#0c6f76;font-size:11px;font-weight:740;padding:9px 12px}.small{font-size:11px;color:var(--muted)}.footer{font-size:11px;color:#8190a1;text-align:center;margin-top:20px;line-height:1.5}@media (min-width:600px){.controls{grid-template-columns:1fr 1fr}.kpis{grid-template-columns:repeat(4,1fr)}}
 .runtime{font-size:12px;margin:0 0 12px;padding:10px 12px;border:1px solid #efc7c7;background:#fff0ef;color:#803b3b;border-radius:9px;line-height:1.55}.runtime.ok{border-color:#b6ded7;background:#e8f7f3;color:#1b6555}
@@ -129,6 +139,9 @@ textarea{font:inherit}.taskedit{margin-top:11px;padding:10px;border:1px solid va
 .p19-panel summary{cursor:pointer;line-height:1.5;font-weight:650;padding:7px 0}
 @media(min-width:680px){.p19-cardgrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 
+
+/* V3.2 source-led programme import and device transfer */
+.p32-separated{margin-top:16px}.p32-subtitle{font-size:13px;margin:17px 0 9px!important;color:#506d7f!important}.p32-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:13px 0}.p32-label{display:block;font-size:12px;color:#526c7d;font-weight:700;margin:10px 0 5px}.p32-entry{display:block;width:100%;border:1px solid #d7e2e9;background:#fff;border-radius:10px;padding:12px;font-size:14px;min-height:44px;margin:7px 0;color:#17334b}.p32-proof{padding:11px 0;border-bottom:1px solid #e8eef2}.p32-proof strong,.p32-proof small{display:block}.p32-proof small{font-size:11px;color:#6f8091;padding-top:5px}.p32-small{font-size:11px!important;color:#647a8a!important;line-height:1.5!important}.p32-workitem{padding:12px 0;border-bottom:1px solid #e8eef3}.p32-workitem p{white-space:pre-wrap;overflow-wrap:anywhere}.p32-separator{height:1px;background:#eef0f2;margin:12px 0}@media(max-width:760px){.p31-programgrid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.p32-fields{grid-template-columns:1fr}.p32-separated{padding:15px}.p32-entry{font-size:16px}}
 </style>
 <style>
 /* Paket 1 · mobile quality control */
@@ -177,11 +190,89 @@ textarea{font:inherit}.taskedit{margin-top:11px;padding:10px;border:1px solid va
  .v8i-serial{font-size:10px;color:#66717b;white-space:normal}
 </style>
 <style id="p21-css">.p21-shell{padding:15px;max-width:900px;margin:0 auto}.p21-shell h2{font-size:22px;margin:8px 0}.p21-shell h3{font-size:18px;margin:22px 0 8px}.p21-shell p{line-height:1.45}.p21-sub,.p21-meta{color:#64748b;font-size:13px}.p21-shell button,.p21-link button{border:0;background:#087783;color:white;border-radius:12px;padding:14px 13px;margin:5px 0;font-weight:700;text-align:center;max-width:100%;cursor:pointer}.p21-shell button:disabled{opacity:.5}.p21-shell button.p21-secondary,.p21-shell button.p21-back{background:#e4edf1;color:#183044}.p21-kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.p21-kpi{background:white;border:1px solid #dde5ea;border-radius:12px;padding:12px 9px;display:grid;gap:7px}.p21-kpi b{font-size:22px}.p21-kpi span{font-size:12px;color:#526279}.p21-alert,.p21-error,.p21-wait{padding:12px;border-radius:12px;border:1px solid #eed4a8;background:#fff9eb;color:#754c1e}.p21-error{background:#fff2f3;color:#933343;border-color:#eed0d3}.p21-wait{background:#f0f4f7;color:#526279;border-color:#d9e2e8}.p21-file{display:block;margin-top:14px;padding:13px;background:white;border:1px solid #dce6eb;border-radius:12px;font-weight:650}.p21-file input{display:block;margin-top:9px;width:100%;font-size:12px}.p21-actions{display:grid;gap:8px}.p21-actions button{width:100%;text-align:left}.p21-link{padding:13px;border:1px solid #dce3ec;border-radius:14px;background:#edf9fa;margin-bottom:13px}.p21-link p{font-size:13px;margin:3px 0}.p21-link button{width:100%;margin:5px 0 0}.p21-line{border-bottom:1px solid #e2e8f0;padding:7px;font-size:12px;overflow-wrap:anywhere}.p21-shell details{background:white;border:1px solid #e3e8ec;border-radius:10px;padding:12px}.p21-shell summary{cursor:pointer;font-weight:750}</style>
-</head>
+<style>
+/* RS_Cockpit V3.1 design system – no external fonts, no network dependencies */
+body:has(.p31-view) .controls,body:has(.p31-view) .v152-topnotice,body:has(.p31-view) #notice{display:none!important}
+
+:root {--bg:#f3f6fa;--ink:#162b42;--muted:#64758b;--line:#e0e7ef;--brand:#0c7884;--header:#132941;--white:#fff;--bad:#b45343;--good:#17785e}
+html,body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;letter-spacing:-.007em}
+button,select,input,textarea{font-family:inherit;accent-color:var(--brand)}button{cursor:pointer}
+.header{background:#fff!important;color:#172d43!important;border-bottom:1px solid #e0e7ee;padding:calc(19px + env(safe-area-inset-top)) 22px 17px!important;box-shadow:none!important}
+.header .brand{font-size:21px!important;font-weight:840;letter-spacing:-.05em;color:#17324a}.header .brand span{color:#147d8c!important}
+.header .version{font-size:10px!important;text-transform:uppercase;letter-spacing:.1em;color:#687a8b!important;margin-top:3px}
+.header .subtitle{margin-top:7px!important;color:#617487!important;font-size:12px!important;line-height:1.5}
+.header .demo{font-size:10px!important;border-radius:25px!important;padding:7px 11px!important;background:#e9f4f2!important;color:#207466!important;border:1px solid #cde8e3!important}
+.main{max-width:1240px;margin:auto;padding:18px 17px calc(104px + env(safe-area-inset-bottom));min-height:70vh}
+.controls{background:#fff;border:1px solid #e1e8ef;padding:11px;border-radius:15px;margin:0 0 15px;box-shadow:0 3px 14px rgba(18,41,66,.03)}
+.controls .control label{font-size:11px;color:#69798b;font-weight:750;letter-spacing:.01em}
+.controls input,.controls select{border:1px solid #d8e3ea!important;border-radius:10px!important;background:#fff!important;padding:11px 12px!important;font-size:15px!important;min-height:44px;color:#163148!important}
+.section,.v153-card,.v152-task,.v13-card,.an-card,.v8i-strip,.v152-menuitem,.p24-wrap{background:#fff!important;border:1px solid #e0e8ef!important;border-radius:14px!important;box-shadow:0 2px 16px rgba(16,39,62,.025)}
+.sectionhead{background:none!important;border-bottom:1px solid #eef2f5!important;color:#2b465b!important;font-weight:770!important;font-size:14px!important;padding:13px 15px!important}
+.v153-card,.v152-task{padding:14px!important}.v152-task h3{font-size:15px!important}.v153-shell h2,.v152-inbox h2,.v152-menu h2{font-size:22px!important;font-weight:800!important;letter-spacing:-.04em!important}
+.v152-menuitem{min-height:64px!important}.v152-chip{border-radius:11px!important}.v153-filters select,.v152-primary-filters select,.wffilters select{border-radius:10px!important;border:1px solid #d4e0e8!important}
+.actionbutton,.v153-detailbtn,.v152-detailbtn{border-radius:10px!important;min-height:43px!important}
+.nav{height:calc(69px + env(safe-area-inset-bottom))!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;background:#fff!important;border-top:1px solid #dfe7ee!important;box-shadow:0 -6px 24px rgba(16,39,62,.05)!important;gap:0!important}
+.nav button{min-width:0;gap:1px!important;font-weight:760!important;font-size:10px!important;color:#708295!important;border:0!important;border-top:3px solid transparent!important;line-height:1.1!important}
+.nav button.active{color:#0e7782!important;background:#f0f9f9!important;border-top-color:#0e7782!important}
+.nav .ico{font-size:21px!important;line-height:1.2!important}
+.v152-topnotice{border:1px solid #dce6ee!important;background:#f7fafc!important;color:#536b7b!important;border-radius:12px!important}
+.v152-topnotice summary{color:#546779}
+.p31-view{--p31:#0e7783;display:block;max-width:1220px;margin:0 auto}.p31-view *, .p31-view *:before,.p31-view *:after{box-sizing:border-box}
+.p31-view h1{font-size:clamp(23px,3vw,33px);letter-spacing:-.055em;line-height:1.15;margin:0;color:#192e43;font-weight:830}
+.p31-view h2{font-size:18px;letter-spacing:-.028em;color:#1f374b;margin:0 0 8px;font-weight:780}
+.p31-view p{line-height:1.55;margin:6px 0;font-size:13px;color:#617487}
+.p31-kicker{font-size:10px!important;letter-spacing:.12em;text-transform:uppercase;font-weight:830!important;color:#0c7783!important;margin:0 0 7px!important}
+.p31-topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin:2px 0 18px;flex-wrap:wrap}
+.p31-tag{font-size:11px;font-weight:740;border-radius:30px;background:#ecf7f6;color:#187568;padding:7px 12px;border:1px solid #d4ece6;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.p31-tag.pending{background:#f7f1e7;color:#866027;border-color:#f1e3c6}.p31-tag.danger{background:#fff0ec;color:#aa4d3b;border-color:#f0cec5}
+.p31-hero{border-radius:18px;padding:24px;background:linear-gradient(112deg,#163650,#153a51 64%,#12636b);color:#fff;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center;box-shadow:0 12px 30px rgba(18,56,74,.13);margin-bottom:16px}
+.p31-hero h2{color:#fff;font-size:23px;line-height:1.18}.p31-hero p{color:#cbebee;font-size:13px;max-width:620px}
+.p31-btn{display:inline-flex;gap:8px;align-items:center;justify-content:center;padding:11px 15px;background:#0b8190;color:white!important;border:1px solid transparent;border-radius:10px;font-size:13px;font-weight:780;min-height:44px}
+.p31-btn.light{background:white;color:#153c53!important}.p31-btn.secondary{background:white;color:#19616c!important;border:1px solid #bed9de}
+.p31-btn.ghost{background:transparent;color:#175d69!important;border:1px solid #cadee3}
+.p31-btn:disabled{opacity:.5;cursor:not-allowed}
+.p31-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.p31-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:14px}
+.p31-card{border:1px solid #e0e8ee;border-radius:15px;background:#fff;padding:18px;box-shadow:0 4px 18px rgba(17,41,65,.025);min-width:0}
+.p31-metric span{display:block;color:#6c7b8a;font-size:12px;line-height:1.4}.p31-metric b{display:block;color:#1b354a;font-size:28px;letter-spacing:-.055em;margin:4px 0;font-variant-numeric:tabular-nums}.p31-metric small{font-size:10px;color:#6d8293}
+.p31-panels{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(230px,.9fr);gap:14px;margin-bottom:14px}
+.p31-panel-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:12px}.p31-panel-head small{font-size:11px;color:#78899a}
+.p31-programgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.p31-program{background:#f9fbfc;border:1px solid #e3eaf0;border-radius:12px;padding:14px 12px;display:flex;flex-direction:column;gap:6px;text-align:left;color:#1a354b;min-height:98px;justify-content:center}
+.p31-program:hover,.p31-program:focus-visible,.p31-program.selected{border-color:#5ba6ad;background:#eff8f8;outline:none}
+.p31-program .p31-progico{font-size:18px}.p31-program strong{font-size:14px;line-height:1.2}.p31-program small{font-size:11px;color:#698294}.p31-program b{font-size:22px;font-variant-numeric:tabular-nums;line-height:1.1}
+.p31-notice{font-size:12px;line-height:1.6;border-radius:12px;padding:13px;background:#f6f9fc;border:1px solid #e2eaf0;color:#526a7f;margin:12px 0}
+.p31-notice b{color:#254e61}.p31-notice.warn{background:#fffbf4;border-color:#f1e2c5;color:#775d33}
+.p31-filters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:8px 0 12px}
+.p31-filters label{display:block;font-size:11px;color:#687b8c;font-weight:770;min-width:0}
+.p31-filters select,.p31-filters input,.p31-search{border:1px solid #d6e1ea;background:#fff;border-radius:10px;padding:10px 11px;min-height:43px;font-size:14px;max-width:100%;width:100%;margin-top:5px;color:#17334b}
+.p31-filters .wide{grid-column:span 2}.p31-result-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0 12px}
+.p31-result-head b{font-size:16px;color:#1a354b}.p31-result-head span{font-size:12px;color:#728599}
+.p31-table-wrap{overflow:auto;border-radius:12px;border:1px solid #e2eaf0}.p31-table{width:100%;border-collapse:collapse;min-width:730px;background:#fff;font-size:12px}.p31-table th{text-align:left;padding:11px 12px;background:#f6f9fb;color:#718094;font-size:11px;font-weight:830;border-bottom:1px solid #e0e8ed;white-space:nowrap}.p31-table td{padding:12px;vertical-align:middle;border-bottom:1px solid #edf1f4;color:#334e60}.p31-table tbody tr:last-child td{border-bottom:0}.p31-table tbody tr:hover{background:#f8fbfb}.p31-table td b{color:#18364c;font-size:12px}.p31-table button{border:0;background:#edf7f7;color:#087281;border-radius:8px;padding:8px 10px;font-size:12px;font-weight:800}
+.p31-mobilecards{display:none}.p31-rowcard{padding:14px 15px;border-bottom:1px solid #eaf0f4}.p31-rowcard:last-child{border-bottom:0}.p31-rowtop{display:flex;gap:8px;justify-content:space-between;align-items:center}.p31-rowcard strong{font-size:14px;color:#1c3b50}.p31-rowcard .meta{font-size:12px;color:#718496;line-height:1.6;margin:5px 0}
+.p31-badge{display:inline-flex;font-size:10px;font-weight:800;padding:5px 7px;border-radius:7px;background:#e9f5f5;color:#147280}.p31-badge.muted{background:#edf1f5;color:#536e81}.p31-badge.bad{background:#fff0ed;color:#b25d47}
+.p31-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.p31-kv{border-bottom:1px solid #edf1f4;padding:9px 0}.p31-kv small{color:#78899a;display:block;font-size:11px;margin-bottom:5px}.p31-kv strong{font-size:13px;overflow-wrap:anywhere;color:#2b4459}
+.p31-blank{padding:32px 16px;text-align:center;color:#748598;font-size:13px}
+.p31-pages{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:13px;font-size:12px;color:#617487}
+.p31-tip{border-left:3px solid #2c9ca3;padding:9px 12px;background:#f1f9f9;color:#506b78;font-size:12px;margin-top:12px;border-radius:0 9px 9px 0;line-height:1.5}
+.p31-compact-bullets{font-size:12px;color:#587183;padding-left:17px;line-height:1.75;margin:7px 0}
+.p31-drawer{margin:12px 0}.p31-drawer summary{font-size:12px;font-weight:760;color:#0f7280;cursor:pointer}
+.p31-ctx{max-width:290px;color:#62798e;font-size:12px}.p31-legend{font-size:11px;color:#72869a;margin:9px 0}
+.p31-note-card{padding:12px;border-radius:12px;background:#f5f9fa;color:#60788b;font-size:12px;line-height:1.6}
+@media(min-width:1100px){
+ .nav{position:fixed!important;left:0!important;top:0!important;bottom:0!important;width:220px!important;height:100vh!important;display:flex!important;flex-direction:column!important;justify-content:flex-start!important;align-items:stretch!important;gap:5px!important;padding:100px 12px 20px!important;border-right:1px solid #e0e7ee!important;border-top:0!important;box-shadow:none!important;background:#fff!important}
+ .nav button{display:flex!important;align-items:center;justify-content:flex-start;gap:12px!important;text-align:left;font-size:13px!important;height:47px!important;min-height:47px!important;padding:0 13px!important;border-radius:10px!important;border:0!important}
+ .nav button.active{background:#edf8f8!important;color:#0c7180!important}
+ .nav .ico{font-size:20px!important;width:25px;text-align:center}
+ .header{margin-left:220px!important;padding:25px 32px 20px!important}.main{margin-left:220px!important;max-width:none!important;padding:24px 30px 70px!important}.main>*{max-width:1420px;margin-left:auto;margin-right:auto}.main .p31-view{max-width:1420px}
+ }
+@media(max-width:760px){.p31-panels{grid-template-columns:1fr}.p31-programgrid{grid-template-columns:repeat(3,minmax(0,1fr))}.p31-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.p31-hero{grid-template-columns:1fr;padding:19px}.p31-filters{grid-template-columns:repeat(2,minmax(0,1fr))}.p31-table-wrap{display:none}.p31-mobilecards{display:block;border:1px solid #e0e8ef;border-radius:12px;background:#fff}.p31-result-head{margin-top:18px}.p31-compact-bullets{margin-bottom:0}}
+@media(max-width:370px){.p31-programgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.p31-card{padding:13px}.p31-metric b{font-size:24px}.nav button{font-size:9px!important}.nav .ico{font-size:19px!important}}
+</style></head>
 <body>
-<header class="header"><div class="top"><div><div class="brand">RS_Cockpit <span style="color:#54c5c5">Österreich</span></div><div class="version">V2.4 · Paket 3 · Gesamttest &amp; Sicherheit · TEST</div></div><div class="demo">DEMODATEN</div></div><div class="subtitle">Projektsteuerung Nord Ost / Süd West<br>Quellenprüfung und Aufgabensteuerung · künstliche Daten · kein Server</div></header>
-<main class="main"><details class="v152-topnotice"><summary>Demo-Version – nur Testdaten</summary><p>Technischer Prototyp ohne operative Datenfreigabe. Unvollständige ST-Quellen und Demoregeln. Keine echten ETS-Dateien auf dieser öffentlichen Seite verwenden.</p></details><div class="controls"><div class="control"><label for="region">Region</label><select id="region"><option value="all">Österreich gesamt</option><option value="Nord Ost">Nord Ost</option><option value="Süd West">Süd West</option></select></div><div class="control"><label for="search">Projekt-ID, Standort oder Firma suchen</label><input id="search" type="search" placeholder="z. B. DEMO-P-00012"></div></div><div id="runtime" class="runtime" role="status"><strong>iPhone-Dateivorschau:</strong> Hier wird JavaScript nicht ausgeführt. Um die App bedienen zu können, öffne die veröffentlichte Webadresse in Safari.</div><div id="notice" class="runtime" hidden role="alert"></div><div id="content" aria-live="polite"><div class="empty">Die interaktiven Projektzahlen erscheinen nach dem Start in Safari.</div></div><div class="footer">Demodaten – Änderungen werden nach Möglichkeit lokal auf diesem iPhone gespeichert. Für eine zusätzliche Sicherung „Daten“ öffnen. Keine echten ETS-Daten verwenden.</div></main>
-<nav class="nav" aria-label="Hauptnavigation"><button class="active" data-tab="overview"><span class="ico" aria-hidden="true">▦</span>Übersicht</button><button data-tab="projects"><span class="ico" aria-hidden="true">▤</span>Projekte</button><button data-tab="tasks"><span class="ico" aria-hidden="true">☑</span>Aufgaben</button><button data-tab="more"><span class="ico" aria-hidden="true">☰</span>Mehr</button></nav>
+<header class="header"><div class="top"><div><div class="brand">RS_Cockpit <span style="color:#54c5c5">Österreich</span></div><div class="version">V3.2 · DYNAMISCHE PROGRAMME · OFFLINE TEST</div></div><div class="demo">NUR LOKAL · TEST</div></div><div class="subtitle">Projekt- und Programmsteuerung · PC &amp; iPhone · ausschließlich lokale Daten</div></header>
+<main class="main"><details class="v152-topnotice"><summary>Testversion – Demo und lokaler Originalstruktur-Import</summary><p>Projekte und Aufgaben auf den Hauptseiten bleiben künstlich. Unter Mehr → V3.0 kannst du Dateien nur auf deinem Gerät für einen technischen Quellenabgleich auswählen; die Inhalte werden nicht automatisch gespeichert oder übertragen. Nur im Rahmen geltender Unternehmensrichtlinien verwenden. Diese Datei niemals bei GitHub hochladen: keine fachliche oder produktive Freigabe.</p></details><div class="controls"><div class="control"><label for="region">Region</label><select id="region"><option value="all">Österreich gesamt</option><option value="Nord Ost">Nord Ost</option><option value="Süd West">Süd West</option></select></div><div class="control"><label for="search">Projekt-ID, Standort oder Firma suchen</label><input id="search" placeholder="z. B. DEMO-P-00012" type="search"/></div></div><div class="runtime" id="runtime" role="status"><strong>iPhone-Dateivorschau:</strong> Hier wird JavaScript nicht ausgeführt. Um die App bedienen zu können, öffne die veröffentlichte Webadresse in Safari.</div><div class="runtime" hidden="" id="notice" role="alert"></div><div aria-live="polite" id="content"><div class="empty">Die interaktiven Projektzahlen erscheinen nach dem Start in Safari.</div></div><div class="footer">V3.2 TEST · ST-Originaldaten nur im Arbeitsspeicher · Keine automatische Synchronisation · Keine produktive V8-Freigabe</div></main>
+<nav aria-label="Hauptnavigation" class="nav"><button class="active" data-tab="overview"><span aria-hidden="true" class="ico">▦</span>Übersicht</button><button data-tab="projects"><span aria-hidden="true" class="ico">▤</span>Projekte</button><button data-tab="p31" type="button"><span aria-hidden="true" class="ico">⌕</span> Programme</button><button data-tab="tasks"><span aria-hidden="true" class="ico">☑</span>Aufgaben</button><button data-tab="more"><span aria-hidden="true" class="ico">☰</span>Mehr</button></nav>
 <script>
 /*!
 
@@ -2733,7 +2824,6 @@ p21Restore();
 
 
 </script>
-
 <style id="p24style">
 .p24-wrap{padding:16px;margin:12px 0;border:1px solid #c6d1da;border-radius:16px;background:#fff;color:#173149;line-height:1.5}
 .p24-wrap h2{font-size:1.15rem;margin:0 0 8px}.p24-wrap h3{font-size:1.05rem;margin:16px 0 7px}
@@ -2891,4 +2981,663 @@ document.addEventListener('change',async e=>{if(e.target.id!=='p24restorefile')r
 window.p24RunStress=p24RunStress;window.p24MakeSnapshot=p24MakeSnapshot;window.p24Release=p24Release;window.p24Payload=p24Payload;window.p24Encrypt=p24Encrypt;window.p24Decrypt=p24Decrypt;window.p24Restore=p24Restore;
 // RS-COCKPIT-PAKET-3-V24-END
 </script>
-</body></html>
+<script>
+// RS_Cockpit V3.0 – lokaler Originalstruktur-Import; keine Datenübertragung oder automatische Freigabe.
+'use strict';
+const P30_ROLES=[
+ {id:'master',title:'ST-Master',rx:/^ST Region Nord Ost.*\.xlsx$/i,required:true},
+ {id:'vendor',title:'ST Vendor',rx:/^ST Vendor.*\.xlsx$/i,required:true},
+ {id:'new',title:'ST New Site Build',rx:/^ST New Site Build.*\.xlsx$/i,required:true},
+ {id:'mod',title:'ST Site Modification',rx:/^ST Site Modification.*\.xlsx$/i,required:true},
+ {id:'up',title:'ST Site Upgrade',rx:/^ST Site Upgrade.*\.xlsx$/i,required:true},
+ {id:'arge',title:'ST Site ARGE',rx:/^ST Site ARGE.*\.xlsx$/i,required:true}
+];
+const P30_FIELDS=['Project ID','Projekt ID','Project','Project External ID','WOC','Project Type','Project Template','Project Status','Program','Relocation Site','Site Status','Project Description','MLA Project Type','Area','Regional Manager','Site Name','ETS Site ID','Region','Project Manager','A1 Bearbeiter','Vendor','Vendor Name','Vendor Role','Firma','Firmenrolle','Ready for Construction (A)','Ready for Construction (F)','Construction Start (A)','Construction Start (F)','Construction End (A)','Construction End (F)','Main Design Received (A)','Main Design Approved (A)','Programm','Programme','Program Name','Programme Name','Program Title','Programmname','Site ID','StandortONr'];
+const P30_MS=['Ready for Construction (A)','Ready for Construction (F)','Construction Start (A)','Construction Start (F)','Construction End (A)','Construction End (F)','Main Design Received (A)','Main Design Approved (A)'];
+let p30State=null,p30Busy=false,p30Message='';
+const p30Norm=v=>String(v??'').normalize('NFKC').toLowerCase().replace(/[^a-z0-9]/g,'');
+const p30Value=(r,...names)=>{for(const name of names){const key=p30Norm(name);if(r&&Object.prototype.hasOwnProperty.call(r,key))return r[key]??'';}return '';};
+const p30Text=x=>String(x??'').trim();
+const p30Esc=x=>v13E(String(x??''));
+const p30ID=v=>p30Text(v).toUpperCase();
+// V8: 1900 ist ein technischer Platzhalter, niemals ein gültiges Actual.
+// Keine Formeln ausführen. Datumsfelder ausschließlich nach WERT und Kalender plausibilisieren.
+function p30IsoFromParts(year,month,day){
+ const d=new Date(Date.UTC(year,month-1,day));
+ return d.getUTCFullYear()===year&&d.getUTCMonth()===month-1&&d.getUTCDate()===day
+  ? String(year).padStart(4,'0')+'-'+String(month).padStart(2,'0')+'-'+String(day).padStart(2,'0'):'';
+}
+function p30ClassifyMilestone(v){
+ const raw=p30Text(v),rawType=v===null?'null':typeof v;
+ const result=(kind,iso='',details='')=>({kind,iso,raw,rawType,details});
+ if(v===null||v===undefined||raw==='')return result('EMPTY');
+ if(/^(N\/A|NA)$/i.test(raw))return result('NA');
+ const classifyYear=(iso)=>{
+  const year=Number(iso.slice(0,4));
+  if(year===1900)return result('PLACEHOLDER_1900','','Jahr 1900: technischer Platzhalter, kein Ist');
+  if(year>=2399)return result('PLACEHOLDER_FUTURE','','Jahr ab 2399: Platzhalter');
+  if(year<1901)return result('INVALID','','Datum vor dem gültigen ST-Zeitraum');
+  return result('VALID',iso);
+ };
+ const numeric=typeof v==='number'?v:(/^\d{1,6}(?:\.0+)?$/.test(raw)?Number(raw):NaN);
+ if(Number.isFinite(numeric)){
+  if(numeric<0||numeric>100000)return result('INVALID','','Excel-Zahlenwert außerhalb des gültigen Bereichs');
+  if(!Number.isInteger(numeric))return result('INVALID','','Zeitanteil oder Bruchzahl ohne belegtes Datum');
+  // 0 und 1..366 sind ausschließlich technische Frühwerte. Excel 1900-Schaltjahrfehler eingeschlossen.
+  if(numeric<=366)return result('PLACEHOLDER_1900','','Früher Excel-Datumswert (1900/1899), kein Ist');
+  const millis=Date.UTC(1899,11,30)+numeric*86400000;
+  const d=new Date(millis);if(Number.isNaN(d.getTime()))return result('INVALID');
+  const iso=d.toISOString().slice(0,10);
+  return classifyYear(iso);
+ }
+ let m=raw.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+ if(m){const iso=p30IsoFromParts(+m[1],+m[2],+m[3]);return iso?classifyYear(iso):result('INVALID','','Unmögliches Kalenderdatum');}
+ m=raw.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})(?:\s+00:00(?::00)?)?$/);
+ if(m){const iso=p30IsoFromParts(+m[3],+m[2],+m[1]);return iso?classifyYear(iso):result('INVALID','','Unmögliches Kalenderdatum');}
+ return result('INVALID','','Nicht unterstützter Meilensteinwert; Rohwert prüfen');
+}
+function p30ExcelDate(v){const c=p30ClassifyMilestone(v);return c.kind==='VALID'?c.iso:c.kind==='NA'?'N/A':'';}
+function p30Xml(text,name){const d=new DOMParser().parseFromString(text.replace(/^\uFEFF/,''),'application/xml');if(d.getElementsByTagName('parsererror').length)throw Error('Ungültiges Excel-XML: '+name);return d;}
+const p30Children=(root,name)=>Array.from(root.getElementsByTagNameNS('*',name));
+function p30CellValue(cell,shared){
+ const v=p30Children(cell,'v')[0];let value=v?.textContent??'';
+ const kind=cell.getAttribute('t');
+ if(kind==='e')value=''; // Fehler-Cache nicht als Excel-Zellwert übernehmen.
+ if(kind==='s')value=shared[Number(value)]??'';
+ else if(kind==='inlineStr')value=p30Children(cell,'is')[0]?.textContent??'';
+ else if(kind==='b')value=value==='1';
+ else if(kind!=='str'&&kind!=='e'&&value!==''&&Number.isFinite(Number(value)))value=Number(value);
+ if(value===''){
+  const formula=p30Children(cell,'f')[0]?.textContent||'';
+  if(formula)value=p1mSafeHyperlinkText(formula)||''; // Kein allgemeiner Formelauswerter.
+ }
+ return value;
+}
+function p30Column(ref){const s=(ref||'').match(/^[A-Z]+/);if(!s)return -1;let n=0;for(const c of s[0])n=n*26+c.charCodeAt(0)-64;return n-1;}
+async function p30ReadWorkbook(file){
+ if(!/\.xlsx$/i.test(file.name)||file.size>18*1024*1024)throw Error(file.name+': nur .xlsx bis 18 MB.');
+ const zip=await JSZip.loadAsync(await file.arrayBuffer());
+ const get=async key=>{const part=zip.file(key);if(!part)throw Error(file.name+': XLSX-Bestandteil fehlt: '+key);if(part._data?.uncompressedSize>90*1024*1024)throw Error(file.name+': dekomprimiertes Blatt zu groß.');return part.async('string');};
+ let shared=[];
+ if(zip.file('xl/sharedStrings.xml')){
+  const xml=p30Xml(await get('xl/sharedStrings.xml'),'sharedStrings');
+  const sis=p30Children(xml,'si');if(sis.length>600000)throw Error('Zu viele Excel-Textwerte.');
+  shared=sis.map(si=>si.textContent||'');
+ }
+ const wb=p30Xml(await get('xl/workbook.xml'),'workbook');
+ const rel=p30Xml(await get('xl/_rels/workbook.xml.rels'),'relationships');
+ const rmap=new Map(p30Children(rel,'Relationship').map(x=>[x.getAttribute('Id'),x.getAttribute('Target')]));
+ const sheetInfo=p30Children(wb,'sheet');if(sheetInfo.length>45)throw Error('Mehr als 45 Tabellenblätter.');
+ let best=null;
+ for(const sh of sheetInfo){
+  const rid=sh.getAttribute('r:id')||sh.getAttributeNS('http://schemas.openxmlformats.org/officeDocument/2006/relationships','id');
+  if(!rmap.has(rid))continue;
+  const path=zipRelative('xl',rmap.get(rid));
+  const xml=p30Xml(await get(path),sh.getAttribute('name')||path);
+  const rows=p30Children(xml,'row');if(rows.length>160000)throw Error('Mehr als 160.000 Zeilen in '+sh.getAttribute('name'));
+  let headers=null,score=-1;
+  for(const row of rows.slice(0,12)){
+   const vals=new Map();for(const c of p30Children(row,'c')){const k=p30Column(c.getAttribute('r'));if(k>=0&&k<700)vals.set(k,p30Norm(p30CellValue(c,shared)));}
+   const have=new Set(vals.values());const found=['projectid','project','projectexternalid','ets site id','standortonr','vendorrole','projectstatus','constructionstarta','readyforconstructiona','vendorname'].filter(x=>have.has(x));
+   const s=found.length+(have.has('projectid')?4:0)+(have.has('project')?2:0);
+   if(s>score&&(have.has('projectid')||have.has('project')||have.has('etssiteid')||have.has('standortonr')||have.has('projectexternalid'))){headers={row:Number(row.getAttribute('r')),map:vals};score=s;}
+  }
+  if(!headers)continue;
+  if(best&&best.score>=score)continue;
+  const columns=new Map();for(const [index,key] of headers.map){if(!key||!P30_FIELDS.some(f=>p30Norm(f)===key))continue;columns.set(index,key);}
+  const data=[];
+  for(const row of rows){const no=Number(row.getAttribute('r'));if(!Number.isFinite(no)||no<=headers.row)continue;
+   const obj={_row:no},cells=p30Children(row,'c');let nonempty=false;
+   for(const cell of cells){const k=columns.get(p30Column(cell.getAttribute('r')));if(k===undefined)continue;const v=p30CellValue(cell,shared);obj[k]=v;if(p30Text(v)!=='')nonempty=true;}
+   if(nonempty)data.push(obj);
+  }
+  best={sheet:sh.getAttribute('name'),rows:data,score,columns:[...columns.values()]};
+ }
+ if(!best)throw Error(file.name+': keine eindeutig lesbare Projekt-Tabelle.');
+ return {file:file.name,sheet:best.sheet,rows:best.rows,columns:best.columns};
+}
+function p30Template(v){return p30Norm(v);}
+function p30TemplateMatches(role,t){
+ const x=p30Template(t);if(!x)return false;
+ return {new:['newsitebuild','newsitebuildsite'],mod:['sitemodification'],up:['siteupgrade'],arge:['arge']}[role]?.includes(x)||false;
+}
+function p30Reference(model,role,record){
+ const direct=p30ID(p30Value(record,'Project ID','Projekt ID'));
+ const proj=p30ID(p30Value(record,'Project'));
+ const candidates=[...new Set([direct,proj].filter(x=>/^(?:DEMO-)?P-\d{4,}$/.test(x)))];
+ if(candidates.length>1)return {id:null,method:'WIDERSPRUCH',why:'Unterschiedliche Project IDs in derselben Zeile'};
+ if(candidates.length===1){const id=candidates[0];if(!model.has(id))return{id:null,method:'FREMD',why:'Project ID nicht im Master'};
+   return{id,method:'DIREKT'};}
+ if(role==='vendor'||role==='arge')return{id:null,method:'FEHLT',why:'Verpflichtender Project-ID-Anker fehlt'};
+ const woc=p30ID(p30Value(record,'Project External ID','WOC'));
+ const possibilities=(p30ResolveExternal.get(woc)||[]).filter(p=>p30TemplateMatches(role,p.type));
+ if(possibilities.length===1)return{id:possibilities[0].id,method:'WOC_EINDEUTIG'};
+ return{id:null,method:possibilities.length>1?'MEHRDEUTIG':'NICHT_ZUORDENBAR',why:'Externe ID nicht eindeutig / Projektvorlage unpassend'};
+}
+let p30ResolveExternal=new Map();
+async function p30Audit(files){
+ if(location.protocol!=='file:')throw Error('Dieser Prüflauf ist ausschließlich lokal zulässig.');
+ if(!Array.isArray(files)||!files.length)throw Error('Bitte die ST-Excel-Dateien auswählen.');
+ if(files.length>15||files.reduce((n,f)=>n+f.size,0)>75*1024*1024)throw Error('Zu viele bzw. zu große Quelldateien für diesen Prüflauf.');
+ const grouped=new Map(),meta=[],issues=[];
+ const milestoneStats={valid:0,empty:0,na:0,placeholder1900:0,placeholderFuture:0,invalid:0};
+ const milestoneByField=new Map();
+ const warn=(severity,role,row,id,reason,file='',sheet='',detail={})=>{if(issues.length<35000)issues.push({severity,role,row,id,reason,file,sheet,...detail});};
+ const tallyMilestone=(role,name,kind)=>{
+  const k={VALID:'valid',EMPTY:'empty',NA:'na',PLACEHOLDER_1900:'placeholder1900',PLACEHOLDER_FUTURE:'placeholderFuture',INVALID:'invalid'}[kind];
+  if(!k)return;milestoneStats[k]++;
+  const key=role+'|'+name;if(!milestoneByField.has(key))milestoneByField.set(key,{role,field:name,valid:0,empty:0,na:0,placeholder1900:0,placeholderFuture:0,invalid:0});
+  milestoneByField.get(key)[k]++;
+ };
+ for(const file of files){
+  const def=P30_ROLES.find(d=>d.rx.test(file.name));if(!def)throw Error('Unbekannter Quelltyp: '+file.name+'. Bitte nur die sechs dokumentierten ST-Dateien auswählen.');
+  if(grouped.has(def.id))throw Error('Quelltyp mehrfach ausgewählt: '+def.title);
+  const read=await p30ReadWorkbook(file);grouped.set(def.id,read);meta.push({role:def.id,title:def.title,file:file.name,rows:read.rows.length,sheet:read.sheet});
+ }
+ if(!grouped.has('master'))throw Error('ST Region Nord Ost.xlsx (Master) ist erforderlich.');
+ const masters=new Map(), masterRow=new Map();let duplicates=0;
+ for(const row of grouped.get('master').rows){const id=p30ID(p30Value(row,'Project ID','Projekt ID'));
+  if(!/^(?:DEMO-)?P-\d{4,}$/.test(id)){warn('KRITISCH','master',row._row,id||'', 'Master ohne gültige Project ID',grouped.get('master').file,grouped.get('master').sheet);continue;}
+  if(masters.has(id)){duplicates++;warn('KRITISCH','master',row._row,id,'Doppelte Project ID im Master',grouped.get('master').file,grouped.get('master').sheet);continue;}
+  const p={id,woc:p30ID(p30Value(row,'Project External ID')),type:p30Text(p30Value(row,'Project Type','Project Template')),status:p30Text(p30Value(row,'Project Status')),region:p30Text(p30Value(row,'Region')),site:p30Text(p30Value(row,'ETS Site ID')),program:p30Text(p30Value(row,'Program')),mla:p30Text(p30Value(row,'MLA Project Type')),relocation:p30Value(row,'Relocation Site'),description:p30Text(p30Value(row,'Project Description')),siteName:p30Text(p30Value(row,'Site Name')),owner:p30Text(p30Value(row,'Project Manager','A1 Bearbeiter')),vendor:[],milestones:{},milestoneMarkers:{}};
+  masters.set(id,p);masterRow.set(id,row._row);
+ }
+ p30ResolveExternal=new Map();for(const p of masters.values()){if(!p.woc)continue;if(!p30ResolveExternal.has(p.woc))p30ResolveExternal.set(p.woc,[]);p30ResolveExternal.get(p.woc).push(p);}
+ let mappedVendor=0,mappedMilestone=0,unmatched=0,ambiguous=0,duplicatesVendor=0,blocked=0;
+ const vendorKeys=new Set(),sourceRecs=[];
+ for(const role of ['vendor','new','mod','up','arge']){
+  const src=grouped.get(role);if(!src)continue;
+  for(const row of src.rows){const ref=p30Reference(masters,role,row);
+   if(!ref.id){unmatched++;if(ref.method==='MEHRDEUTIG')ambiguous++;warn('PRÜFEN',role,row._row,p30Text(p30Value(row,'Project ID','Project')),ref.why||ref.method,src.file,src.sheet);continue;}
+   const p=masters.get(ref.id);
+   if(role==='vendor'){
+    const firm=p30Text(p30Value(row,'Vendor Name','Firma'));const vendorRole=p30Text(p30Value(row,'Vendor Role','Firmenrolle'));
+    if(!firm||!vendorRole){blocked++;warn('PRÜFEN',role,row._row,p.id,'Firmenname oder Vendorrolle leer',src.file,src.sheet);continue;}
+    const key=p.id+'|'+p30Norm(firm)+'|'+p30Norm(vendorRole);
+    if(vendorKeys.has(key)){duplicatesVendor++;continue;}vendorKeys.add(key);
+    p.vendor.push({name:firm,role:vendorRole,row:row._row});mappedVendor++;
+   }else{
+    if(ref.method==='WOC_EINDEUTIG')warn('HINWEIS',role,row._row,p.id,'Über eindeutige WOC und passende Vorlage zugeordnet',src.file,src.sheet);
+    // Nur tatsächlich vorhandene Spalten auswerten; leere Werte nicht als Fehler zählen.
+    const presentFields=new Set(src.columns||[]);
+    for(const name of P30_MS){if(!presentFields.has(p30Norm(name)))continue;
+     const value=p30Value(row,name),assessment=p30ClassifyMilestone(value);
+     tallyMilestone(role,name,assessment.kind);
+     const proof={category:'MILESTONE_'+assessment.kind,field:name,raw:assessment.raw,rawType:assessment.rawType};
+     if(assessment.kind==='EMPTY')continue;
+     if(assessment.kind==='NA'){p.milestoneMarkers[name]={state:'NA',row:row._row,source:src.file};continue;}
+     if(assessment.kind==='PLACEHOLDER_1900'||assessment.kind==='PLACEHOLDER_FUTURE'){
+      p.milestoneMarkers[name]={state:assessment.kind,row:row._row,source:src.file};
+      const desc=assessment.kind==='PLACEHOLDER_1900'?'Technischer Datumsplatzhalter 1900 – kein Ist-Meilenstein':'Platzhalterjahr ab 2399 – kein Ist-Meilenstein';
+      warn('HINWEIS',role,row._row,p.id,desc+': '+name,src.file,src.sheet,proof);continue;
+     }
+     if(assessment.kind==='INVALID'){
+      warn('PRÜFEN',role,row._row,p.id,'Meilensteinwert nicht auswertbar: '+name,src.file,src.sheet,proof);continue;
+     }
+     const date=assessment.iso,existing=p.milestones[name];
+     if(existing&&existing.value!==date){blocked++;warn('KRITISCH',role,row._row,p.id,'Widersprüchlicher Meilenstein: '+name,src.file,src.sheet,{...proof,category:'MILESTONE_CONFLICT'});continue;}
+     p.milestones[name]={value:date,row:row._row,source:src.file};
+    }
+    mappedMilestone++;
+   }
+  }
+ }
+ const masterTotal=masters.size,vendorProjects=[...masters.values()].filter(p=>p.vendor.length).length;
+ const missingRoles=P30_ROLES.filter(d=>d.required&&!grouped.has(d.id)).map(x=>x.title);
+ const summary={projects:masterTotal,duplicates,assignedVendorProjects:vendorProjects,withoutVendor:masterTotal-vendorProjects,vendorAssignments:mappedVendor,duplicateVendorRows:duplicatesVendor,milestoneRowsMapped:mappedMilestone,unmatchedSideRows:unmatched,ambiguousSideRows:ambiguous,blockedValues:blocked,missingRoles,findings:issues.length,milestoneStats};
+ const categoryLabel=i=>i.category||(i.reason.includes('Project-ID-Anker')?'VENDOR_ANCHOR_MISSING':i.reason.includes('Firmenname oder Vendorrolle')?'VENDOR_ROLE_MISSING':i.reason.includes('Project ID nicht')?'PROJECT_REFERENCE':i.reason.includes('Externe ID')?'EXTERNAL_ID':i.reason.includes('WOC')?'WOC_ASSIGNMENT':'OTHER');
+ const issueGroups=new Map();for(const i of issues){const category=categoryLabel(i),field=i.field||'—',key=[category,i.role,field].join('|');
+  if(!issueGroups.has(key))issueGroups.set(key,{category,role:i.role,field,count:0});issueGroups.get(key).count++;
+ }
+ const issueSummary=[...issueGroups.values()].sort((a,b)=>b.count-a.count||a.category.localeCompare(b.category));
+ const milestoneFieldStats=[...milestoneByField.values()].sort((a,b)=>a.role.localeCompare(b.role)||a.field.localeCompare(b.field));
+ const projectExport=[...masters.values()].map(p=>[p.id,p.woc,p.type,p.status,p.region,p.site,p.vendor.length,p.vendor.map(v=>v.name+' ['+v.role+']').join('; '),Object.keys(p.milestones).length,masterRow.get(p.id)]);
+ return {timestamp:new Date().toISOString(),meta,summary,issues,issueSummary,milestoneFieldStats,projectExport,model:masters,release:'TEST – Nicht freigegeben. Ausschließlich technische Projekt-/Zuordnungsprüfung; keine vollständige V8-Aufgabenberechnung.'};
+}
+function p30View(){const a=p30State,summary=a?.summary;
+ const block='<section class="section p24-wrap"><div class="sectionhead">V3.0.1 · Originalstruktur- und Datumsprüfung – NUR LOKAL</div><div class="formrow"><p><b>Verarbeitung nur auf diesem Gerät.</b> Dateiinhalte werden im Arbeitsspeicher analysiert, nicht automatisch gespeichert oder übertragen. Diese Prüfung erzeugt noch keine produktiven Firmen-Urgenzen oder V8-Reports. Es werden weder GitHub noch ChatGPT benötigt.</p>'+ 
+ '<label for="p30files"><b>ST-Exportdateien auswählen (.xlsx)</b></label><input id="p30files" type="file" accept=".xlsx" multiple style="width:100%;margin:9px 0" />'+
+ '<p>Erforderlich für einen vollständigen Projektanker-Abgleich: ST Region Nord Ost, ST Vendor, ST New Site Build, ST Site Modification, ST Site Upgrade und ST Site ARGE. Bei Teilbeständen werden fehlende Rollen angezeigt.</p>'+ 
+ '<button class="actionbutton" data-p30="run"'+(p30Busy?' disabled':'')+'>Lokale Dateien prüfen</button> <button class="actionbutton secondary" data-p30="clear">Prüfdaten aus dem Speicher löschen</button>'+ 
+ (p30Message?'<p class="modehint" role="status">'+p30Esc(p30Message)+'</p>':'')+'</div></section>';
+ if(!a)return block;
+ const metrics=[['Masterprojekte',summary.projects],['Vendorprojekte',summary.assignedVendorProjects],['Nicht zugeordnet',summary.withoutVendor],['Vendorrollen',summary.vendorAssignments],['Meilensteinzeilen',summary.milestoneRowsMapped],['Nicht zugeordnete Quellzeilen',summary.unmatchedSideRows]];
+ const ms=summary.milestoneStats||{},dateMetrics=[['Gültige Meilensteindaten',ms.valid||0],['1900-Platzhalter',ms.placeholder1900||0],['N/A – nicht anwendbar',ms.na||0],['Leere Meilensteinfelder',ms.empty||0],['Anderer Zukunftsplatzhalter',ms.placeholderFuture||0],['Unbekannte / ungültige Werte',ms.invalid||0]];
+ const categoryText={MILESTONE_PLACEHOLDER_1900:'1900-Platzhalter (Hinweis)',MILESTONE_PLACEHOLDER_FUTURE:'Zukunfts-Platzhalter (Hinweis)',MILESTONE_INVALID:'Nicht auswertbarer Datumswert',MILESTONE_CONFLICT:'Widersprüchliches Datum',VENDOR_ANCHOR_MISSING:'Vendor: Projektanker fehlt',VENDOR_ROLE_MISSING:'Vendor: Firma oder Rolle fehlt',PROJECT_REFERENCE:'Projekt nicht im Master',EXTERNAL_ID:'Externe ID nicht zuordenbar',WOC_ASSIGNMENT:'WOC-Zuordnung prüfen'};
+ const issueLines=(a.issueSummary||[]).map(x=>'<div class="p24-audit"><b>'+p30Esc(x.count)+'</b> · '+p30Esc(categoryText[x.category]||x.category)+' · '+p30Esc(x.role)+(x.field==='—'?'':' · '+p30Esc(x.field))+'</div>').join('');
+ return block+'<section class="section p24-wrap"><div class="sectionhead">Ergebnis – keine produktive Freigabe</div><div class="formrow"><div class="an-grid">'+metrics.map(([k,v])=>'<div class="an-metric"><strong>'+p30Esc(v)+'</strong><span>'+p30Esc(k)+'</span></div>').join('')+'</div><p><b>Fehlende Quellen:</b> '+(summary.missingRoles.map(p30Esc).join(', ')||'Keine der sechs Grundrollen')+'</p><p><b>Quellenkonflikte:</b> '+p30Esc(summary.duplicates)+' doppelte Master-IDs · '+p30Esc(summary.ambiguousSideRows)+' mehrdeutige Quellzeilen · '+p30Esc(summary.blockedValues)+' weitere Konflikte</p><p>Zusammengeführt nach exakter Project ID; WOC-Fallback nur eindeutig und mit passendem Projekttyp für New Site Build, Modification und Upgrade. ARGE und Vendor brauchen einen Projektanker.</p><h3>Meilensteinwerte – nach Ursache</h3><div class="an-grid">'+dateMetrics.map(([k,v])=>'<div class="an-metric"><strong>'+p30Esc(v)+'</strong><span>'+p30Esc(k)+'</span></div>').join('')+'</div><p class="p24-note">1900 und N/A sind <b>kein gültiger IST-Nachweis</b>. Leere Felder werden gezählt, aber nicht als Fehler gemeldet. Rohwerte bleiben nur im lokalen Prüfbericht. Die Zahl der Prüfbefunde schließt informative Platzhalterhinweise ein.</p><details open style="margin-top:12px"><summary>Befunde nach Ursache und Quelle ('+p30Esc(a.issues.length)+')</summary><div class="p24-lines">'+issueLines+'</div></details><button class="actionbutton" data-p30="export">Prüfbericht als XLSX speichern</button> <button class="actionbutton secondary" data-p30="csv">Befunde als CSV speichern</button><details style="margin-top:12px"><summary>Quellen und einzelne Befunde ansehen</summary>'+a.meta.map(m=>'<p class="minitext">'+p30Esc(m.file)+' · '+p30Esc(m.rows)+' Zeilen · '+p30Esc(m.sheet)+'</p>').join('')+a.issues.slice(0,45).map(i=>'<div class="minitext">'+p30Esc(i.severity)+' · '+p30Esc(i.role)+' · Zeile '+p30Esc(i.row)+' · '+p30Esc(i.reason)+'</div>').join('')+'<p class="small">Bis zu 45 Befunde sichtbar; vollständige Liste im Export.</p></details><p class="p24-note">Die Analyse bleibt nur im Arbeitsspeicher dieser Seite. Für den vollständigen Soll-Ist-Vergleich mit dem V8-Generator sind identische Eingabestände sowie weitere Quellen erforderlich.</p></div></section>';
+}
+const p30PreviousMore=v152MorePage;
+v152MorePage=function(){return p30PreviousMore().replace('<section class="v152-menu">','<section class="v152-menu"><div class="p24-menu"><b>V3.0.1 · Offline-Datumsprüfung</b><p>Lokaler ST-Master- und Projektanker-Abgleich ohne Upload</p><button type="button" data-p30-open="1">Offline-Importprüfung öffnen</button></div>');};
+const p30PreviousRender=render;
+render=function(){if(tab==='p30'){document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab==='more'));document.getElementById('content').innerHTML=p30View();return;}p30PreviousRender();};
+function p30Csv(rows){return rows.map(row=>row.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';')).join('\r\n');}
+async function p30Action(action){
+ if(action==='clear'){p30State=null;p30ResolveExternal=new Map();p30Message='Prüfdaten aus dem Arbeitsspeicher gelöscht.';render();return;}
+ if(action==='run'){
+  if(p30Busy)return;
+  const input=document.getElementById('p30files'),files=Array.from(input?.files||[]);if(!files.length){p30Message='Bitte mindestens den ST-Master auswählen.';render();return;}
+  p30Busy=true;p30Message='Excel-Dateien werden ausschließlich lokal eingelesen …';render();
+  try{await new Promise(r=>setTimeout(r,20));const res=await p30Audit(files);p30State=res;p30Message='Lokale Analyse abgeschlossen. Bitte Befunde kontrollieren.';}
+  catch(e){p30Message='Import gesperrt: '+String(e.message||e);}
+  finally{p30Busy=false;render();}return;
+ }
+ if(!p30State){p30Message='Zuerst einen vollständigen Prüflauf durchführen.';render();return;}
+ if(action==='csv'){
+  p21File('RS_Cockpit_Originalstruktur_Befunde_LOKAL_TEST.csv','text/csv;charset=utf-8', '\uFEFF'+p30Csv([['Schwere','Quellrolle','Zeile','Project ID','Kategorie','Meilensteinfeld','Befund','Excel-Rohwert','Rohwerttyp','Datei','Tabellenblatt'],...p30State.issues.map(i=>[i.severity,i.role,i.row,i.id,i.category||'',i.field||'',i.reason,i.raw||'',i.rawType||'',i.file,i.sheet])]));return;
+ }
+ if(action==='export'){
+  const {summary:sm,meta,issues,projectExport,issueSummary,milestoneFieldStats}=p30State;
+  const summaryRows=Object.entries(sm).filter(([k])=>k!=='milestoneStats').map(([k,v])=>[k,Array.isArray(v)?v.join('; '):v]);
+  const dateRows=Object.entries(sm.milestoneStats||{}).map(([k,v])=>['Meilensteinwerte · '+k,v]);
+  const sheets=[
+   p21Sheet('Übersicht',['Prüfpunkt','Ergebnis'],summaryRows.concat(dateRows,[['Freigabe','GESPERRT – Technische Zuordnungsprüfung'],['Quelle','Lokale Excel-Auswahl; Dateiinhalte nicht an Server übertragen']])),
+   p21Sheet('Projektvergleich',['Project ID','WOC','Projekttyp','Projektstatus','Region','ETS Site ID','Firmenrollen Anzahl','Firmen/Rollen','Meilensteinfelder','Master-Zeile'],projectExport),
+   p21Sheet('Befundübersicht',['Befundkategorie','Quellrolle','Meilensteinfeld','Anzahl'],issueSummary.map(x=>[x.category,x.role,x.field,x.count])),
+   p21Sheet('Datumsanalyse',['Quellrolle','Meilensteinfeld','Gültig','Leer','N/A','Platzhalter 1900','Platzhalter ab 2399','Ungültig'],milestoneFieldStats.map(x=>[x.role,x.field,x.valid,x.empty,x.na,x.placeholder1900,x.placeholderFuture,x.invalid])),
+   p21Sheet('Befunde',['Schwere','Quellrolle','Zeile','Project ID','Kategorie','Meilensteinfeld','Befund','Excel-Rohwert','Rohwerttyp','Datei','Blatt'],issues.map(i=>[i.severity,i.role,i.row,i.id,i.category||'',i.field||'',i.reason,i.raw||'',i.rawType||'',i.file,i.sheet])),
+   p21Sheet('Quelldateien',['Rolle','Datei','Tabellenblatt','Datenzeilen'],meta.map(m=>[m.title,m.file,m.sheet,m.rows]))
+  ];
+  const bytes=await p21XlsxBytes(sheets);p21File('RS_Cockpit_Originalstruktur_Pruefung_LOKAL_TEST.xlsx',P21_MIME,bytes);return;
+ }
+}
+document.addEventListener('click',e=>{
+ const el=e.target.closest('[data-p30-open],[data-p30]');if(!el)return;
+ e.stopImmediatePropagation();
+ if(el.hasAttribute('data-p30-open')){tab='p30';render();return;}
+ Promise.resolve(p30Action(el.dataset.p30)).catch(err=>{p30Message='Fehler: '+String(err.message||err);render();});
+},true);
+// Keine Datenübertragung, keine persistente Ablage der Originalprojektdateien.
+window.rsCockpitOfflineImportTest=p30Audit;
+
+</script>
+<script>
+'use strict';
+/* RS_Cockpit V3.1 – local-only business layout and program queries.
+   Imported real ST files remain memory-only. No data upload, remote fetch or network listeners.
+   KG is NOT inferred when the explicit source is absent. */
+const p31={group:'all',region:'all',vendor:'all',status:'all',type:'all',mla:'all',owner:'all',query:'',page:0,focus:null};
+const p31Esc=s=>v13E(String(s??''));
+const p31Number=n=>Number(n||0).toLocaleString('de-AT');
+const p31Norm=s=>String(s??'').normalize('NFKC').toLowerCase();
+const p31Terminal=s=>/^(completed|terminated|cancelled|canceled|aborted)$/i.test(String(s||'').trim());
+const p31IsYes=s=>s===true||/^(ja|yes|true|1|x)$/i.test(String(s??'').trim());
+const p31Categories=[
+ {id:'all',title:'Alle',icon:'▦',hint:'Gesamtbestand'},
+ {id:'KG',title:'KG',icon:'▧',hint:'Katastralgemeinden'},
+ {id:'MU',title:'MU · Mandatory Upgrade',icon:'▤',hint:'MLA Project Type'},
+ {id:'NEW_TENANT',title:'New Tenant',icon:'⌘',hint:'MLA Project Type'},
+ {id:'VERLEGUNG',title:'Verlegung',icon:'↗',hint:'Relocation Site'},
+ {id:'ABBAU',title:'Abbau',icon:'↘',hint:'Decommissioning'},
+ {id:'NEUBAU',title:'Neubau',icon:'⌂',hint:'New Site-Build'},
+ {id:'UPGRADE',title:'Upgrade',icon:'⇧',hint:'Site Upgrade'},
+ {id:'ARGE',title:'ARGE',icon:'◇',hint:'ARGE-Projekttyp'}
+];
+function p31Classify(p){
+ const ids=new Set(), evidence={};
+ const add=(k,why)=>{ids.add(k);evidence[k]=why;};
+ const ty=p31Norm(p.type),program=p31Norm(p.program),mla=p31Norm(p.mla).trim().replace(/\s+/g,' ');
+ if(/\b(?:kg|cadastral|katastral)/i.test(program))add('KG','Programmfeld');
+ if(/^(?:mu|mandatory[ -]?upgrade)$/i.test(mla))add('MU','MLA Project Type: '+p.mla);
+ if(/^new[ -]?tenant$/i.test(mla))add('NEW_TENANT','MLA Project Type: '+p.mla);
+ if(p31IsYes(p.relocation))add('VERLEGUNG','Relocation Site = TRUE');
+ if(ty.includes('decommission'))add('ABBAU','Project Type: Decommissioning');
+ if(ty.includes('new site')||ty.includes('newsite'))add('NEUBAU','Project Type: New Site-Build');
+ if(ty.includes('site upgrade'))add('UPGRADE','Project Type: Site Upgrade');
+ if(ty==='arge'||ty.startsWith('arge '))add('ARGE','Project Type: ARGE');
+ return {ids,evidence};
+}
+function p31Records(){return p30State?.model?[...p30State.model.values()]:[];}
+function p31UnfilteredCounts(rows){const c=new Map(p31Categories.map(x=>[x.id,0]));c.set('all',rows.length);for(const p of rows){const ids=p31Classify(p).ids;for(const k of ids)c.set(k,(c.get(k)||0)+1);}return c;}
+function p31OpenGroup(key){p31.group=key;p31.page=0;p31.focus=null;tab='p31';render();}
+function p31Options(items,selected,all){return '<option value="all">'+p31Esc(all)+'</option>'+items.map(v=>'<option value="'+p31Esc(v)+'"'+(selected===v?' selected':'')+'>'+p31Esc(v)+'</option>').join('');}
+function p31AllOptions(rows,f){return [...new Set(rows.flatMap(f).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'de',{sensitivity:'base'}));}
+function p31Filtered(rows){const q=p31Norm(p31.query).trim();return rows.filter(p=>{
+ if(p31.group!=='all'&&!p31Classify(p).ids.has(p31.group))return false;
+ if(p31.region!=='all'&&p.region!==p31.region)return false;
+ if(p31.status==='open'&&p31Terminal(p.status))return false;
+ if(p31.status==='terminal'&&!p31Terminal(p.status))return false;
+ if(p31.vendor!=='all'&&!p.vendor.some(v=>v.name===p31.vendor))return false;
+ if(p31.type!=='all'&&p.type!==p31.type)return false;
+ if(p31.mla!=='all'&&p.mla!==p31.mla)return false;
+ if(p31.owner!=='all'&&p.owner!==p31.owner)return false;
+ if(q&&!p31Norm([p.id,p.woc,p.site,p.siteName,p.description,p.type,p.status,p.owner,p.region,p.program,p.mla,...p.vendor.map(v=>v.name)].join(' ')).includes(q))return false;
+ return true;});}
+function p31Programs(rows,counts,clickable=true){const mlaAvailable=rows.some(p=>p.mla);return '<div class="p31-programgrid">'+p31Categories.map(c=>{const missing=(c.id==='KG'&&!counts.get('KG'))||(['MU','NEW_TENANT'].includes(c.id)&&!mlaAvailable);return '<button type="button" data-p31-group="'+c.id+'" class="p31-program'+(p31.group===c.id?' selected':'')+'"'+(!clickable?' disabled':'')+'><span class="p31-progico" aria-hidden="true">'+c.icon+'</span><strong>'+p31Esc(c.title)+'</strong><b>'+(missing?'–':p31Number(counts.get(c.id)))+'</b><small>'+(missing?(c.id==='KG'?'KG-Quelle fehlt':'MLA-Feld leer / fehlt'):p31Esc(c.hint))+'</small></button>';}).join('')+'</div>';}
+function p31Link(name,label,classes=''){return '<button type="button" class="p31-btn '+classes+'" data-p31-action="'+name+'">'+label+'</button>';}
+function p31Header(title,desc,kicker){return '<div class="p31-topbar"><div><p class="p31-kicker">'+p31Esc(kicker)+'</p><h1>'+p31Esc(title)+'</h1><p>'+p31Esc(desc)+'</p></div><span class="p31-tag">● Lokal · Nicht synchronisiert</span></div>';}
+function p31Metrics(arr){return '<div class="p31-kpis">'+arr.map(a=>'<article class="p31-card p31-metric"><span>'+p31Esc(a[0])+'</span><b>'+p31Number(a[1])+'</b><small>'+p31Esc(a[2]||'Aktueller lokaler Datenstand')+'</small></article>').join('')+'</div>';}
+function p31ShowNoImport(){return '<div class="p31-hero"><div><h2>Programmsteuerung für ganz Österreich.</h2><p>KG, MU (Mandatory Upgrade), New Tenant, Verlegung und Abbau aus ihren jeweiligen ST-Feldern abfragen. Für echte Ergebnisse zuerst die sechs ST-Kernexporte lokal einlesen.</p></div>'+p31Link('import','ST-Dateien lokal einlesen','light')+'</div><article class="p31-card"><h2>Noch kein lokaler ST-Datenstand geladen</h2><p>Die bisherigen 72 Demo-Projekte bleiben im bisherigen Testbereich. Eine Programmzuordnung aus diesen Demodaten wird nicht erfunden.</p><div class="p31-notice"><b>Datenschutz:</b> Der Import erfolgt ausschließlich auf diesem Gerät; die Datei-Inhalte werden nicht auf einen Server übertragen. Keine automatische Synchronisation.</div></article>';}
+function p31Overview(){const rows=p31Records(),counts=p31UnfilteredCounts(rows),qs=p30State?.summary;
+ let out='<section class="p31-view">'+p31Header('Cockpit','Projektsteuerung, Programmabfragen und Qualität an einem Ort.','RS_COCKPIT · BUSINESS');
+ if(!rows.length)return out+p31ShowNoImport()+'</section>';
+ const notTerminal=rows.filter(p=>!p31Terminal(p.status)).length;
+ out+=p31Metrics([['Alle Projekte',rows.length,'ST-Master'],['Nicht terminal',notTerminal,'Kein Abschlussstatus'],['Mit Firma',qs?.assignedVendorProjects||0,'Vendor-Export'],['Quellbefunde',qs?.findings||0,'Enthält auch Hinweise']]);
+ out+='<div class="p31-panels"><article class="p31-card"><div class="p31-panel-head"><h2>Direktabfragen nach Programm</h2><small>Ein Klick öffnet die Ergebnisliste</small></div>'+p31Programs(rows,counts)+'</article><article class="p31-card"><div class="p31-panel-head"><h2>Arbeitsstand</h2></div><div class="p31-note-card">● Offline auf diesem Gerät<br>○ Keine Server-Synchronisation<br>○ Keine gemeinsame Aufgabenbearbeitung zwischen Geräten<br>○ Keine vollständige V8-/KG-Freigabe</div><div class="p31-notice warn">Für KG ist eine gesonderte KG-Quellliste nötig. Im geprüften ST-Master ist die Spalte „Program“ leer. Deshalb wird KG nicht aus Projektart oder WOC geraten.</div>'+p31Link('audit','Daten und Qualitätsprüfung öffnen','secondary')+'</article></div>';
+ out+='<article class="p31-card"><div class="p31-panel-head"><h2>Schneller Einstieg</h2></div><div class="p31-actions">'+p31Link('projects','Alle Projekte durchsuchen')+' '+p31Link('import','Neue ST-Dateien einlesen','secondary')+' '+p31Link('tasks','DEMO-Aufgaben bearbeiten','secondary')+'</div><p>Projekte aus dem Originalimport sind derzeit lesbar und filterbar. Die operative V8-Aufgabenberechnung für diese Originaldaten ist noch nicht freigegeben.</p></article></section>';
+ return out;
+}
+function p31Detail(rows){const p=rows.find(x=>x.id===p31.focus);if(!p){p31.focus=null;return '';}const c=p31Classify(p);
+ const fields=[['Project ID',p.id],['Project External ID / WOC',p.woc],['Standort',p.site],['Standortname',p.siteName],['Region',p.region],['Projektstatus',p.status],['Project Type',p.type],['Project Manager',p.owner||'Keine Angabe'],['Relocation Site',String(p.relocation||'')],['ST Program',p.program||'Im Export leer'],['MLA Project Type',p.mla||'Im Export leer'],['Firmen / Rollen',p.vendor.map(x=>x.name+' ('+x.role+')').join('; ')||'Keine gültige Zuordnung'],['Meilensteinfelder mit gültigem Datum',String(Object.keys(p.milestones||{}).length)]];
+ return '<section class="p31-view">'+p31Header('Projektakte',p.woc+' · '+(p.siteName||p.site||'Standort'), 'ST · LOKALE FAKTEN')+'<div class="p31-actions">'+p31Link('close','← Zur Ergebnisliste','secondary')+'</div><article class="p31-card" style="margin-top:13px"><h2>'+p31Esc(p.id)+'</h2><div class="p31-detail-grid">'+fields.map(([k,v])=>'<div class="p31-kv"><small>'+p31Esc(k)+'</small><strong>'+p31Esc(v||'—')+'</strong></div>').join('')+'</div><details class="p31-drawer"><summary>Projektprogramme und Ableitung ('+c.ids.size+')</summary>'+(c.ids.size?[...c.ids].map(k=>'<div class="p31-tip"><b>'+p31Esc(k)+':</b> '+p31Esc(c.evidence[k])+'</div>').join(''):'<p>Keine sichere Programmzuordnung aus den sechs geladenen Quellen ableitbar.</p>')+'</details><details class="p31-drawer"><summary>Gültige Meilensteine ('+Object.keys(p.milestones||{}).length+')</summary>'+Object.entries(p.milestones||{}).map(([k,v])=>'<div class="p31-kv"><small>'+p31Esc(k)+'</small><strong>'+p31Esc(v.value)+'</strong></div>').join('')+'</details><div class="p31-notice warn">Dies sind nur lokal eingelesene ST-Fakten, keine abschließend geprüfte Aufgaben- oder Fortschrittsbewertung. Keine Änderungen werden in Sitetracker zurückgeschrieben.</div></article></section>';
+}
+function p31ListView(isProjects){const rows=p31Records();let out='<section class="p31-view">'+p31Header(isProjects?'Projektbestand':'Programme direkt abfragen',isProjects?'Alle ST-Projekte, mit denselben Programm- und Firmenfiltern.':'KG, MU (Mandatory Upgrade), New Tenant, Verlegung, Abbau und Projekttypen kombiniert filtern.',isProjects?'PROJEKTE · ST MASTER':'PROGRAMMABFRAGE · MULTIFILTER');
+ if(!rows.length)return out+p31ShowNoImport()+'</section>';
+ if(p31.focus)return p31Detail(rows);
+ const counts=p31UnfilteredCounts(rows),filtered=p31Filtered(rows),size=35,maxPages=Math.max(1,Math.ceil(filtered.length/size));p31.page=Math.max(0,Math.min(p31.page,maxPages-1));const pageRows=filtered.slice(p31.page*size,(p31.page+1)*size);
+ out+='<div class="p31-card"><div class="p31-panel-head"><h2>Programm auswählen</h2><small>Mehrfachzuordnung möglich</small></div>'+p31Programs(rows,counts)+'</div>';
+ if(p31.group==='KG'&&!counts.get('KG'))out+='<div class="p31-notice warn"><b>KG nicht bewertbar:</b> Im lokalen ST-Master ist keine KG-Programmkennzeichnung vorhanden. Bitte keinen Wert „0 KG-Projekte“ als Tatsachenbestand interpretieren. Für KG ist die aktuelle KG-Status-/Tranche-Quelle einzubinden.</div>';
+ if(['MU','NEW_TENANT'].includes(p31.group)&&!rows.some(p=>p.mla))out+='<div class="p31-notice warn"><b>MLA nicht bewertbar:</b> Das Feld „MLA Project Type“ ist in den eingelesenen Masterprojekten leer oder nicht vorhanden. MU und New Tenant werden nicht aus der WOC hergeleitet.</div>';
+ const regions=p31AllOptions(rows,p=>[p.region]),vendors=p31AllOptions(rows,p=>p.vendor.map(v=>v.name)),types=p31AllOptions(rows,p=>[p.type]),mlaTypes=p31AllOptions(rows,p=>[p.mla]),owners=p31AllOptions(rows,p=>[p.owner]);
+ out+='<section class="p31-card" style="margin:14px 0"><div class="p31-panel-head"><h2>Abfrage verfeinern</h2></div><div class="p31-filters">'+
+ '<label class="wide">Schnellsuche<input id="p31-search" type="search" placeholder="Project ID, WOC, Standort, Firma …" value="'+p31Esc(p31.query)+'"></label>'+
+ '<label>Region<select data-p31-filter="region">'+p31Options(regions,p31.region,'Österreich gesamt')+'</select></label>'+
+ '<label>Projektstatus<select data-p31-filter="status"><option value="all">Alle</option><option value="open"'+(p31.status==='open'?' selected':'')+'>Nicht terminal</option><option value="terminal"'+(p31.status==='terminal'?' selected':'')+'>Abgeschlossen / Abbruch</option></select></label>'+
+ '<label>Firma<select data-p31-filter="vendor">'+p31Options(vendors,p31.vendor,'Alle Firmen')+'</select></label>'+
+ '<label>Projekttyp<select data-p31-filter="type">'+p31Options(types,p31.type,'Alle Typen')+'</select></label>'+
+ '<label>MLA Project Type<select data-p31-filter="mla">'+p31Options(mlaTypes,p31.mla,'Alle MLA-Maßnahmen')+'</select></label>'+
+ '<label class="wide">Projektmanager<select data-p31-filter="owner">'+p31Options(owners,p31.owner,'Alle Bearbeiter')+'</select></label>'+
+ '</div><div class="p31-actions">'+p31Link('clear','Filter zurücksetzen','ghost')+' '+p31Link('csv','Trefferliste als CSV exportieren','secondary')+'</div></section>';
+ out+='<div class="p31-result-head"><b>'+p31Number(filtered.length)+' Treffer</b><span>'+p31Number(rows.length)+' Masterprojekte · Seite '+(p31.page+1)+'/'+maxPages+'</span></div>';
+ const show=[['Projekt','id'],['WOC','woc'],['Typ','type'],['MLA','mla'],['Region','region'],['Status','status']];
+ out+='<div class="p31-table-wrap"><table class="p31-table"><thead><tr>'+show.map(([k])=>'<th>'+k+'</th>').join('')+'<th>Firma</th><th>Aktion</th></tr></thead><tbody>'+pageRows.map(p=>'<tr>'+show.map(([k,v])=>'<td>'+(v==='id'?'<b>'+p31Esc(p[v])+'</b>':p31Esc(p[v]||'—'))+'</td>').join('')+'<td>'+p31Esc(p.vendor.length?p.vendor.map(v=>v.name).slice(0,2).join(', '):'—')+'</td><td><button data-p31-detail="'+p31Esc(p.id)+'">Ansehen →</button></td></tr>').join('')+'</tbody></table></div>';
+ out+='<div class="p31-mobilecards">'+pageRows.map(p=>'<div class="p31-rowcard"><div class="p31-rowtop"><strong>'+p31Esc(p.id)+'</strong><span class="p31-badge'+(p31Terminal(p.status)?' muted':'')+'">'+p31Esc(p.status||'Ohne Status')+'</span></div><div class="meta">'+p31Esc(p.woc||p.site)+' · '+p31Esc(p.region||'Keine Region')+'<br>'+p31Esc(p.type||'Kein Projekttyp')+' · MLA: '+p31Esc(p.mla||'nicht angegeben')+' · '+p31Esc(p.vendor.slice(0,2).map(v=>v.name).join(', ')||'Firma nicht zugeordnet')+'</div><button class="p31-btn secondary" data-p31-detail="'+p31Esc(p.id)+'">Projektakte öffnen →</button></div>').join('')+'</div>';
+ if(!filtered.length)out+='<div class="p31-blank">Keine Treffer in dieser Auswahl. Filter ändern oder zurücksetzen.</div>';
+ out+='<div class="p31-pages"><button class="p31-btn ghost" data-p31-page="-1"'+(!p31.page?' disabled':'')+'>← Zurück</button><span>'+p31Number(p31.page*size+Math.min(1,filtered.length))+'–'+p31Number(Math.min((p31.page+1)*size,filtered.length))+' / '+p31Number(filtered.length)+'</span><button class="p31-btn ghost" data-p31-page="1"'+(p31.page+1>=maxPages?' disabled':'')+'>Weiter →</button></div>';
+ out+='<div class="p31-tip">Die Programmkategorien sind fachliche Abfragen, keine exklusiven Projektgruppen. Ein Projekt kann z. B. Verlegung und Abbau zugleich betreffen. KG erfordert eine eigene Quelle; MU (Mandatory Upgrade) und New Tenant werden ausschließlich anhand des ST-Felds „MLA Project Type“ erkannt. WOC dient nur als Projektkennung.</div></section>';
+ return out;
+}
+function p31GoLegacy(target){tab=target;p31.focus=null;render();}
+function p31CSPGuard(){return location.protocol==='file:';}
+const p31RenderPrev=render;
+render=function(){if(['overview','projects','p31'].includes(tab)){
+ document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
+ document.getElementById('content').innerHTML=(tab==='overview'?p31Overview():p31ListView(tab==='projects'));
+ return;}
+ p31RenderPrev();
+ if(tab==='tasks'&&p30State){const el=document.getElementById('content');if(el&&!el.querySelector('.p31-real-warning'))el.insertAdjacentHTML('afterbegin','<div class="p31-notice warn p31-real-warning"><b>Wichtig:</b> Die Aufgaben darunter beruhen weiter auf künstlichen DEMO-Projekten, nicht auf den '+p31Number(p30State.summary.projects)+' lokal importierten Originalprojekten. Die vollständige V8-Aufgabenberechnung mit Originaldaten ist noch nicht freigegeben.</div>');}
+};
+const p31AuditPrev=p30Action;
+p30Action=async function(action){const was=p30State;await p31AuditPrev(action);if(action==='run'&&p30State&&p30State!==was){p31.group='all';p31.focus=null;p31.page=0;tab='p31';render();}};
+document.addEventListener('click',e=>{
+ const b=e.target.closest('[data-p31-action],[data-p31-group],[data-p31-detail],[data-p31-page]');if(!b)return;
+ e.preventDefault();e.stopImmediatePropagation();
+ if(b.hasAttribute('data-p31-group')){p31OpenGroup(b.dataset.p31Group);return;}
+ if(b.hasAttribute('data-p31-detail')){p31.focus=b.dataset.p31Detail;render();return;}
+ if(b.hasAttribute('data-p31-page')){p31.page=Math.max(0,p31.page+Number(b.dataset.p31Page));render();return;}
+ const cmd=b.dataset.p31Action;
+ if(cmd==='import'){p31GoLegacy('p30');return;}
+ if(cmd==='audit'){p31GoLegacy('p30');return;}
+ if(cmd==='projects'){p31.group='all';p31GoLegacy('projects');return;}
+ if(cmd==='tasks'){p31GoLegacy('tasks');return;}
+ if(cmd==='close'){p31.focus=null;render();return;}
+ if(cmd==='clear'){Object.assign(p31,{region:'all',vendor:'all',status:'all',type:'all',mla:'all',owner:'all',query:'',page:0});render();return;}
+ if(cmd==='csv'){
+  const rows=p31Filtered(p31Records());const header=['Project ID','WOC','Projektstatus','Project Type','Region','ETS Site ID','Programmfeld','MLA Project Type','Verlegung','Firmen','Projektmanager','Programm-Abfrage'];
+  const data=[header,...rows.map(p=>[p.id,p.woc,p.status,p.type,p.region,p.site,p.program,p.mla,p.relocation,p.vendor.map(x=>x.name+' ('+x.role+')').join('; '),p.owner,[...p31Classify(p).ids].join('; ')])];
+  const csv='\uFEFF'+data.map(r=>r.map(x=>'"'+String(x??'').replace(/"/g,'""')+'"').join(';')).join('\r\n');
+  p21File('RS_Cockpit_Programmabfrage_LOKAL_TEST.csv','text/csv;charset=utf-8',csv);return;
+ }
+},true);
+document.addEventListener('change',e=>{const el=e.target.closest('[data-p31-filter]');if(!el)return;p31[el.dataset.p31Filter]=el.value;p31.page=0;p31.focus=null;render();},true);
+document.addEventListener('input',e=>{if(e.target?.id!=='p31-search')return;p31.query=e.target.value;p31.page=0;const active=document.activeElement;const start=active.selectionStart,end=active.selectionEnd;render();const x=document.getElementById('p31-search');if(x){x.focus();try{x.setSelectionRange(start,end)}catch(_){}}},true);
+window.rsCockpitProgramDiagnostics=()=>({kind:'rs-cockpit-v31-offline-programs',hasImportedData:!!p30State,projectCount:p30State?.summary?.projects||0,counts:Object.fromEntries(p31UnfilteredCounts(p31Records())),queryState:{...p31},onlineSync:false,kgSourceLoaded:false,appVersion:'V3.1 MLA-UPDATE TEST',notReleased:true});
+render();
+</script><script>
+'use strict';
+/* RS_Cockpit V3.2 — dynamic, source-verified program catalogue and local encrypted transfer.
+ * No network operations; no hardcoded catalogue. No ST write-back, no production V8 claim.
+ */
+const p32={assignments:new Map(),files:[],unresolved:[],edits:new Map(),busy:false,message:'',bundleSource:'',csvLimit:50000};
+const p32Esc=p31Esc,p32Text=p30Text,p32Norm=p30Norm;
+const p32Sort=(a,b)=>a.localeCompare(b,'de',{sensitivity:'base'});
+function p32ProgramNames(raw){return String(raw??'').split(/[;|\n\r]+/).map(s=>s.trim()).filter(s=>s&&!/^(n\/?a|keine|none|-+)$/i.test(s)).slice(0,15);}
+function p32Key(s){return s.trim().normalize('NFKC').toLocaleLowerCase('de');}
+function p32Evidence(p){
+ const m=new Map();
+ function add(name,source,method,row){const n=String(name||'').trim();if(!n)return;const k=p32Key(n);if(!m.has(k))m.set(k,{name:n,proofs:[]});const item=m.get(k);if(!item.proofs.some(x=>x.source===source&&x.method===method&&x.row===row))item.proofs.push({source,method,row});}
+ for(const name of p32ProgramNames(p.program))add(name,'ST-Master · Program','Originalfeld',0);
+ for(const x of (p32.assignments.get(p.id)||[]))add(x.name,x.source,x.method,x.row);
+ return [...m.values()];
+}
+function p32Catalogue(rows){
+ const m=new Map();for(const p of rows)for(const evidence of p32Evidence(p)){
+  const k=p32Key(evidence.name);if(!m.has(k))m.set(k,{name:evidence.name,id:'PRG:'+k,count:0});m.get(k).count++;
+ }
+ return [...m.values()].sort((a,b)=>p32Sort(a.name,b.name));
+}
+function p32Add(p,name,source,method,row){const arr=p32.assignments.get(p.id)||[];const key=p32Key(name);if(arr.some(x=>p32Key(x.name)===key&&x.source===source))return false;arr.push({name:name.trim(),source,method,row});p32.assignments.set(p.id,arr);return true;}
+function p32Columns(row){return p30Value(row,'Program','Programm','Programme','Program Name','Programme Name','Program Title','Programmname');}
+function p32Unique(map,key,p){if(!key)return;const k=p30ID(key);const arr=map.get(k)||[];arr.push(p);map.set(k,arr);}
+function p32Indexes(rows){const id=new Map(rows.map(p=>[p.id,p])),woc=new Map(),site=new Map();for(const p of rows){p32Unique(woc,p.woc,p);p32Unique(site,p.site,p);}return {id,woc,site};}
+function p32Match(row,maps){
+ const id=p30ID(p30Value(row,'Project ID','Projekt ID','Project'));
+ const woc=p30ID(p30Value(row,'Project External ID','WOC'));
+ const site=p30ID(p30Value(row,'ETS Site ID','Site ID','StandortONr'));
+ const provided=[Boolean(id),Boolean(woc),Boolean(site)].filter(Boolean).length;
+ if(!provided)return {error:'Kein Projektanker (Project ID, WOC oder StandortONr)'};
+ let pool=null,method='';
+ if(id){const p=maps.id.get(id);if(!p)return{error:'Project ID nicht im aktuellen Master'};pool=[p];method='Project ID';}
+ else if(woc){pool=maps.woc.get(woc)||[];method='WOC (eindeutig)';}
+ else{pool=maps.site.get(site)||[];method='ETS Site ID (eindeutig)';}
+ if(pool.length!==1)return{error:pool.length===0?'Kein Mastertreffer':'Mehrdeutiger Mastertreffer ('+pool.length+')'};
+ const p=pool[0];
+ if(woc&&p.woc!==woc)return{error:'WOC und Project ID widersprechen sich'};
+ if(site&&p.site!==site)return{error:'Standort und Project ID widersprechen sich'};
+ return{project:p,method};
+}
+function p32CsvParse(content,file){
+ const cleaned=content.replace(/^\uFEFF/,'');if(cleaned.length>15e6)throw Error(file.name+': CSV zu groß.');
+ const first=cleaned.split(/\r?\n/,1)[0],delimiter=(first.match(/;/g)||[]).length>=(first.match(/,/g)||[]).length?';':',';
+ const matrix=[];let row=[],field='',quoted=false;
+ for(let i=0;i<cleaned.length;i++){const c=cleaned[i];if(c==='"'){
+  if(quoted&&cleaned[i+1]==='"'){field+='"';i++;}else quoted=!quoted;
+ }else if(c===delimiter&&!quoted){row.push(field);field='';}
+ else if((c==='\n'||c==='\r')&&!quoted){if(c==='\r'&&cleaned[i+1]==='\n')i++;row.push(field);if(row.some(x=>x.trim()))matrix.push(row);row=[];field='';if(matrix.length>150002)throw Error('Mehr als 150.000 CSV-Zeilen.');}
+ else field+=c;
+ }
+ if(quoted)throw Error(file.name+': CSV-Anführungszeichen nicht abgeschlossen.');row.push(field);if(row.some(x=>x.trim()))matrix.push(row);
+ if(matrix.length<2)throw Error(file.name+': keine Datensätze.');
+ const names=matrix[0].map(p30Norm),rows=[];for(let i=1;i<matrix.length;i++){const o={_row:i+1};for(let j=0;j<names.length;j++)if(names[j])o[names[j]]=matrix[i][j]??'';rows.push(o);}return{file:file.name,sheet:'CSV',rows,columns:names};
+}
+async function p32Read(file){
+ if(/\.csv$/i.test(file.name))return p32CsvParse(await file.text(),file);
+ if(/\.xlsx$/i.test(file.name))return p30ReadWorkbook(file);
+ throw Error('Nur .xlsx oder .csv als Programmquelle zulässig.');
+}
+async function p32ImportPrograms(files,forced){
+ if(!p30State?.model?.size)throw Error('Zuerst den ST-Master samt Kernexporten lokal importieren.');
+ if(!files.length||files.length>12||files.reduce((n,f)=>n+f.size,0)>45*1024*1024)throw Error('Bitte 1 bis 12 Dateien bis insgesamt 45 MB wählen.');
+ const name=p32Text(forced||'');if(name.length>140)throw Error('Programmname maximal 140 Zeichen.');
+ const maps=p32Indexes(p31Records());let matches=0,unmatched=0,duplicates=0,sourceRows=0;
+ for(const file of files){const src=await p32Read(file);let m=0,u=0,dup=0;
+  for(const row of src.rows){sourceRows++;const names=p32ProgramNames(p32Columns(row)||name);
+   if(!names.length){p32.unresolved.push({file:file.name,row:row._row,reason:'Programmname fehlt'});u++;continue;}
+   const match=p32Match(row,maps);if(match.error){p32.unresolved.push({file:file.name,row:row._row,reason:match.error});u++;continue;}
+   for(const n of names){if(p32Add(match.project,n,file.name,match.method,row._row))m++;else dup++;}
+  }
+  p32.files.push({name:file.name,sheet:src.sheet,rows:src.rows.length,assigned:m,unresolved:u,duplicates:dup,explicitName:!!name});
+  matches+=m;unmatched+=u;duplicates+=dup;
+ }
+ p32.message='Zuordnungen: '+matches+' · ungeklärt: '+unmatched+' · doppelt: '+duplicates+' · '+sourceRows+' Zeilen geprüft.';
+ p31.page=0;p31.focus=null;return{matches,unmatched,duplicates,sourceRows};
+}
+const p32OldClassify=p31Classify;
+p31Classify=function(p){const old=p32OldClassify(p);
+ // Programmes are ONLY evidence-based. MLA, type, and relocation are separate filter dimensions.
+ const ids=new Set([...old.ids].filter(k=>!['KG'].includes(k))),evidence={...old.evidence};delete evidence.KG;
+ for(const e of p32Evidence(p)){const id='PRG:'+p32Key(e.name);ids.add(id);evidence[id]=e.proofs.map(x=>x.source+' · '+x.method+(x.row?' · Zeile '+x.row:'')).join('; ');}
+ return{ids,evidence};};
+function p32Categories(rows){
+ const programmes=p32Catalogue(rows).map(x=>({id:x.id,title:x.name,icon:'▧',hint:'Programm · Quellenbelegt',kind:'program'}));
+ const extras=[{id:'MU',title:'Mandatory Upgrade',icon:'▤',hint:'MLA Project Type'},
+ {id:'NEW_TENANT',title:'New Tenant',icon:'⌘',hint:'MLA Project Type'},
+ {id:'VERLEGUNG',title:'Verlegung',icon:'↗',hint:'Relocation Site'},
+ {id:'ABBAU',title:'Abbau',icon:'↘',hint:'Decommissioning'},
+ {id:'NEUBAU',title:'Neubau',icon:'⌂',hint:'New Site Build'},
+ {id:'UPGRADE',title:'Upgrade',icon:'⇧',hint:'Site Upgrade'},
+ {id:'ARGE',title:'ARGE',icon:'◇',hint:'ARGE-Projekttyp'}];
+ p31Categories.splice(0,p31Categories.length,{id:'all',title:'Alle Projekte',icon:'▦',hint:'Gesamtbestand'},...programmes,...extras);
+ return{programmes,extras};
+}
+p31UnfilteredCounts=function(rows){p32Categories(rows);const m=new Map(p31Categories.map(x=>[x.id,0]));m.set('all',rows.length);
+ for(const p of rows)for(const id of p31Classify(p).ids)m.set(id,(m.get(id)||0)+1);return m;};
+p31Programs=function(rows,counts){
+ const types=p32Categories(rows), available=rows.some(x=>x.mla);
+ const card=c=>{const missing=(['MU','NEW_TENANT'].includes(c.id)&&!available);
+  return '<button type="button" data-p31-group="'+p32Esc(c.id)+'" class="p31-program'+(p31.group===c.id?' selected':'')+'"><span class="p31-progico" aria-hidden="true">'+p32Esc(c.icon)+'</span><strong>'+p32Esc(c.title)+'</strong><b>'+(missing?'–':p31Number(counts.get(c.id)||0))+'</b><small>'+p32Esc(missing?'MLA-Feld fehlt':c.hint)+'</small></button>';};
+ return '<h3 class="p32-subtitle">Programme · dynamisch aus Quellen</h3>'+
+ (types.programmes.length?'<div class="p31-programgrid">'+types.programmes.map(card).join('')+'</div>':
+ '<div class="p31-notice warn"><b>Kein Programm nachgewiesen.</b> Ein leeres ST-Programmfeld bedeutet nicht „0 KG“. Importiere eine KG-/Programmstatusliste mit nachvollziehbarer Projektzuordnung.</div>')+
+ '<h3 class="p32-subtitle">MLA, Verlegung und Projekttypen · getrennt</h3><div class="p31-programgrid">'+types.extras.map(card).join('')+'</div>';
+};
+const p32OldFiltered=p31Filtered;
+p31Filtered=function(rows){const q=p31Norm(p31.query).trim();const copy=p31.query;p31.query='';let list;
+ try{list=p32OldFiltered(rows);}finally{p31.query=copy;}
+ if(!q)return list;return list.filter(p=>p31Norm([p.id,p.woc,p.site,p.siteName,p.description,p.type,p.status,p.owner,p.region,p.program,p.mla,
+ ...(p.vendor||[]).map(v=>v.name),...p32Evidence(p).map(x=>x.name),p32.edits.get(p.id)?.note||''].join(' ')).includes(q));};
+const p32OldDetail=p31Detail;
+p31Detail=function(rows){let html=p32OldDetail(rows),p=rows.find(x=>x.id===p31.focus);if(!p)return html;
+ const proofs=p32Evidence(p),edit=p32.edits.get(p.id)||{};
+ const evidence='<article class="p31-card p32-separated"><h2>Programmzuordnung · Nachweise</h2>'+
+ (proofs.length?proofs.map(x=>'<div class="p32-proof"><strong>'+p32Esc(x.name)+'</strong>'+x.proofs.map(t=>'<small>'+p32Esc(t.source+' · '+t.method+(t.row?' · Zeile '+t.row:''))+'</small>').join('')+'</div>').join(''):'<p>Keine belegte Programmzuordnung vorhanden.</p>')+'</article>';
+ const form='<article class="p31-card p32-separated"><h2>Eigener Arbeitsstand (nicht ST)</h2><p>Lokale Ergänzung. Kein Sitetracker-Update, keine geprüfte V8-Aufgabe. Verschlüsselter Export für Gerätewechsel verfügbar.</p>'+ 
+ '<label for="p32-note-status" class="p32-label">Bearbeitungsstatus</label><select id="p32-note-status" class="p32-entry">'+['Nicht begonnen','In Bearbeitung','Warten','Erledigt','Blockiert'].map(k=>'<option'+((edit.status||'Nicht begonnen')===k?' selected':'')+'>'+p32Esc(k)+'</option>').join('')+'</select>'+ 
+ '<label for="p32-note-body" class="p32-label">Notiz</label><textarea id="p32-note-body" class="p32-entry" maxlength="2000" rows="4">'+p32Esc(edit.note||'')+'</textarea>'+
+ '<div class="p31-actions"><button type="button" class="p31-btn" data-p32-action="save-note">Arbeitsstand übernehmen</button>'+(edit.updatedAt?'<span class="p32-small">Zuletzt geändert: '+p32Esc(edit.updatedAt.slice(0,16).replace('T',' '))+'</span>':'')+'</div></article>';
+ html=html.replace('<div class="p31-notice warn">',evidence+form+'<div class="p31-notice warn">');return html;
+};
+function p32Csv(rows){return '\uFEFF'+rows.map(r=>r.map(x=>'"'+String(x??'').replace(/"/g,'""')+'"').join(';')).join('\r\n');}
+function p32ExportAudit(){const rows=[['Datei','Blatt','Quellzeilen','Zuordnungen','Ungeklärt','Doppelte','Name manuell ergänzt'],
+ ...p32.files.map(x=>[x.name,x.sheet,x.rows,x.assigned,x.unresolved,x.duplicates,x.explicitName?'Ja':'Nein']),[],
+ ['Datei','Quellzeile','Problem'],...p32.unresolved.map(x=>[x.file,x.row,x.reason])];
+ p21File('RS_Cockpit_V32_Programmquellen_Pruefung_LOKAL.csv','text/csv;charset=utf-8',p32Csv(rows));}
+function p32Bundle(){if(!p30State?.model?.size)throw Error('Kein lokaler Projektstand geladen.');
+ const projects=p31Records().map(p=>({id:p.id,woc:p.woc,type:p.type,status:p.status,region:p.region,site:p.site,
+ program:p.program,mla:p.mla,relocation:p.relocation,siteName:p.siteName,description:p.description,owner:p.owner,vendor:p.vendor,
+ milestones:p.milestones,milestoneMarkers:p.milestoneMarkers}));
+ return{kind:'RS_COCKPIT_V32_TRANSFER',version:1,createdAt:new Date().toISOString(),origin:'lokaler ST-Import oder verschlüsselte Übertragung',
+ projects,programs:[...p32.assignments.entries()],sources:p32.files,unresolved:p32.unresolved,edits:[...p32.edits.entries()],
+ warning:'Nicht server-synchronisiert; prüfbedürftige Daten. Kein produktiver V8-Report.'};
+}
+function p32ValidateBundle(b){
+ if(!b||b.kind!=='RS_COCKPIT_V32_TRANSFER'||b.version!==1||!Array.isArray(b.projects)||!b.projects.length||b.projects.length>160000)throw Error('Ungültiger oder zu großer RS_Cockpit-Gerätestand.');
+ if(!Array.isArray(b.programs)||!Array.isArray(b.edits)||!Array.isArray(b.sources)||!Array.isArray(b.unresolved))throw Error('Unvollständiges Austauschformat.');
+ const keys=new Set();for(const p of b.projects){if(!p||typeof p.id!=='string'||!/^(?:DEMO-)?P-\d{4,}$/.test(p.id)||keys.has(p.id)||!Array.isArray(p.vendor)||p.vendor.length>100)throw Error('Projekt-IDs doppelt/ungültig oder Firmenrollen nicht plausibel.');keys.add(p.id);}
+ if(b.edits.length>160000||b.programs.length>160000||b.sources.length>100||b.unresolved.length>40000)throw Error('Gerätestand überschreitet die Sicherheitsgrenzen.');
+ for(const [id,edit] of b.edits){if(!keys.has(id)||!edit||typeof edit.note!=='string'||edit.note.length>2000||!['Nicht begonnen','In Bearbeitung','Warten','Erledigt','Blockiert'].includes(edit.status))throw Error('Nicht zulässiger Bearbeitungsstand.');}
+ for(const [id,list] of b.programs){if(!keys.has(id)||!Array.isArray(list)||list.length>100||list.some(x=>typeof x.name!=='string'||x.name.length>150||typeof x.source!=='string'||x.source.length>300))throw Error('Ungültige Programmzuordnung.');}
+ return true;
+}
+function p32Base64(bytes){let out='';for(let i=0;i<bytes.length;i+=0x4000)out+=String.fromCharCode(...bytes.subarray(i,i+0x4000));return btoa(out);}
+function p32From64(text){return Uint8Array.from(atob(text),c=>c.charCodeAt(0));}
+async function p32KeyFrom(pass,salt){if(!globalThis.crypto?.subtle||!globalThis.crypto?.getRandomValues)throw Error('Sichere WebCrypto-Verschlüsselung ist hier nicht verfügbar. Datei unter einem vertrauenswürdigen sicheren Ursprung öffnen.');
+ if(typeof pass!=='string'||pass.length<16)throw Error('Für den vertraulichen Datenaustausch mindestens 16 Zeichen als Passphrase verwenden.');
+ const raw=await crypto.subtle.importKey('raw',new TextEncoder().encode(pass),'PBKDF2',false,['deriveKey']);
+ return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:350000,hash:'SHA-256'},raw,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);}
+async function p32Encrypt(b,pass){p32ValidateBundle(b);const bytes=new TextEncoder().encode(JSON.stringify(b));if(bytes.length>45000000)throw Error('Gerätestand größer als 45 MB.');
+ const salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12)),key=await p32KeyFrom(pass,salt);
+ const ciphertext=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,bytes);
+ return{kind:'RS_COCKPIT_V32_ENCRYPTED_TRANSFER',version:1,alg:'AES-256-GCM',kdf:'PBKDF2-SHA256',iterations:350000,
+ salt:p32Base64(salt),iv:p32Base64(iv),data:p32Base64(new Uint8Array(ciphertext)),createdAt:new Date().toISOString()};}
+async function p32Decrypt(env,pass){
+ if(!env||env.kind!=='RS_COCKPIT_V32_ENCRYPTED_TRANSFER'||env.version!==1||env.alg!=='AES-256-GCM'||env.kdf!=='PBKDF2-SHA256'||env.iterations!==350000||typeof env.data!=='string'||env.data.length>65000000)throw Error('Unbekanntes/ungültiges verschlüsseltes Transferformat.');
+ const salt=p32From64(env.salt),iv=p32From64(env.iv);if(salt.length!==16||iv.length!==12)throw Error('Verschlüsselungsparameter ungültig.');
+ const key=await p32KeyFrom(pass,salt);let bytes;
+ try{bytes=await crypto.subtle.decrypt({name:'AES-GCM',iv},key,p32From64(env.data));}catch(_){throw Error('Passphrase falsch oder Datei beschädigt.');}
+ const b=JSON.parse(new TextDecoder().decode(bytes));p32ValidateBundle(b);return b;
+}
+function p32ApplyBundle(bundle){p32ValidateBundle(bundle);
+ const incomingEdits=new Map(bundle.edits);
+ // Never silently overwrite different local edits, including when device clocks differ.
+ for(const [id,v] of p32.edits){const other=incomingEdits.get(id);if(other&&JSON.stringify([v.status,v.note])!==JSON.stringify([other.status,other.note]))throw Error('Bearbeitungskonflikt bei '+id+'. Vor Import einen verschlüsselten Sicherungsstand beider Geräte anlegen. Kein automatisches Überschreiben.');}
+ if(p30State?.model?.size&&!confirm('Den derzeitigen Projektbestand durch den entschlüsselten Gerätestand ersetzen? Ungespeicherte lokale Daten gehen verloren.'))return false;
+ const model=new Map(bundle.projects.map(p=>[p.id,{...p,milestones:p.milestones||{},milestoneMarkers:p.milestoneMarkers||{}}]));
+ p30State={timestamp:bundle.createdAt,model,summary:{projects:model.size,assignedVendorProjects:[...model.values()].filter(p=>p.vendor.length).length,findings:0,missingRoles:[],milestoneStats:{}},meta:[],issues:[],issueSummary:[],milestoneFieldStats:[],projectExport:[],transferOnly:true};
+ p32.assignments=new Map(bundle.programs);p32.files=bundle.sources;p32.unresolved=bundle.unresolved;p32.edits=new Map([...incomingEdits,...p32.edits]);p32.bundleSource=bundle.createdAt;p31.focus=null;p31.group='all';p31.page=0;tab='overview';render();return true;
+}
+function p32ImportPanel(){return '<article class="p31-card p32-separated"><div class="p31-panel-head"><h2>Zusätzliche Programme importieren</h2></div>'+ 
+ '<p>Neue Programme werden automatisch aus dem <b>Feld Program</b> im Master oder aus separaten Programm-/KG-Statuslisten übernommen. Mehrere Programme je Projekt sind zulässig. Dateinamen allein begründen kein Programm.</p>'+ 
+ '<div class="p32-fields"><label class="p32-label">Programm-Statusliste (.xlsx oder .csv)<input id="p32-program-files" class="p32-entry" type="file" accept=".xlsx,.csv" multiple></label>'+ 
+ '<label class="p32-label">Programmname (nur wenn der Export keine Programm-Spalte hat)<input id="p32-program-name" class="p32-entry" placeholder="z. B. Cadastral Municipalities"></label></div>'+ 
+ '<div class="p31-actions"><button type="button" class="p31-btn" data-p32-action="import-programs">Programmzuordnungen prüfen</button>'+
+ '<button type="button" class="p31-btn ghost" data-p32-action="export-audit">Quellen-/Fehlerbericht CSV</button>'+ 
+ '<button type="button" class="p31-btn ghost" data-p32-action="reset-programs">Zusatzprogramme zurücksetzen</button></div>'+ 
+ '<p class="p32-small">Zuordnung bevorzugt über exakte Project ID, sonst nur eindeutige WOC oder eindeutige ETS Site ID/StandortONr. Mehrdeutige Standorte werden ausdrücklich <b>nicht</b> automatisch zugeordnet. Keine Live-Sitetracker-Abfrage.</p>'+ 
+ '<div class="p31-notice">Importierte Zusatzquellen: '+p31Number(p32.files.length)+' · Nicht aufgelöste Zeilen: '+p31Number(p32.unresolved.length)+'. '+p32Esc(p32.message)+'</div></article>';}
+function p32TransferPanel(){return '<article class="p31-card p32-separated"><h2>PC ↔ iPhone · verschlüsselter Geräteabgleich</h2>'+ 
+ '<p>Zum aktuellen Stand ist <b>kein gemeinsamer Server</b> eingerichtet. Dieses Verfahren ist ein ausdrücklich manueller, vollständig verschlüsselter Datentransfer und <b>keine automatische Synchronisation</b>.</p>'+ 
+ '<label class="p32-label" for="p32-transfer-pass">Passphrase (mindestens 16 Zeichen; wird nicht gespeichert)</label><input id="p32-transfer-pass" class="p32-entry" type="password" autocomplete="new-password" placeholder="Lange, eigene Passphrase">'+
+ '<div class="p31-actions"><button type="button" class="p31-btn" data-p32-action="export-bundle">Verschlüsselten Gerätestand exportieren</button>'+ 
+ '<button type="button" class="p31-btn secondary" data-p32-action="select-bundle">Verschlüsselten Gerätestand öffnen</button></div>'+ 
+ '<input id="p32-transfer-file" type="file" accept=".json" hidden><p class="p32-small">Der Transfer enthält Projektdaten, Programmzuordnungen und manuelle Arbeitsstände; er ist vertraulich. Passphrase getrennt von der Datei übermitteln. Bei Konflikten kein stilles Überschreiben.</p>'+ 
+ '<div class="p31-notice warn"><b>Noch nicht produktiv:</b> Kein Mehrbenutzerschutz, keine MFA-/Serveranmeldung, keine automatische Übertragung und keine IT-Betriebsfreigabe. Safari-Dateiöffnung und iOS-Verschlüsselung müssen am echten Gerät getestet werden.</div></article>';}
+const p32OldOverview=p31Overview;
+p31Overview=function(){let out=p32OldOverview();if(!p30State?.model?.size)return out;
+ out=out.replace('Für KG ist eine gesonderte KG-Quellliste nötig. Im geprüften ST-Master ist die Spalte „Program“ leer. Deshalb wird KG nicht aus Projektart oder WOC geraten.',
+ 'Programme aus dem ST-Master oder separaten Listen werden nur mit dokumentierter Projektzuordnung übernommen. Die bisherigen KG- und RIFU-KG-Quellen sind im Sechs-Dateien-Import noch nicht enthalten.');
+ return out.replace('</section>',p32ImportPanel()+p32TransferPanel()+'</section>');};
+const p32OldList=p31ListView;
+p31ListView=function(isProjects){let out=p32OldList(isProjects);if(!p30State?.model?.size||p31.focus)return out;
+ return out.slice(0,out.lastIndexOf('</section>'))+p32ImportPanel()+p32TransferPanel()+out.slice(out.lastIndexOf('</section>'));};
+function p32Worklist(){const rows=p31Records();let html='<section class="p31-view">'+p31Header('Eigene Arbeitsstände','Lokale Status und Notizen zu den importierten Projekten – getrennt von Sitetracker und V8-Firmenaufgaben.','ARBEITSSTAND · NICHT ST')+
+ '<article class="p31-card"><h2>Eigene Bearbeitungen</h2><p>Hier werden ausschließlich lokal erfasste Notizen angezeigt. Keine automatischen V8-Urgenzen, keine ST-Rückschreibung.</p>';
+ const edits=[...p32.edits.entries()].sort((a,b)=>(b[1].updatedAt||'').localeCompare(a[1].updatedAt||''));
+ if(!edits.length)html+='<p>Noch keine eigenen Arbeitsstände erfasst. Öffne dazu eine Projektakte.</p>';
+ else html+=edits.slice(0,150).map(([id,edit])=>'<div class="p32-workitem"><strong>'+p32Esc(id)+'</strong> · '+p32Esc(edit.status)+'<p>'+p32Esc(edit.note||'(ohne Notiz)')+'</p><button type="button" class="p31-btn ghost" data-p32-project="'+p32Esc(id)+'">Projektakte öffnen</button></div>').join('');
+ html+='</article>'+p32TransferPanel()+'</section>';return html;
+}
+const p32OldRender=render;
+render=function(){if(tab==='tasks'&&p30State?.model?.size){document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab==='tasks'));document.getElementById('content').innerHTML=p32Worklist();return;}p32OldRender();};
+// Preserve the six-file import while clearing stale source-specific programme assignments and notes only when requested.
+const p32OldP30Action=p30Action;
+p30Action=async function(action){const old=p30State;await p32OldP30Action(action);
+ if(action==='clear'){p32.assignments.clear();p32.files=[];p32.unresolved=[];p32.edits.clear();p32.bundleSource='';}
+ if(action==='run'&&p30State!==old){p32.assignments.clear();p32.files=[];p32.unresolved=[];p32.bundleSource='';p32.message='Neue ST-Quelldaten eingelesen. Ergänzende Programmquellen bei Bedarf erneut importieren.';render();}
+};
+let p32RestorePass='';
+document.addEventListener('click',e=>{
+ const b=e.target.closest('[data-p32-action],[data-p32-project]');if(!b)return;e.preventDefault();e.stopImmediatePropagation();
+ if(b.dataset.p32Project){p31.focus=b.dataset.p32Project;tab='projects';render();return;}
+ const cmd=b.dataset.p32Action;
+ (async()=>{
+ try{
+  if(cmd==='save-note'){
+   if(!p31.focus||!p30State?.model?.has(p31.focus))throw Error('Projektakte fehlt.');
+   const note=document.getElementById('p32-note-body')?.value||'',status=document.getElementById('p32-note-status')?.value||'';
+   if(note.length>2000||!['Nicht begonnen','In Bearbeitung','Warten','Erledigt','Blockiert'].includes(status))throw Error('Unzulässige Eingabe.');
+   p32.edits.set(p31.focus,{status,note,updatedAt:new Date().toISOString()});p32.message='Arbeitsstand nur im Speicher aktualisiert. Bitte verschlüsselten Gerätestand exportieren.';render();return;
+  }
+  if(cmd==='reset-programs'){if(confirm('Alle zusätzlichen Programmzuordnungen und deren Quellenbericht aus diesem Browserfenster löschen?')){p32.assignments.clear();p32.files=[];p32.unresolved=[];p32.message='Zusatzprogramme gelöscht.';p31.group='all';render();}return;}
+  if(cmd==='export-audit'){p32ExportAudit();return;}
+  if(cmd==='import-programs'){
+   const files=[...(document.getElementById('p32-program-files')?.files||[])],forced=document.getElementById('p32-program-name')?.value||'';
+   p32.busy=true;await p32ImportPrograms(files,forced);p32.busy=false;render();return;
+  }
+  if(cmd==='export-bundle'){
+   const pass=document.getElementById('p32-transfer-pass')?.value||'';const env=await p32Encrypt(p32Bundle(),pass);
+   p21File('RS_Cockpit_V32_Geraetestand_VERSCHLUESSELT_'+new Date().toISOString().slice(0,10)+'.json','application/json;charset=utf-8',JSON.stringify(env));
+   p32.message='Verschlüsselte Datei erstellt. Sie enthält vertrauliche Daten; getrennt vom Passwort aufbewahren.';render();return;
+  }
+  if(cmd==='select-bundle'){
+   const pass=document.getElementById('p32-transfer-pass')?.value||'';if(pass.length<16)throw Error('Passphrase mit mindestens 16 Zeichen eingeben.');
+   p32RestorePass=pass;document.getElementById('p32-transfer-file')?.click();return;
+  }
+ }catch(err){p32.busy=false;p32.message='Fehler: '+String(err?.message||err);render();alert(p32.message);}
+ })();
+},true);
+document.addEventListener('change',async e=>{
+ if(e.target.id!=='p32-transfer-file')return;e.stopImmediatePropagation();
+ try{const file=e.target.files?.[0];if(!file||file.size>70000000)throw Error('Gerätestand fehlt oder ist größer als 70 MB.');
+ const env=JSON.parse(await file.text());const bundle=await p32Decrypt(env,p32RestorePass);p32RestorePass='';
+ if(p32ApplyBundle(bundle)){p32.message='Verschlüsselter Gerätestand lokal geöffnet: '+bundle.projects.length+' Projekte.';render();}
+ }catch(err){p32RestorePass='';p32.message='Import abgelehnt: '+String(err?.message||err);render();alert(p32.message);}
+},true);
+window.rsCockpitProgramDiagnostics=()=>({kind:'RS_COCKPIT_V32_DYNAMIC_PROGRAMME',projects:p30State?.model?.size||0,
+ programCatalogue:p32Catalogue(p31Records()),sources:p32.files,unresolvedCount:p32.unresolved.length,
+ manualEdits:p32.edits.size,onlineSync:false,serverAuth:false,prodV8:false});
+window.rsCockpitV32Test={classify:p31Classify,programs:p32ProgramNames,catalogue:p32Catalogue,match:p32Match,indexes:p32Indexes,
+ add:p32Add,importPrograms:p32ImportPrograms,encrypt:p32Encrypt,decrypt:p32Decrypt,apply:p32ApplyBundle,bundle:p32Bundle};
+render();
+
+</script></body></html>
